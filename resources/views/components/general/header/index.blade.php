@@ -54,7 +54,7 @@
                     </span>
                 </div>
             </div>
-            <a class="btn-link order-history" href="">
+            <a class="btn-link order-history" href="{{ route('lich-su-mua-hang.index') }}">
                 @if (auth()->user())
                     <span>
                         Đơn hàng
