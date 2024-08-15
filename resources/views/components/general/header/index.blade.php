@@ -41,7 +41,7 @@
     <div class="layout-header-top">
         <div>
             <a href="{{ route('homepage') }}" class="header-logo"><i class="iconnewglobal-logo"></i></a>
-            <a class="btn-link check-inventory" @click="showPopupLocationSelect">
+            <a class="btn-link check-inventory" onclick="popupLocationSelect('show')">
                 <span>Xem giá, tồn kho tại:</span>
                 <span class="arrow-drop-down material-symbols-outlined">arrow_drop_down</span>
                 <span class="address">t.t. Dầu Tiếng, h. Dầu Tiếng, t. Bình Dương</span>
@@ -93,10 +93,3 @@
     </div>
 </div>
 <x-general.popup.location-select.index />
-
-<script setup>
-    const showPopupLocationSelect = function() {
-        document.querySelector('.layer-shadow-overlay').style.display = 'block';
-        document.querySelector('.layout-location-select').style.display = 'block';
-    }
-</script>

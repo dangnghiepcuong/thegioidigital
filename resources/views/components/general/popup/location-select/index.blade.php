@@ -10,7 +10,7 @@
                 <span class="address district">huyện Dầu Tiếng, </span>
                 <span class="address ward">thị trấn Dầu Tiếng </span>
             </div>
-            <a class="btn-close" @click="close">
+            <a class="btn-close" onclick="popupLocationSelect('close')">
                 <span class="icon material-symbols-outlined">close</span>
                 <span>Đóng</span>
             </a>
