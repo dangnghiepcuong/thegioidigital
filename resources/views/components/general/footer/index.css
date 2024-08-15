@@ -1,0 +1,167 @@
+#component-footer .layout-footer {
+    width: 100%;
+    min-width: 1024px;
+    height: 300px;
+    background-color: #fff;
+}
+
+#component-footer .footer {
+    max-width: 1200px;
+    min-width: 1200px;
+    margin: auto;
+}
+
+#component-footer .table-of-contents {
+    display: flex;
+    justify-content: space-between;
+}
+
+i[class^="icon-"],
+i[class*="icon-"] {
+    background-image: url(//cdnv2.tgdd.vn/webmwg/2024/ContentMwg/images/homev2/desk/icon_common@2x.png?v=2);
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    background-size: 300px 200px;
+}
+
+i[class^="iconlogo-"].visible,
+i[class*="iconlogo-"].visible {
+    background-image: url(//cdnv2.tgdd.vn/webmwg/2024/ContentMwg/images/DMX/Global/Desktop/Logo-webmoi.webp);
+}
+
+i[class^="iconlogo-"],
+i[class*="iconlogo-"] {
+    background-image: url(//cdnv2.tgdd.vn/webmwg/2024/ContentMwg/images/DMX/Global/Desktop/Logo-webmoi.webp);
+    height: 24px;
+    width: 80px;
+}
+
+i[class^="iconlogo-"],
+i[class*="iconlogo-"] {
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 24px;
+    width: 80px;
+    line-height: 30px;
+    vertical-align: middle;
+    background-size: 250px 200px;
+}
+
+#component-footer .item {
+    margin: 15px 0px;
+}
+
+#component-footer .item a {
+    display: block;
+}
+
+#component-footer .list.contacts .item:first-child {
+    font-weight: bold;
+}
+
+#component-footer .layout-column.other-links {
+    width: 30%;
+}
+
+#component-footer .list.social-media,
+#component-footer .list.certificates {
+    display: flex;
+    justify-content: space-between;
+}
+
+#component-footer .icon-facebook {
+    background-position: -225px 0;
+    height: 18px;
+    width: 18px;
+}
+
+#component-footer .icon-youtube {
+    background-position: -200px 0;
+    height: 18px;
+    width: 18px;
+}
+
+#component-footer .imgzalo img {
+    max-width: 18px;
+    margin-top: -5px;
+    vertical-align: middle;
+}
+
+#component-footer .list.certificates,
+#component-footer .list.websites {
+    margin-bottom: 30px;
+}
+
+#component-footer .list.certificates .item {
+    margin: 0;
+}
+
+#component-footer .list.websites .item {
+    margin: 5px 0;
+}
+
+#component-footer .list.certificates .item img {
+    width: 85px;
+    object-fit: contain;
+}
+
+#component-footer .icon-congthuong {
+    background-position: -200px -30px;
+    height: 24px;
+    width: 79px;
+}
+
+#component-footer .icon-khieunai {
+    background-position: -250px 0;
+    height: 25px;
+    width: 25px;
+}
+
+#component-footer .icon-protected {
+    background-position: -80px -60px;
+    height: 24px;
+    width: 122px;
+}
+
+#component-footer .list.websites {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#component-footer .list.websites .item {
+    margin-right: 10px;
+}
+
+#component-footer .iconlogo-topzone {
+    background-position: 0 -58px;
+}
+
+#component-footer .iconlogo-dienmayxanh {
+    background-position: -85px 0;
+}
+
+#component-footer .iconlogo-bachhoaxanh {
+    background-position: -170px 0;
+}
+
+#component-footer .iconlogo-ankhang {
+    background-position: -85px -90px;
+}
+
+#component-footer .iconlogo-kids {
+    background-position: -85px -120px;
+}
+
+#component-footer .iconlogo-vieclam {
+    background-position: 0 -120px;
+}
+
+#component-footer .copyright-info p {
+    color: #666;
+    line-height: 1.25rem;
+    font-size: 0.85rem;
+}

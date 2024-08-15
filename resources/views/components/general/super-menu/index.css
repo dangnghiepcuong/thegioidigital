@@ -1,0 +1,98 @@
+#super-menu.super-menu {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#super-menu.super-menu>li {
+    position: relative;
+    padding: 12px 8px;
+    cursor: pointer;
+    font-size: 0;
+}
+
+#super-menu .super-menu.text-link span {
+    vertical-align: middle;
+}
+
+#super-menu .super-menu.text-link span.title, span.sub-title {
+    display: inline-block;
+    font-size: 14px;
+}
+
+#super-menu .super-menu.text-link span.material-symbols-outlined {
+    font-size: 24px;
+}
+
+#super-menu .layout-pointer-arrow {
+    height: 0px;
+}
+
+#super-menu .pointer-arrow {
+    display: none;
+    position: absolute;
+    margin: 0;
+    color: #fff;
+    font-variation-settings: 'FILL' 1;
+    transform: translate(100%, -8px);
+    z-index: 11;
+}
+
+#super-menu .menu-panel {
+    display: none;
+    width: max-content;
+    position: absolute;
+    z-index: 10;
+    padding: 12px 10px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    background-color: white;
+    transform: translate(0, 8px);
+}
+
+#super-menu .super-menu li:nth-last-child(-n + 3) {
+    .menu-panel {
+        transform: translate(-75%, 8px);
+
+    }
+}
+
+#super-menu .grid-submenu {
+    display: grid;
+    grid-auto-rows: minmax(min-content, max-content);
+    grid-template-columns: repeat(4, auto);
+    row-gap: 12px;
+}
+
+#super-menu .grid-submenu>li {
+    padding-right: 20px;
+}
+
+#super-menu .grid-submenu>li:first-child {
+    grid-row: 1 / 4;
+}
+
+#super-menu .menu-panel .title {
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#super-menu.super-menu li:hover {
+    .menu-panel {
+        display: block;
+    }
+
+    .pointer-arrow {
+        display: block;
+    }
+}
+
+#super-menu .vertical-submenu>li {
+    padding-top: 15px;
+}
+
+#super-menu .sub-title:hover {
+    font-weight: bold;
+}
