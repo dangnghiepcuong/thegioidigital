@@ -1,0 +1,33 @@
+#component-product-list-deal-ngon .nav-slider .prev,
+#component-product-list-deal-ngon .nav-slider .next {
+    top: 205px;
+}
+
+#component-product-list-deal-ngon .layout-product-deal {
+    padding: 15px 10px 0px 10px;
+}
+
+#component-product-list-deal-ngon .layout-product-deal>div {
+    position: relative;
+}
+
+#component-product-list-deal-ngon .slider {
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(1, 1fr);
+    transition: 300ms;
+}
+
+#component-product-list-deal-ngon .slide {
+    width: 226px;
+    height: 428px;
+    margin: 5px 5px;
+    padding: 10px;
+    border-radius: var(--card-border-radius);
+    background-color: #fff;
+}
+
+#component-product-list-deal-ngon .slide .holder-img img {
+    width: 205px;
+}
