@@ -1,0 +1,129 @@
+#page-roles {
+    width: 100%;
+    height: 10px;
+    padding-left: 265px;
+}
+
+.layout-roles-management {
+    margin: 30px;
+    border: 1px solid #999;
+    border-radius: var(--card-large-border-radius);
+    background-color: white;
+}
+
+.holder-title {
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 5px;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.layout-panel {
+    display: flex;
+    justify-content: center;
+}
+
+.panel-left,
+.panel-right {
+    position: relative;
+    width: 45%;
+    height: 800px;
+    margin: 15px 10px;
+    padding: 10px 20px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, .11);
+}
+
+.list {
+    height: 730px;
+}
+
+.list .item {
+    position: relative;
+    margin-top: 5px;
+    border: 1px solid darkorange;
+    border-radius: var(--card-border-radius);
+    transition: 200ms;
+}
+
+.list .item:hover {
+    background-color: darkorange;
+}
+
+.list .item:hover>.role,
+.list .item:hover>.permission {
+    color: white;
+}
+
+.list .item .role,
+.list .item .permission {
+    display: block;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.list .item .role,
+.list .item .permission {
+    color: darkorange;
+}
+
+.list .item .role span,
+.list .item .permission span {
+    vertical-align: middle;
+}
+
+.list .item .permission span.operation {
+    color: #B000DB;
+}
+
+.list .item .permission span.on {
+    color: #795E26;
+}
+
+.list .item .permission span.table {
+    color: #A31515;
+}
+
+.list .item .role span.icon,
+.list .item .permission span.icon {
+    position: absolute;
+    right: 0;
+    padding: 0 5px;
+    color: white;
+}
+
+.layout-bottom-control-panel {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 15px 20px;
+    padding: 10px 0;
+    background-color: white;
+    text-align: center;
+    box-shadow: 0 0 16px rgba(0, 0, 0, .19);
+}
+
+.panel-add-permissions {
+    display: inline-block;
+}
+
+.btn-add {
+    width: 30px;
+    height: 30px;
+    padding: 3px 5px;
+    border: 1px solid darkorange;
+    border-radius: 100px;
+    background-color: darkorange;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn-add-permission {
+    background-color: darkorange;
+    color: white;
+    cursor: pointer;
+}

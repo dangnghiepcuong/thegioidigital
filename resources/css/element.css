@@ -80,3 +80,26 @@
     width: 100%;
     overflow: hidden;
 }
+
+.tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+    z-index: 100;
+}
+
+.tooltip-text {
+    display: none;
+    z-index: 100;
+    position: absolute;
+    padding: 2px;
+    border-radius: var(--border-radius);
+    font-size: 0.6rem;
+    background-color: #333;
+    color: white;
+    transition: 300ms;
+}
+
+.error {
+    color: red;
+    font-size: 0.85rem;
+}
