@@ -27,8 +27,8 @@
     />
 
     <x-product.frame-list 
-        :banner-link="'https://cdnv2.tgdd.vn/mwg-static/common/Banner/69/fe/69fee98f7bf4d108b3f3cbd58dd9f94a.png'" 
-        :background-color="'background-color: #F29202'" 
+        :banner-link="'https://cdnv2.tgdd.vn/mwg-static/common/Banner/8e/d6/8ed6fa0d9f0c6a4ce81f9a44ec5989ac.png'" 
+        :background-color="'background-color: #FED11D'" 
         :product-list-component="'product.list.deal-ngon'" 
         :products-per-frame="5" 
         :btn-see-more="'Xem tất cả'" 

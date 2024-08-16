@@ -23,6 +23,12 @@
                             <span>Thông tin và sổ địa chỉ</span>
                         </a>
                     </li>
+                    <li class="item">
+                        <a href="{{ route('admin.index') }}">
+                            <span class="material-symbols-outlined icon personal-info">admin_panel_settings</span>
+                            <span>Trang Quản trị viên</span>
+                        </a>
+                    </li>
                 </ul>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
