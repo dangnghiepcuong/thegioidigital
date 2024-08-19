@@ -1,0 +1,62 @@
+#page-order-history .layout-orders-history {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+#page-order-history .layout-panel {
+    display: flex;
+    flex-flow: column;
+    gap: 20px;
+}
+
+#page-order-history .layout-panel .customer-name {
+    font-size: 1.15rem;
+}
+
+#page-order-history .layout-panel .panel-list-item .item.selected {
+    border-radius: var(--border-radius);
+    background-color: #e4e7ed;
+}
+
+#page-order-history .layout-panel .panel-list-item a {
+    display: block;
+    padding: 12px 15px;
+}
+
+#page-order-history .layout-panel .panel-list-item a span {
+    vertical-align: middle;
+    margin: 0 2px;
+}
+
+#page-order-history .layout-panel .panel-list-item a span.icon {
+    padding: 2px 3px;
+    border-radius: 3px;
+    font-size: 1.25rem;
+    background-color: #999;
+    color: #fff;
+}
+
+#page-order-history .layout-panel .panel-list-item a span.icon.order.selected {
+    background-color: lightgreen;
+}
+
+#page-order-history .layout-panel .panel-list-item a span.icon.personal-info.selected {
+    background-color: lightblue;
+}
+
+#page-order-history .layout-panel .btn-logout {
+    width: 100%;
+    padding: 13px 31px;
+    border: 1px solid darkorange;
+    border-radius: var(--border-radius);
+    color: darkorange;
+    font-weight: bold;
+    text-align: center;
+}
+
+#page-order-history .layout-panel .btn-logout:hover {
+    background-color: darkorange;
+    color: white;
+    cursor: pointer;
+}

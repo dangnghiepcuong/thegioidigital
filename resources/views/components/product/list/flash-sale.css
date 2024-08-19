@@ -1,0 +1,67 @@
+#component-product-list-flash-sale .nav-slider .prev,
+#component-product-list-flash-sale .nav-slider .next {
+    top: 410px;
+}
+
+#component-product-list-flash-sale .layout-product-sale {
+    padding: 25px 20px 0 20px;
+}
+
+#component-product-list-flash-sale .layout-product-sale>div {
+    position: relative;
+}
+
+#component-product-list-flash-sale .slider {
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(2, 1fr);
+    transition: 300ms;
+}
+
+#component-product-list-flash-sale .slide {
+    width: 184px;
+    height: 375px;
+    margin: 5px 5px;
+    padding: 0 5px;
+    border-radius: var(--card-border-radius);
+    background-color: #fff;
+    text-align: center;
+}
+
+#component-product-list-flash-sale .slide .holder-label {
+    position: absolute;
+    z-index: 10;
+    text-align: left;
+    top: 10px;
+    left: 5px;
+}
+
+#component-product-list-flash-sale .slide .holder-img img {
+    display: block;
+    width: 174px;
+    height: 100%;
+    margin: auto;
+}
+
+#component-product-list-flash-sale .slide .layout-quantity {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    padding: 1px 0;
+    border-radius: 20px;
+    background-color: #fcb500;
+}
+
+#component-product-list-flash-sale .slide .layout-quantity .icon {
+    display: block;
+    height: 100%;
+    float: left;
+}
+
+#component-product-list-flash-sale .slide .layout-quantity .icon img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 25px;
+}

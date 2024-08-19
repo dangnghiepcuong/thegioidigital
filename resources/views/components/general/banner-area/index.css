@@ -1,0 +1,125 @@
+#banner-area-slider.layout-slider {
+    height: 0;
+    padding-bottom: 90px;
+}
+
+#banner-area-slider.layout-slider > div {
+    position: relative;
+    width: 100%;
+    min-width: 1024px;
+    margin: auto;
+    transform: translateY(-50%);
+}
+
+#banner-area-slider .layout-nav-slider {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    margin: auto;
+}
+
+#banner-area-slider .layout-nav-slider .left,
+.right {
+    display: inline-block;
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    background-color: white;
+    opacity: var(--default-opacity);
+    border-radius: 100%;
+    filter: drop-shadow(0 4px 7px rgba(0, 0, 0, .15));
+    text-align: center;
+    cursor: pointer;
+}
+
+#banner-area-slider .layout-nav-slider .left {
+    left: 0;
+    transform: translate(-50%, -65%);
+}
+
+#banner-area-slider .layout-nav-slider .right {
+    right: 0;
+    transform: translate(50%, -65%);
+}
+
+#banner-area-slider .layout-nav-slider span.icon {
+    position: absolute;
+    top: 50%;
+    left: 6px;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+#banner-area-slider .slider {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: auto;
+    transition: 500ms;
+}
+
+#banner-area-slider .slider img {
+    width: 595px;
+    border-radius: var(--card-large-border-radius);
+}
+
+#banner-area-campaign-cards.layout-campaign-cards {
+    margin: 30px auto;
+}
+
+#banner-area-campaign-cards .campaign-cards {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+#banner-area-campaign-cards .campaign-cards .card {
+    display: inline-block;
+    width: calc(100% / 3 - 16px);
+    height: 100px;
+    margin-right: 20px;
+    padding: 15px 0;
+    background-color: white;
+    border-radius: var(--card-large-border-radius);
+    vertical-align: middle;
+}
+
+#banner-area-campaign-cards .campaign-cards .card:last-child {
+    margin-right: 0;
+}
+
+#banner-area-campaign-cards .campaign-cards .card a {
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+    color: var(--color-default);
+}
+
+#banner-area-campaign-cards .campaign-cards .card img {
+    display: inline-block;
+    width: auto;
+    height: 70px;
+    vertical-align: middle;
+}
+
+#banner-area-campaign-cards .campaign-cards .card a span {
+    display: inline-block;
+    max-width: 65%;
+    margin-left: 15px;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 1.5rem;
+    overflow: hidden;
+}
+
+#banner-area-banner-topzone.banner-topzone {
+    width: 100%;
+    margin: 30px auto;
+}
+
+#banner-area-banner-topzone.banner-topzone img {
+    width: 100%;
+    object-fit: contain;
+}

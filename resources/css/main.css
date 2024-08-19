@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    font-family: Arial;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 14px;
+    color: #333;
+    --secondary: #ffd500;
+    --primary: #ffbc05;
+    --border-radius: 4px;
+    --popup-border-radius: 8px;
+    --card-border-radius: 6px;
+    --card-large-border-radius: 12px;
+    --default-opacity: 65%;
+    --color-default: #333;
+    --color-sale-primary: #d91b02;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-default);
+}
+
+body {
+    background-color: #f2f2f2;
+}
+
+ul {
+    padding-left: 0px;
+    list-style-type: none;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 200,
+  'GRAD' 0,
+  'opsz' 24
+}

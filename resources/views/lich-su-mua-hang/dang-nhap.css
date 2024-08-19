@@ -1,0 +1,78 @@
+.layout-login-page {
+    width: 100%;
+}
+
+.layout-login-page>div {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: 100px auto;
+}
+
+.layout-form-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 369px;
+    border-radius: var(--card-large-border-radius);
+    background-color: #fff;
+    box-shadow: 0 0 16px rgba(0, 0, 0, .11);
+}
+
+.form-login {
+    width: 60%;
+}
+
+.form-login>* {
+    width: 100%;
+}
+
+.form-title {
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: normal;
+}
+
+.layout-input {
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.layout-input .icon {
+    position: absolute;
+    top: 50%;
+    padding: 0 12px;
+    color: royalblue;
+    font-size: 2rem;
+    transform: translateY(-50%);
+}
+
+.input-phone-number,
+.input-password {
+    width: 100%;
+    height: 48px;
+    border-radius: 50px;
+    padding-left: 46px;
+    border: 1px solid #999;
+    outline-width: 0;
+    line-height: 1.5rem;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.btn-submit {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 50px;
+    background-color: #f96f3a;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.error {
+    color: red;
+    font-size: 0.85rem;
+}

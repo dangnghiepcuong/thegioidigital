@@ -1,0 +1,47 @@
+#component-product-list-dong-ho .nav-slider .prev,
+#component-product-list-dong-ho .nav-slider .next {
+    top: 205px;
+}
+
+#component-product-list-dong-ho .layout-product-deal {
+    padding: 15px 10px 0px 10px;
+}
+
+#component-product-list-dong-ho .layout-product-deal>div {
+    position: relative;
+}
+
+#component-product-list-dong-ho .slider {
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(1, 1fr);
+    transition: 300ms;
+}
+
+#component-product-list-dong-ho .slide {
+    width: 226px;
+    height: 428px;
+    margin: 5px 5px;
+    padding: 8px;
+    border-width: 8px;
+    border-style: solid;
+    border-image: linear-gradient(orange, #ba0202) 1;
+    background-color: #fff;
+}
+
+#component-product-list-dong-ho .slide .holder-img img.product {
+    width: 196px;
+}
+
+#component-product-list-dong-ho .slide .badge-corner {
+    position: absolute;
+    left: -8px;
+    bottom: -8px;
+    width: calc(100% + 16px);
+    height: 50px;
+    background-position: 0 -450px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('https://cdn.tgdd.vn/2023/04/campaign/Frame-knockout-desktop-226x500.png');
+}

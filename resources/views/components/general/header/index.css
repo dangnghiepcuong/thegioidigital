@@ -1,0 +1,210 @@
+#header-top-slider .layout-slider {
+    position: relative;
+}
+
+#header-top-slider .slider.advertise {
+    position: relative;
+    width: 1200px;
+    height: 44px;
+    margin: 0 auto;
+}
+
+#header-top-slider .slider.advertise .nav .prev,
+#header-top-slider .slider.advertise .nav .next {
+    top: 0;
+    width: 40px;
+    z-index: 2;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+}
+
+#header-top-slider .slider.advertise .nav .prev {
+    left: 0;
+}
+
+#header-top-slider .slider.advertise .nav .next {
+    right: 0;
+}
+
+#header-top-slider .arrow {
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    border-top: 3px solid #666;
+    border-bottom: none;
+}
+
+#header-top-slider .arrow-left {
+    left: 0;
+    border-left: 3px solid #666;
+    transform: rotate(-45deg) translate(70%, 0%);
+}
+
+#header-top-slider .arrow-right {
+    right: 0;
+    border-right: 3px solid #666;
+    transform: rotate(45deg) translate(-70%, 0%);
+}
+
+#header-top-slider .slider {
+    position: relative;
+    display: flex;
+    transition: 500ms;
+}
+
+#header .layout-header {
+    position: relative;
+    min-width: 1024px;
+}
+
+#header .layout-header-top,
+#header .layout-header-bottom {
+    margin: 0;
+    padding-top: 10px;
+    background-color: var(--secondary);
+}
+
+#header .layout-header-bottom {
+    padding-bottom: 5px;
+}
+
+#header .layout-header-top>div,
+#header .layout-header-bottom>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.iconnewglobal-logo {
+    --product-price-color: #e83a45;
+    font: 14px/18px Arial, Helvetica, sans-serif;
+    color: #288ad6;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-image: url(//cdn.tgdd.vn/mwgcart/mwgcore/ContentMwg/images/homev2/desk/iconnew-min.png?v=3);
+    background-repeat: no-repeat;
+    display: inline-block;
+    line-height: 30px;
+    vertical-align: middle;
+    background-size: 310px 257px;
+    background-position: 0 -176px;
+    width: 228px;
+    height: 40px;
+}
+
+#header .header-logo {
+    padding-right: 15px;
+}
+
+#header .btn-link {
+    position: relative;
+    min-height: 40px;
+    margin: 0 21px;
+    background-color: var(--primary);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+#header .btn-link.btn-link.check-inventory {
+    width: 15%;
+    padding: 4px 6px 4px 10px;
+    margin-left: 0px;
+    overflow: hidden;
+    line-height: 14px;
+    font-size: 0.8rem;
+}
+
+#header .btn-link.check-inventory .arrow-drop-down {
+    width: 15px;
+    height: 12px;
+    float: right;
+    font-size: 26px;
+    transform: translate(0px, 0px);
+}
+
+#header .btn-link.check-inventory .address {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    width: 100%;
+    max-width: 117px;
+    line-height: 15px;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+#header .bar-search {
+    width: 34%;
+    height: 40px;
+}
+
+#header .btn-link.order-history {
+    width: 10%;
+    padding: 6px 14px;
+    line-height: 14px;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+#header .btn-link.order-history .customer-name{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
+#header .btn-link.cart {
+    width: 12%;
+    max-height: none;
+    margin-left: 0px;
+    margin: 0;
+    padding: 5px 10px;
+    font-size: 0;
+}
+
+#header .btn-link.cart span {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+#header .btn-link.cart span.icon {
+    position: relative;
+    display: inline-block;
+    margin-right: 6px;
+    font-size: 2.25rem;
+}
+
+#header .btn-link.cart span {
+    vertical-align: middle;
+}
+
+#header .list-text-link {
+    display: flex;
+    align-items: center;
+    width: 28%;
+}
+
+#header .list-text-link .text-link {
+    padding: 5px 10px;
+    text-align: center;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#header .list-text-link .text-link.news span {
+    display: inline-block;
+}
+
+#header .vertical-border-line {
+    box-sizing: border-box;
+    background-color: #ffe56c;
+    height: 32px;
+    width: 1px;
+}
