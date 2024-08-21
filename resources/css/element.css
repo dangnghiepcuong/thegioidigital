@@ -80,3 +80,95 @@
     width: 100%;
     overflow: hidden;
 }
+
+.tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+    z-index: 100;
+}
+
+.tooltip-text {
+    display: none;
+    z-index: 100;
+    position: absolute;
+    padding: 2px;
+    border-radius: var(--border-radius);
+    font-size: 0.6rem;
+    background-color: #333;
+    color: white;
+    transition: 300ms;
+}
+
+.error {
+    color: red;
+    font-size: 0.85rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+h1, h2, .h1, .h2 {
+    font-weight: bold;
+}
+
+.btn, button {
+    line-height: 1rem;
+}
+
+.btn {
+    padding: 0;
+}
+
+.layout-btn-see-more {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.btn-see-more {
+    display: block;
+    width: 340px;
+    height: 48px;
+    margin: auto;
+    border-radius: var(--border-radius);
+    background-color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-see-more span {
+    vertical-align: middle;
+    line-height: 48px;
+}
+
+.btn-see-more span.icon {
+    margin: 0 5px;
+    font-size: 1rem;
+}
+
+select, option, label {
+    height: 1.75rem;
+    vertical-align: middle;
+}

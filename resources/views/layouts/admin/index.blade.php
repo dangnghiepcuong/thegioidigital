@@ -12,13 +12,14 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..40,200..400,0..1,0" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..40,200..400,0..1,0" />
+
+    @vite($cssDir . '/admin/bootstrap.min.css')
+    @vite($cssDir . '/admin/kaiadmin.css')
+    @vite($cssDir . '/admin/plugins.min.css')
     @vite($cssDir . '/main.css')
     @vite($cssDir . '/element.css')
     @vite($viewsDir . '/layouts/admin/index.css')
     @vite($viewsDir . '/components/admin/sidebar/index.css')
-    @vite($cssDir . '/admin/bootstrap.min.css')
-    @vite($cssDir . '/admin/kaiadmin.css')
-    @vite($cssDir . '/admin/plugins.css')
     @yield('styles')
 </head>
 
@@ -31,10 +32,10 @@
 
     @vite($jsDir . '/default.js')
     @vite($jsDir . '/admin/jquery-3.7.1.min.js')
-    @vite($jsDir . '/admin/jquery.scrollbar.min.js')
     @vite($jsDir . '/admin/bootstrap.min.js')
     @vite($jsDir . '/admin/popper.min.js')
     @vite($jsDir . '/admin/kaiadmin.min.js')
+    {{-- @vite($jsDir . '/admin/sidebar.js') --}}
     @yield('scripts')
 </body>
 
