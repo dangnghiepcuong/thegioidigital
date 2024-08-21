@@ -1,4 +1,5 @@
 @extends('layouts.admin.index')
+@section('title', 'Roles Management')
 
 @section('styles')
     @parent

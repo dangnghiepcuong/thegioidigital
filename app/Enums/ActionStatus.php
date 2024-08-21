@@ -4,13 +4,11 @@ namespace App\Enums;
 
 use ReflectionClass;
 
-final class OperationEnum
+class ActionStatus
 {
-    const CREATE = 'create';
-    const READ = 'read';
-    const UPDATE = 'update';
-    const DELETE = 'delete';
-    const WRITE = 'write';
+    public const WARNING = 'warning';
+    public const ERROR = 'error';
+    public const SUCCESS = 'success';
 
     private static function getConstants()
     {

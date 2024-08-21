@@ -1,21 +1,16 @@
-#page-roles {
+#page-roles, #page-permissions, #page-grant-to-user {
     width: 100%;
     height: 10px;
     padding-left: 265px;
 }
 
 .layout-roles-management {
-    margin: 30px;
-    border: 1px solid #999;
-    border-radius: var(--card-large-border-radius);
-    background-color: white;
+    padding: 10px 0;
 }
 
 .holder-title {
     width: 100%;
     margin-bottom: 5px;
-    padding: 5px;
-    text-align: center;
     font-size: 1.25rem;
     font-weight: bold;
 }
@@ -32,16 +27,20 @@
     height: 800px;
     margin: 15px 10px;
     padding: 10px 20px;
+    border-radius: var(--card-large-border-radius);
+    background-color: white;
     box-shadow: 0 0 16px rgba(0, 0, 0, .11);
 }
 
 .list {
-    height: 730px;
+    height: 590px;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+    overflow-y: scroll;
 }
 
 .list .item {
-    position: relative;
-    margin-top: 5px;
+    margin: 5px 4px;
     border: 1px solid darkorange;
     border-radius: var(--card-border-radius);
     transition: 200ms;
@@ -51,58 +50,42 @@
     background-color: darkorange;
 }
 
-.list .item:hover>.role,
-.list .item:hover>.permission {
-    color: white;
-}
-
-.list .item .role,
-.list .item .permission {
+.list .item .item-row {
+    position: relative;
     display: block;
-    padding: 10px 15px;
+    padding: 10px;
     cursor: pointer;
-}
-
-.list .item .role,
-.list .item .permission {
     color: darkorange;
 }
 
-.list .item .role span,
-.list .item .permission span {
+.list .item .item-row > * {
     vertical-align: middle;
 }
 
-.list .item .permission span.operation {
+.list .item .item-row span.operation {
     color: #B000DB;
 }
 
-.list .item .permission span.on {
+.list .item .item-row span.on {
     color: #795E26;
 }
 
-.list .item .permission span.table {
+.list .item .item-row span.table {
     color: #A31515;
 }
 
-.list .item .role span.icon,
-.list .item .permission span.icon {
-    position: absolute;
-    right: 0;
-    padding: 0 5px;
+.list .item .item-row .btn {
+    float: right;
     color: white;
 }
 
-.layout-bottom-control-panel {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: 15px 20px;
-    padding: 10px 0;
+.list .item:hover>.item-row span {
+    color: white;
+}
+
+.layout-control-panel {
+    margin-bottom: 5px;
     background-color: white;
-    text-align: center;
-    box-shadow: 0 0 16px rgba(0, 0, 0, .19);
 }
 
 .panel-add-permissions {
@@ -110,9 +93,6 @@
 }
 
 .btn-add {
-    width: 30px;
-    height: 30px;
-    padding: 3px 5px;
     border: 1px solid darkorange;
     border-radius: 100px;
     background-color: darkorange;
@@ -120,10 +100,18 @@
     font-size: 1.25rem;
     font-weight: bold;
     text-align: center;
+    cursor: pointer;
 }
 
-.btn-add-permission {
-    background-color: darkorange;
+.btn-add:hover {
     color: white;
-    cursor: pointer;
+    background-color: orange;
+}
+
+.btn-add .icon {
+    vertical-align: middle;
+}
+
+.btn-see-more {
+    border: 1px solid #999;
 }

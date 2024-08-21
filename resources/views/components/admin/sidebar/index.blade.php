@@ -56,13 +56,18 @@
                     <div class="collapse" id="configurations">
                         <ul class="nav nav-collapse">
                             <li>
+                                <a href="{{ route('admin.permissions.index') }}">
+                                    <span class="sub-item">Permissions</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ route('admin.roles.index') }}">
                                     <span class="sub-item">Roles</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.permissions.index') }}">
-                                    <span class="sub-item">Permissions</span>
+                                <a href="{{ route('admin.permissions.grant-to-user') }}">
+                                    <span class="sub-item">Grant permissions</span>
                                 </a>
                             </li>
                             <li>

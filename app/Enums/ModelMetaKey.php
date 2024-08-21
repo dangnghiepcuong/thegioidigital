@@ -4,13 +4,9 @@ namespace App\Enums;
 
 use ReflectionClass;
 
-final class OperationEnum
+class ModelMetaKey
 {
-    const CREATE = 'create';
-    const READ = 'read';
-    const UPDATE = 'update';
-    const DELETE = 'delete';
-    const WRITE = 'write';
+    public const USER_PERMISSIONS = 'user_permissions';
 
     private static function getConstants()
     {

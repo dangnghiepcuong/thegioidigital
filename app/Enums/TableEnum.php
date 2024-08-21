@@ -2,25 +2,27 @@
 
 namespace App\Enums;
 
+use Attribute;
 use ReflectionClass;
 
 final class TableEnum
 {
-    const attributes = 'attributes';
-    const attribute_values = 'attribute_values';
-    const likes = 'likes';
-    const media = 'media';
-    const permissions = 'permissions';
-    const products = 'products';
-    const product_meta = 'product_meta';
-    const reviews = 'reviews';
-    const roles = 'roles';
-    const role_permission = 'role_permission';
-    const terms = 'terms';
-    const term_meta = 'term_meta';
-    const term_relationships = 'term_relationships';
-    const term_taxonomies = 'term_taxonomies';
-    const users = 'users';
+    const ATTRIBUTE = 'attributes';
+    const ATTRIBUTE_VALUES = 'attribute_values';
+    const LIKES = 'likes';
+    const MEDIA = 'media';
+    const PERMISSIONS = 'permissions';
+    const PRODUCTS = 'products';
+    const PRODUCTS_META = 'product_meta';
+    const REVIEWS = 'reviews';
+    const ROLES = 'roles';
+    const ROLE_PERMISSION = 'role_permission';
+    const TERMS = 'terms';
+    const TERMS_META = 'term_meta';
+    const TERMS_RELATIONSHIPS = 'term_relationships';
+    const TERM_TAXONOMIES = 'term_taxonomies';
+    const USERS = 'users';
+    const USER_META = 'user_meta';
 
     private static function getConstants()
     {
