@@ -41,7 +41,7 @@
                         <input type="submit" value="ĐĂNG NHẬP" class="btn-submit" @click="authStore.login(form)">
                     </div>
                     @foreach ($errors->all() as $error)
-                        <span v-if="_get(authStore.errors, 'error')" class="error">{{ $error }}</span>
+                        <span class="error">{{ $error }}</span>
                         <br>
                     @endforeach
                 </form>
