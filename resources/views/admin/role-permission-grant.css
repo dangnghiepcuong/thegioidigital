@@ -1,0 +1,117 @@
+#page-roles, #page-permissions, #page-grant-to-user {
+    width: 100%;
+    height: 10px;
+    padding-left: 265px;
+}
+
+.layout-roles-management {
+    padding: 10px 0;
+}
+
+.holder-title {
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.layout-panel {
+    display: flex;
+    justify-content: center;
+}
+
+.panel-left,
+.panel-right {
+    position: relative;
+    width: 45%;
+    height: 800px;
+    margin: 15px 10px;
+    padding: 10px 20px;
+    border-radius: var(--card-large-border-radius);
+    background-color: white;
+    box-shadow: 0 0 16px rgba(0, 0, 0, .11);
+}
+
+.list {
+    height: 590px;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+    overflow-y: scroll;
+}
+
+.list .item {
+    margin: 5px 4px;
+    border: 1px solid darkorange;
+    border-radius: var(--card-border-radius);
+    transition: 200ms;
+}
+
+.list .item:hover {
+    background-color: darkorange;
+}
+
+.list .item .item-row {
+    position: relative;
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+    color: darkorange;
+}
+
+.list .item .item-row > * {
+    vertical-align: middle;
+}
+
+.list .item .item-row span.operation {
+    color: #B000DB;
+}
+
+.list .item .item-row span.on {
+    color: #795E26;
+}
+
+.list .item .item-row span.table {
+    color: #A31515;
+}
+
+.list .item .item-row .btn {
+    float: right;
+    color: white;
+}
+
+.list .item:hover>.item-row span {
+    color: white;
+}
+
+.layout-control-panel {
+    margin-bottom: 5px;
+    background-color: white;
+}
+
+.panel-add-permissions {
+    display: inline-block;
+}
+
+.btn-add {
+    border: 1px solid darkorange;
+    border-radius: 100px;
+    background-color: darkorange;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-add:hover {
+    color: white;
+    background-color: orange;
+}
+
+.btn-add .icon {
+    vertical-align: middle;
+}
+
+.btn-see-more {
+    border: 1px solid #999;
+}

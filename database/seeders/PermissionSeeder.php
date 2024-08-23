@@ -78,11 +78,11 @@ class PermissionSeeder extends Seeder
             'updated_at' => now(),
         ]);
         
-        // CRUD on permssions
+        // CRUD on permissions
         Permission::create([
             'id' => 9,
             'operation' => 'create',
-            'table' => 'permssions',
+            'table' => 'permissions',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -90,7 +90,7 @@ class PermissionSeeder extends Seeder
         Permission::create([
             'id' => 10,
             'operation' => 'read',
-            'table' => 'permssions',
+            'table' => 'permissions',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -98,7 +98,7 @@ class PermissionSeeder extends Seeder
         Permission::create([
             'id' => 11,
             'operation' => 'update',
-            'table' => 'permssions',
+            'table' => 'permissions',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -106,7 +106,7 @@ class PermissionSeeder extends Seeder
         Permission::create([
             'id' => 12,
             'operation' => 'delete',
-            'table' => 'permssions',
+            'table' => 'permissions',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

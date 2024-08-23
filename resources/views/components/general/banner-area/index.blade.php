@@ -18,8 +18,8 @@
                     <li class="slide">
                         <a href="">
                             <img width="600" height="180" loading="lazy" class="owl-lazy lazyloaded"
-                                data-src="//cdn.tgdd.vn/2024/07/banner/mb-dhtt-720x220.jpg"
-                                alt="Hotsale Online ĐHTT T7" src="//cdn.tgdd.vn/2024/07/banner/mb-dhtt-720x220.jpg">
+                                data-src="//cdn.tgdd.vn/2024/07/banner/mb-dhtt-720x220.jpg" alt="Hotsale Online ĐHTT T7"
+                                src="//cdn.tgdd.vn/2024/07/banner/mb-dhtt-720x220.jpg">
                         </a>
                     </li>
                     <li class="slide">
@@ -39,8 +39,15 @@
                     <li class="slide">
                         <a href="">
                             <img width="600" height="180" loading="lazy" class="owl-lazy lazyloaded"
-                                data-src="//cdn.tgdd.vn/2024/07/banner/rm13-1-720x220-720x220-1.png"
-                                alt="TLTH Xiaomi" src="//cdn.tgdd.vn/2024/07/banner/rm13-1-720x220-720x220-1.png">
+                                data-src="//cdn.tgdd.vn/2024/07/banner/rm13-1-720x220-720x220-1.png" alt="TLTH Xiaomi"
+                                src="//cdn.tgdd.vn/2024/07/banner/rm13-1-720x220-720x220-1.png">
+                        </a>
+                    </li>
+                        <li class="slide">
+                        <a href="">
+                            <img width="600" height="180"
+                                src="https://cdnv2.tgdd.vn/mwg-static/common/Banner/b7/b1/b7b16a360ce0d909d1367f6e109cd5d9.png"
+                                alt="Xiaomi Band 9">
                         </a>
                     </li>
                 </ul>
