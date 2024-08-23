@@ -7,8 +7,9 @@ use App\Enums\TableEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GrantPermissionRequest;
 use App\Http\Resources\PermissionResource;
-use App\Models\Permission;
-use App\Models\User;
+use App\Repositories\Eloquents\PermissionRepository;
+use App\Repositories\Eloquents\UserMetaRepository;
+use App\Repositories\Eloquents\UserRepository;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,6 +17,20 @@ use Illuminate\Support\Facades\DB;
 
 class PermissionController extends Controller
 {
+    private PermissionRepository $permissionRepository;
+    private UserMetaRepository $userMetaRepository;
+    private UserRepository $userRepository;
+
+    public function __construct(
+        PermissionRepository $permissionRepository,
+        UserMetaRepository $userMetaRepository,
+        UserRepository $userRepository
+    ) {
+        $this->permissionRepository = $permissionRepository;
+        $this->userMetaRepository = $userMetaRepository;
+        $this->userRepository = $userRepository;
+    }
+
     public function index(Request $request): View
     {
         return view('admin.permissions');
@@ -23,21 +38,16 @@ class PermissionController extends Controller
 
     public function getUserPermissionItems(Request $request)
     {
-        $user = User::findOrFail($request->user_id);
+        $userPermissionIds = $this->userMetaRepository
+            ->getUnserializeMetaValue($request->user_id, ModelMetaKey::USER_PERMISSIONS);
 
-        $userMetaPermissions = $user->userMeta()
-            ->where('key', ModelMetaKey::USER_PERMISSIONS)
-            ->firstOrFail();
-
-        $userPermissionIds = $userMetaPermissions ? unserialize($userMetaPermissions->value) : [];
-
-        $userPermissions = Permission::whereIn('id', $userPermissionIds)
+        $userPermissions = $this->permissionRepository->whereIn('id', $userPermissionIds)
             ->orderBy('table')
             ->orderBy('operation')
             ->paginate(config('parameter.default_paginate_number'));
 
         return view('components.partial.permission-list-item', [
-            'userId' => $user->id,
+            'userId' => $request->user_id,
             'userPermissions' => PermissionResource::collection($userPermissions)
         ]);
     }
@@ -45,29 +55,25 @@ class PermissionController extends Controller
     public function grantToUser(Request $request): View
     {
         $tables = TableEnum::allCases();
-        $users = User::paginate(
-            $perPage = config('parameter.default_paginate_number'),
-            $columns = ['*'],
-            $pageName = 'users',
-        );
+        $users = $this->userRepository->paginateAll();
 
         $user = null;
+        $userPermissions = null;
         if (isset($request->user_id)) {
-            $user = User::findOrFail($request->user_id);
+            $user = $this->userRepository->findOrFail($request->user_id);
+
+            $userPermissionIds = $this->userMetaRepository
+                ->getUnserializeMetaValue($request->user_id, ModelMetaKey::USER_PERMISSIONS);
+
+            $userPermissions = $this->permissionRepository->whereIn('id', $userPermissionIds)
+                ->orderBy('table')
+                ->orderBy('operation')
+                ->paginate(config('parameter.default_paginate_number'));
         }
-
-        $userMetaPermission = $request->user_id ? $user->userMeta(ModelMetaKey::USER_PERMISSIONS)->first() : null;
-
-        $userPermissionIds = $userMetaPermission ? unserialize($userMetaPermission->value) : [];
-
-        $userPermissions = Permission::whereIn('id', $userPermissionIds)
-            ->orderBy('table')
-            ->orderBy('operation')
-            ->paginate(config('parameter.default_paginate_number'));
 
         return view('admin.grant-to-user', [
             'tables' => $tables,
-            'userPermissions' => PermissionResource::collection($userPermissions),
+            'userPermissions' => $userPermissions,
             'selectedUser' => $user,
             'users' => $users,
         ]);
@@ -77,33 +83,31 @@ class PermissionController extends Controller
     {
         try {
             DB::beginTransaction();
-            $grantingPermission = Permission::firstOrCreate([
+            $grantingPermission = $this->permissionRepository->model()->firstOrCreate([
                 'operation' => $request->operation,
                 'table' => $request->table
             ]);
 
-            $user = User::findOrFail($request->user_id);
-
-            $userMetaPermission = $user->userMeta(ModelMetaKey::USER_PERMISSIONS)->first();
-
-            $userPermissionIds = $userMetaPermission ? unserialize($userMetaPermission->value) : [];
+            $userPermissionIds = $this->userMetaRepository
+                ->getUnserializeMetaValue($request->user_id, ModelMetaKey::USER_PERMISSIONS);
 
             if (in_array($grantingPermission->id, $userPermissionIds)) {
                 DB::rollBack();
 
-                return redirect()->back()->withInput($request->input());
+                return redirect()->back()
+                    ->with([])
+                    ->withInput($request->input());
             }
 
             $grantPermissionIds = array_unique(array_merge($userPermissionIds, [$grantingPermission->id]), SORT_REGULAR);
 
-            $user->userMeta()->updateOrCreate(
+            $this->userMetaRepository->updateOrCreate(
                 ['key' => ModelMetaKey::USER_PERMISSIONS],
                 ['value' => serialize($grantPermissionIds)]
             );
         } catch (\Exception $exception) {
             DB::rollBack();
 
-            throw ($exception);
             redirect()->back()
                 ->with([])
                 ->withInput($request->input());
@@ -111,19 +115,18 @@ class PermissionController extends Controller
 
         DB::commit();
 
-        return redirect()->back()->withInput($request->input());
+        return redirect()->back()
+            ->with([])
+            ->withInput($request->input());
     }
 
-    public function revoke(Request $request, $permissionId, $userId): RedirectResponse
+    public function revoke($permissionId, $userId): RedirectResponse
     {
         try {
             DB::beginTransaction();
 
-            $user = User::findOrFail($userId);
-
-            $userMetaPermission = $user->userMeta(ModelMetaKey::USER_PERMISSIONS)->first();
-
-            $userPermissionIds = $userMetaPermission ? unserialize($userMetaPermission->value) : [];
+            $userPermissionIds = $this->userMetaRepository
+                ->getUnserializeMetaValue($userId, ModelMetaKey::USER_PERMISSIONS);
 
             if (!in_array($permissionId, $userPermissionIds)) {
                 DB::rollBack();
@@ -134,7 +137,7 @@ class PermissionController extends Controller
             $key = array_search($permissionId, $userPermissionIds);
             unset($userPermissionIds[$key]);
 
-            $user->userMeta()->updateOrCreate(
+            $this->userMetaRepository->updateOrCreate(
                 ['key' => ModelMetaKey::USER_PERMISSIONS],
                 ['value' => serialize($userPermissionIds)]
             );
@@ -143,9 +146,9 @@ class PermissionController extends Controller
         } catch (\Exception $exception) {
             DB::rollBack();
 
-            dump($exception);
-            throw ($exception);
+            return redirect()->back()->with([]);
         }
-        return redirect()->back();
+
+        return redirect()->back()->with([]);
     }
 }
