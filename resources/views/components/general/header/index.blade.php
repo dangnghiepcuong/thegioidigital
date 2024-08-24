@@ -8,7 +8,7 @@
                 <div class="arrow arrow-right"></div>
             </div>
         </div>
-        <div class="box-slider-relative">
+        <div class="frame-slider-outer">
             <div class="frame-slider" id="frame-slider-top-long-banner">
                 <ul class="slider" id="slider-top-long-banner">
                     <li class="slide">
@@ -88,8 +88,11 @@
     </div>
     <div class="layout-header-bottom">
         <div>
-            <x-general.super-menu.index :menu-items="$menuItems" />
+            <x-general.super-menu :menu-items="$menuItems" />
         </div>
     </div>
 </div>
 <x-general.popup.location-select.index />
+@push('scripts')
+    @vite($viewsDir . '/components/general/header/index.js')
+@endPush

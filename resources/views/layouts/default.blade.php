@@ -19,20 +19,22 @@
     @vite($viewsDir . '/components/general/super-menu/index.css')
     @vite($viewsDir . '/components/general/popup/location-select/index.css')
     @yield('styles')
+    @stack('styles')
 </head>
 
 <body>
-    <x-general.header.index></x-general.header.index>
+    <x-general.header.index />
     @section('large-banner')
     @show
 
     <div class="container">
         @yield('content')
     </div>
-    <x-general.footer.index></x-general.footer.index>
+    <x-general.footer.index />
 
-    @vite($jsDir . '/default.js')
+    @vite($jsDir . '/app.js')
     @yield('scripts')
+    @stack('scripts')
 </body>
 
 </html>

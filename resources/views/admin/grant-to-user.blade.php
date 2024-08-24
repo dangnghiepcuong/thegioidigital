@@ -136,5 +136,5 @@
 
 @section('scripts')
     @parent
-    @vite($jsDir . '/grant-to-user.js')
+    @vite($viewsDir . '/admin/grant-to-user.js')
 @endsection

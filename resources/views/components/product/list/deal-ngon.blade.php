@@ -1,3 +1,6 @@
+@push('styles')
+    @vite($viewsDir . '/components/product/list/deal-ngon.css')
+@endPush
 <div id="component-product-list-deal-ngon">
     <!-- Smile, breathe, and go slowly. - Thich Nhat Hanh -->
     <div class="nav-slider">
@@ -9,7 +12,7 @@
         </div>
     </div>
     <div class="layout-product-deal">
-        <div class="box-slider-relative">
+        <div class="frame-slider-outer">
             <div class="frame-slider" id="frame-slider-grid-product-deal">
                 <ul class="slider">
                     <li class="slide">

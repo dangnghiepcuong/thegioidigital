@@ -1,3 +1,6 @@
+@push('styles')
+    @vite($viewsDir . '/components/product/frame-list.css')
+@endPush
 <!-- It is not the man who has too little, but the man who craves more, that is poor. - Seneca -->
 <div class="layout-product" style="{{ $backgroundColor }}">
     <div class="banner-product">
