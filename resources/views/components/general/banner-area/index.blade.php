@@ -1,6 +1,10 @@
+@push('styles')
+    @vite($viewsDir . '/components/general/banner-area/index.css')
+@endPush
+
 <div id="banner-area-slider" class="layout-slider">
     <div>
-        <div class="box-slider-relative">
+        <div class="frame-slider-outer">
             <div class="frame-slider" id="frame-slider-dual-banner">
                 <ul class="slider" id="slider-dual-banner">
                     <li class="slide">
@@ -43,7 +47,7 @@
                                 src="//cdn.tgdd.vn/2024/07/banner/rm13-1-720x220-720x220-1.png">
                         </a>
                     </li>
-                        <li class="slide">
+                    <li class="slide">
                         <a href="">
                             <img width="600" height="180"
                                 src="https://cdnv2.tgdd.vn/mwg-static/common/Banner/b7/b1/b7b16a360ce0d909d1367f6e109cd5d9.png"
@@ -114,3 +118,12 @@
             alt="Promote iPhone 15">
     </a>
 </div>
+@pushOnce('scripts')
+    <script>
+        import {
+            navigateSlider
+        } from './animation';
+
+        window.navigateSlider = navigateSlider;
+    </script>
+@endPushOnce

@@ -30,12 +30,10 @@
         @yield('content')
     </div>
 
-    @vite($jsDir . '/default.js')
     @vite($jsDir . '/admin/jquery-3.7.1.min.js')
     @vite($jsDir . '/admin/bootstrap.min.js')
     @vite($jsDir . '/admin/popper.min.js')
     @vite($jsDir . '/admin/kaiadmin.min.js')
-    {{-- @vite($jsDir . '/admin/sidebar.js') --}}
     @yield('scripts')
 </body>
 

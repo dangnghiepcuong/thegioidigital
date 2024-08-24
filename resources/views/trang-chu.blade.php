@@ -1,13 +1,5 @@
 @extends('layouts.default')
 
-@section('styles')
-    @vite($viewsDir . '/components/general/banner-area/index.css')
-    @vite($viewsDir . '/components/product/frame-list.css')
-    @vite($viewsDir . '/components/product/list/flash-sale.css')
-    @vite($viewsDir . '/components/product/list/deal-ngon.css')
-    @vite($viewsDir . '/components/product/list/dong-ho.css')
-@endsection
-
 @section('title', 'Homepage')
 @section('large-banner')
     <div class="large-banner">
@@ -45,5 +37,5 @@
 @endsection
 
 @section('scripts')
-    @vite($jsDir . '/trang-chu.js')
+    @vite($viewsDir . '/trang-chu.js')
 @endsection

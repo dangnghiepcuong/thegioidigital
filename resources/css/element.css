@@ -69,8 +69,59 @@
     margin: 0 auto;
     object-fit: cover;
 }
+.nav-slider {
+    position: relative;
+}
 
-.box-slider-relative {
+.nav-slider .prev,
+.nav-slider .next {
+    position: absolute;
+    z-index: 2;
+    width: 30px;
+    height: 60px;
+    background-color: #fff;
+    opacity: 80%;
+    filter: drop-shadow(0 0 0.75rem #999);
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.nav-slider .prev {
+    /* float: left; */
+    left: 0;
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
+.nav-slider .next {
+    /* float: right; */
+    right: 0;
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.nav-slider .arrow {
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    border-top: 3px solid #666;
+    border-bottom: none;
+}
+
+.nav-slider .arrow-left {
+    left: 0;
+    border-left: 3px solid #666;
+    transform: rotate(-45deg) translate(70%, 0%);
+}
+
+.nav-slider .arrow-right {
+    right: 0;
+    border-right: 3px solid #666;
+    transform: rotate(45deg) translate(-70%, 0%);
+}
+
+.frame-slider-outer {
     position: relative;
     overflow: hidden;
 }
@@ -79,6 +130,12 @@
     position: relative;
     width: 100%;
     overflow: hidden;
+}
+
+.slider {
+    position: relative;
+    display: flex;
+    transition: 300ms;
 }
 
 .tooltip-wrapper {
@@ -171,4 +228,35 @@ h1, h2, .h1, .h2 {
 select, option, label {
     height: 1.75rem;
     vertical-align: middle;
+}
+
+.icon {
+    vertical-align: middle;
+}
+
+.btn.btn-selection {
+    position: relative;
+    display: inline-block;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    text-align: center;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.btn.btn-selection:hover {
+    border: 1px solid #2f80ed;
+    color: #2f80ed;
+}
+
+.btn.btn-selection .logo {
+    max-height: 20px;
+    width: auto;
+}
+
+.btn.btn-selection .img {
+    width: 100%;
+    max-height: 40px;
+    width: auto;
 }

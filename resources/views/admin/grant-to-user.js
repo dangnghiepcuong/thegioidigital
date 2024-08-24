@@ -1,4 +1,4 @@
-import { fetchAsyncData } from './fetch';
+import { fetchAsyncData } from '/resources/js/fetch';
 
 window.getMoreUserPermissions = async function (element, userId, page = null) {
     let nextPage = $(element).find('input[name="next_page"')

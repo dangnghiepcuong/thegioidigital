@@ -1,3 +1,6 @@
+@push('styles')
+    @vite($viewsDir . '/components/product/list/dong-ho.css')
+@endPush
 <div id="component-product-list-dong-ho">
     <!-- People find pleasure in different ways. I find it in keeping my mind clear. - Marcus Aurelius -->
     <div class="nav-slider">
@@ -9,7 +12,7 @@
         </div>
     </div>
     <div class="layout-product-deal">
-        <div class="box-slider-relative">
+        <div class="frame-slider-outer">
             <div class="frame-slider" id="frame-slider-grid-product-dong-ho">
                 <ul class="slider">
                     <li class="slide">

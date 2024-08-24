@@ -1,3 +1,6 @@
+@push('styles')
+    @vite($viewsDir . '/components/product/list/flash-sale.css')
+@endPush
 <div id="component-product-list-flash-sale">
     <!-- Waste no more time arguing what a good man should be, be one. - Marcus Aurelius -->
     <div class="nav-slider">
@@ -9,7 +12,7 @@
         </div>
     </div>
     <div class="layout-product-sale">
-        <div class="box-slider-relative">
+        <div class="frame-slider-outer">
             <div class="frame-slider" id="frame-slider-grid-product-sale">
                 <ul class="slider">
                     <li class="slide">
