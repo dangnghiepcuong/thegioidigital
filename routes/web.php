@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Models\Permission;
 use App\Models\UserMeta;
@@ -53,4 +54,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Resource routes
     Route::resource('lich-su-mua-hang', OrderController::class);
+});
+
+Route::controller(ProductController::class)->group(function () {
+    Route::get('dtdd/{slug?}', 'dtdd')->name('product.dtdd');
 });

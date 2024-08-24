@@ -1,7 +1,11 @@
 import 'lodash';
 import _get from 'lodash/get';
 
-export function navigateSlider(frameSelector, direction, adjustWidth = 0, numberOfShownEls = 1, event) {
+import $ from 'jquery';
+window.jQuery = $;
+export default $;
+
+export function navigateSlider(frameSelector, direction, adjustWidth = 0, numberOfShownEls = 1) {
     let frameEl = document.querySelector(frameSelector);
     let frameWidth = frameEl.offsetWidth + adjustWidth
     let sliderEl = frameEl.querySelector('.slider')
@@ -24,7 +28,6 @@ export function navigateSlider(frameSelector, direction, adjustWidth = 0, number
         case 'right':
             isEdge = leftPosSliderEl <= leftPosFrameSliderEl + Math.ceil(numberOfEls / numberOfShownEls - 1) * -frameWidth;
             sliderEl.style.left = isEdge ? frameEl.offsetLeft + 'px' : (sliderEl.offsetLeft - frameWidth) + 'px';
-            event.target.style.opacity = isEdge ? '50%' : '80%';
 
             break;
         case 'left':
@@ -32,7 +35,6 @@ export function navigateSlider(frameSelector, direction, adjustWidth = 0, number
             sliderEl.style.left = isEdge ?
                 (leftPosFrameSliderEl + Math.ceil(numberOfEls / numberOfShownEls - 1) * -frameWidth) + 'px' :
                 (sliderEl.offsetLeft + frameWidth) + 'px';
-            event.target.style.opacity = isEdge ? '50%' : '80%';
             break;
     }
 }
@@ -51,4 +53,11 @@ export function popupLocationSelect(action) {
 
         default:
     }
+}
+
+export function showDropDownPanelFilter(element) {
+    $('.layout-filter .pointer-arrow').css('display', 'none')
+    $('.layout-filter .layout-panel-dropdown').css('display', 'none')
+    $(element).find('.pointer-arrow').css('display', 'block')
+    $(element).find('.layout-panel-dropdown').css('display', 'block')
 }

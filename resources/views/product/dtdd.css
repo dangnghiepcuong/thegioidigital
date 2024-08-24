@@ -1,0 +1,43 @@
+.most-filters-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.most-filter-label {
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 10px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+}
+
+.item-brand {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 52px;
+    color: #333;
+    font-size: 14px;
+    line-height: 13px;
+    margin-right: 8px;
+    margin-bottom: 10px;
+    min-height: 36px;
+    max-height: 36px;
+    padding: 6px 13px;
+    vertical-align: top;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.item-brand:hover {
+    border: 1px solid #2f80ed;
+    color: #2f80ed;
+}
+
+.item-brand .logo {
+    height: 20px;
+    width: auto;
+}
