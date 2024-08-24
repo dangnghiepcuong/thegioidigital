@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Product;
+namespace App\View\Components\Product\List;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -23,7 +23,7 @@ class FrameList extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.product.frame-list', [
+        return view('components.product.list.frame-list', [
             'backgroundColor' => $backgroundColor ?? '',
         ]);
     }
