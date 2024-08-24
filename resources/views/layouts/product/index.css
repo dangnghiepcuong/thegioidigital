@@ -1,0 +1,37 @@
+body {
+    background-color: white;
+}
+
+#top-banner-product {
+    position: relative;
+    display: flex;
+    width: 100%;
+    margin: 15px 0;
+}
+
+#top-banner-product .nav-slider .prev,
+#top-banner-product .nav-slider .next {
+    top: 100px;
+}
+
+#top-banner-product .top-banner-product-slider {
+    width: 800px;
+    height: 200px;
+}
+
+#top-banner-product .promote-banner {
+    display: grid;
+    max-height: 210px;
+    padding-left: 10px;
+    align-content: space-between;
+    align-self: flex-end;
+    overflow: hidden;
+}
+
+#top-banner-product .promote-banner .promote-item {
+    margin-bottom: 5px;
+}
+
+#top-banner-product .promote-banner .promote-item a img {
+    max-height: 95px;
+}
