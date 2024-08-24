@@ -15,7 +15,7 @@
         <div class="frame-slider-outer">
             <div class="frame-slider" id="frame-slider-grid-product-sale">
                 <ul class="slider">
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -48,7 +48,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -81,7 +81,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -114,7 +114,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -147,7 +147,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -180,7 +180,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -213,7 +213,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -246,7 +246,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -279,7 +279,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -312,7 +312,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -345,7 +345,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -378,7 +378,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -411,7 +411,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -444,7 +444,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -477,7 +477,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -510,7 +510,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -543,7 +543,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -576,7 +576,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -609,7 +609,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -642,7 +642,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -675,7 +675,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -708,7 +708,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -741,7 +741,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>
@@ -774,7 +774,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
                             <div class="holder-label">
                                 <span class="top-label">Trả góp 0%</span>

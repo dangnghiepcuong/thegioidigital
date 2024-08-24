@@ -1,5 +1,6 @@
 @push('styles')
-    @vite($viewsDir . '/components/product/frame-list.css')
+    @vite($viewsDir . '/components/product/card/index.css')
+    @vite($viewsDir . '/components/product/list/frame-list.css')
 @endPush
 <!-- It is not the man who has too little, but the man who craves more, that is poor. - Seneca -->
 <div class="layout-product" style="{{ $backgroundColor }}">
@@ -10,7 +11,7 @@
         <div class="layout-clock-count-down">
         </div>
     </div>
-    <x-dynamic-component :component="$productListComponent" />
+        {{ $slot }}
     <div class="layout-btn-see-more">
         <x-general.button.button-see-more
             :btn-see-more="$btnSeeMore"

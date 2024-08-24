@@ -1,0 +1,19 @@
+.layout-product {
+    border-radius: var(--card-large-border-radius);
+    background-color: var(--color-sale-primary);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.banner-product {
+    width: 100%;
+}
+
+.banner-product img{
+    height: max-content;
+    object-fit: cover;
+}
+
+.slide {
+    position: relative;
+}

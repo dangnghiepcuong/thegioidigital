@@ -24,15 +24,16 @@ class index extends Component
         $menuItems = [
             0 => [
                 'title' => 'Điện thoại',
-                'icon' => 'phone_iphone'
+                'icon' => 'phone_iphone',
+                'route' => route('product.dtdd'),
             ],
             1 => [
                 'title' => 'Laptop',
-                'icon' => 'laptop_chromebook'
+                'icon' => 'laptop_chromebook',
             ],
             2 => [
                 'title' => 'Tablet',
-                'icon' => 'aod_tablet'
+                'icon' => 'aod_tablet',
             ],
             3 => [
                 'title' => 'Phụ kiện',
