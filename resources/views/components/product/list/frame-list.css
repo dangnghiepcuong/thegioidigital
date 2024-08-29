@@ -17,3 +17,16 @@
 .slide {
     position: relative;
 }
+
+.card-product .product-name {
+    height: 3rem;
+}
+
+.card-product .price {
+    font-size: calc(1rem + 4px);
+    margin-bottom: 8px;
+}
+
+.card-product .layout-gift {
+    margin-bottom: 8px;
+}

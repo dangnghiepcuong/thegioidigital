@@ -21,6 +21,31 @@
     <div class="quantity-label-sort">
 
     </div>
+    <x-product.list.index>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+        <x-product.card.index/>
+    </x-product.list.index>
 @endsection
 
 @section('scripts')

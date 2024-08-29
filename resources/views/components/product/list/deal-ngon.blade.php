@@ -17,8 +17,8 @@
                 <ul class="slider">
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/42/320721/samsung-galaxy-z-fold6-xam-thumbn-600x600.jpg"
@@ -35,10 +35,10 @@
                                 <span>
                                     41.990.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
-                                <span class="gift">Quà<b>1.190.000đ</b></span>
+                                <span class="gift">Quà 1.190.000đ</span>
                             </div>
                             <div class="layout-rate">
                                 <span class="rate"><span class="icon material-symbols-outlined"></span></span>
@@ -52,8 +52,8 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/42/320721/samsung-galaxy-z-fold6-xam-thumbn-600x600.jpg"
@@ -70,10 +70,10 @@
                                 <span>
                                     41.990.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
-                                <span class="gift">Quà<b>1.190.000đ</b></span>
+                                <span class="gift">Quà 1.190.000đ</span>
                             </div>
                             <div class="layout-rate">
                                 <span class="rate"><span class="icon material-symbols-outlined"></span></span>
@@ -83,8 +83,8 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/42/320721/samsung-galaxy-z-fold6-xam-thumbn-600x600.jpg"
@@ -101,10 +101,10 @@
                                 <span>
                                     41.990.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
-                                <span class="gift">Quà<b>1.190.000đ</b></span>
+                                <span class="gift">Quà 1.190.000đ</span>
                             </div>
                             <div class="layout-rate">
                                 <span class="rate"><span class="icon material-symbols-outlined"></span></span>
@@ -114,8 +114,8 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/42/320721/samsung-galaxy-z-fold6-xam-thumbn-600x600.jpg"
@@ -132,10 +132,10 @@
                                 <span>
                                     41.990.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
-                                <span class="gift">Quà<b>1.190.000đ</b></span>
+                                <span class="gift">Quà 1.190.000đ</span>
                             </div>
                             <div class="layout-rate">
                                 <span class="rate"><span class="icon material-symbols-outlined"></span></span>
@@ -145,8 +145,8 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/42/320721/samsung-galaxy-z-fold6-xam-thumbn-600x600.jpg"
@@ -163,10 +163,10 @@
                                 <span>
                                     41.990.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
-                                <span class="gift">Quà<b>1.190.000đ</b></span>
+                                <span class="gift">Quà 1.190.000đ</span>
                             </div>
                             <div class="layout-rate">
                                 <span class="rate"><span class="icon material-symbols-outlined"></span></span>
@@ -176,8 +176,8 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-gold-thumbnew-600x600.jpg"
@@ -194,7 +194,7 @@
                                 <span>
                                     29.590.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
                                 <span class="gift"><b></b></span>
@@ -208,8 +208,8 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-gold-thumbnew-600x600.jpg"
@@ -226,7 +226,7 @@
                                 <span>
                                     29.590.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
                                 <span class="gift"><b></b></span>
@@ -240,8 +240,8 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-gold-thumbnew-600x600.jpg"
@@ -258,7 +258,7 @@
                                 <span>
                                     29.590.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
                                 <span class="gift"><b></b></span>
@@ -272,8 +272,8 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-gold-thumbnew-600x600.jpg"
@@ -290,7 +290,7 @@
                                 <span>
                                     29.590.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
                                 <span class="gift"><b></b></span>
@@ -304,8 +304,8 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-gold-thumbnew-600x600.jpg"
@@ -322,7 +322,7 @@
                                 <span>
                                     29.590.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
                                 <span class="gift"><b></b></span>
