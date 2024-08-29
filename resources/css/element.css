@@ -138,6 +138,10 @@
     transition: 300ms;
 }
 
+.slider .slide a {
+    display: inline-block;
+}
+
 .tooltip-wrapper {
     position: relative;
     display: inline-block;

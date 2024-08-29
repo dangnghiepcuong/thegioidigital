@@ -54,7 +54,7 @@
     transition: 500ms;
 }
 
-#header .layout-header {
+#header.layout-header {
     position: relative;
     min-width: 1024px;
 }
