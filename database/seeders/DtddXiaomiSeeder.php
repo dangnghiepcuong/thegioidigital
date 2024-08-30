@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\ModelMetaKey;
-use App\Enums\ProductType;
+use App\Enums\ProductTypeEnum;
 use App\Repositories\Eloquents\ProductRepository;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +29,7 @@ class DtddXiaomiSeeder extends Seeder
             // Parent model
             $xiaomiRedmiNote13 = $this->productRepository->model()->firstOrCreate([
                 'title' => 'Xiaomi Redmi Note 13',
-                'type' => ProductType::DTDD,
+                'type' => ProductTypeEnum::DTDD,
                 'parent_id' => null,
                 'status' => 'in stock',
                 'url' => Str::slug('Xiaomi Redmi Note 13'),
@@ -37,11 +37,46 @@ class DtddXiaomiSeeder extends Seeder
 
             $xiaomiRedmiNote13_8_128 = $this->productRepository->model()->firstOrCreate([
                 'title' => 'Xiaomi Redmi Note 13 8GB/128GB',
-                'type' => ProductType::DTDD,
+                'type' => ProductTypeEnum::DTDD,
                 'parent_id' => $xiaomiRedmiNote13->id,
                 'status' => 'in stock',
                 'url' => Str::slug('Xiaomi Redmi Note 13 8GB 128GB mau vang'),
             ]);
+
+            // MEMORY
+            $xiaomiRedmiNote13_8_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::MEMORY],
+                    ['value' => '8GB - 128GB']
+                );
+
+            // COMPARE_TAGS
+            $xiaomiRedmiNote13_8_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::COMPARE_TAGS],
+                    ['value' => serialize(['6.67"', 'Full HD+'])]
+                );
+
+            // BOTTOM_LEFT_BADGE_URL
+            $xiaomiRedmiNote13_8_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::BOTTOM_LEFT_STAMP_URL],
+                    ['value' => 'https://cdn.tgdd.vn/2023/10/campaign/label-tgdd-200x200.png']
+                );
+
+            // THUMB_URL
+            $xiaomiRedmiNote13_8_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::THUMB_URL],
+                    ['value' => 'https://cdn.tgdd.vn/Products/Images/42/309831/xiaomi-redmi-note-13-gold-thumb-600x600.jpg']
+                );
+
+            // GIFT
+            $xiaomiRedmiNote13_8_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::GIFT],
+                    ['value' => '300000']
+                );
 
             // RAM
             $xiaomiRedmiNote13_8_128->productMeta()
@@ -78,11 +113,18 @@ class DtddXiaomiSeeder extends Seeder
                     ['value' => 'Full HD+']
                 );
 
+            // REGULAR_PRICE
+            $xiaomiRedmiNote13_8_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::REGULAR_PRICE],
+                    ['value' => 5290000]
+                );
+
             // PRICE
             $xiaomiRedmiNote13_8_128->productMeta()
                 ->firstOrCreate(
                     ['key' => ModelMetaKey::PRICE],
-                    ['value' => 5290000]
+                    ['value' => 4990000]
                 );
 
             // BACK_CAMERA
@@ -96,7 +138,7 @@ class DtddXiaomiSeeder extends Seeder
             $xiaomiRedmiNote13_8_128->productMeta()
                 ->firstOrCreate(
                     ['key' => ModelMetaKey::FRONT_CAMERA],
-                    ['value' => 'yellow']
+                    ['value' => '16 MP']
                 );
 
             // BATTERY
@@ -130,11 +172,46 @@ class DtddXiaomiSeeder extends Seeder
             DB::beginTransaction();
             $xiaomiRedmiNote13_8_128 = $this->productRepository->model()->firstOrCreate([
                 'title' => 'Xiaomi Redmi Note 13 8GB/128GB',
-                'type' => ProductType::DTDD,
+                'type' => ProductTypeEnum::DTDD,
                 'parent_id' => $xiaomiRedmiNote13->id,
                 'status' => 'in stock',
                 'url' => Str::slug('Xiaomi Redmi Note 13 8GB 128GB mau den'),
             ]);
+
+            // MEMORY
+            $xiaomiRedmiNote13_8_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::MEMORY],
+                    ['value' => '8GB - 128GB']
+                );
+
+            // COMPARE_TAGS
+            $xiaomiRedmiNote13_8_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::COMPARE_TAGS],
+                    ['value' => serialize(['6.67"', 'Full HD+'])]
+                );
+
+            // BOTTOM_LEFT_BADGE_URL
+            $xiaomiRedmiNote13_8_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::BOTTOM_LEFT_STAMP_URL],
+                    ['value' => 'https://cdn.tgdd.vn/2023/10/campaign/label-tgdd-200x200.png']
+                );
+
+            // THUMB_URL
+            $xiaomiRedmiNote13_8_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::THUMB_URL],
+                    ['value' => 'https://cdn.tgdd.vn/Products/Images/42/320460/xiaomi-redmi-note-13-black-thumb-600x600.jpg']
+                );
+
+            // GIFT
+            $xiaomiRedmiNote13_8_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::GIFT],
+                    ['value' => '300000']
+                );
 
             // RAM
             $xiaomiRedmiNote13_8_128->productMeta()
@@ -189,7 +266,7 @@ class DtddXiaomiSeeder extends Seeder
             $xiaomiRedmiNote13_8_128->productMeta()
                 ->firstOrCreate(
                     ['key' => ModelMetaKey::FRONT_CAMERA],
-                    ['value' => 'yellow']
+                    ['value' => '16 MP']
                 );
 
             // BATTERY
@@ -224,11 +301,46 @@ class DtddXiaomiSeeder extends Seeder
             DB::beginTransaction();
             $xiaomiRedmiNote13_8_128 = $this->productRepository->model()->firstOrCreate([
                 'title' => 'Xiaomi Redmi Note 13 8GB/128GB',
-                'type' => ProductType::DTDD,
+                'type' => ProductTypeEnum::DTDD,
                 'parent_id' => $xiaomiRedmiNote13->id,
                 'status' => 'in stock',
                 'url' => Str::slug('Xiaomi Redmi Note 13 8GB 128GB mau xanh la'),
             ]);
+
+            // MEMORY
+            $xiaomiRedmiNote13_8_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::MEMORY],
+                    ['value' => '8GB - 128GB']
+                );
+
+            // COMPARE_TAGS
+            $xiaomiRedmiNote13_8_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::COMPARE_TAGS],
+                    ['value' => serialize(['6.67"', 'Full HD+'])]
+                );
+
+            // BOTTOM_LEFT_BADGE_URL
+            $xiaomiRedmiNote13_8_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::BOTTOM_LEFT_STAMP_URL],
+                    ['value' => 'https://cdn.tgdd.vn/2023/10/campaign/label-tgdd-200x200.png']
+                );
+
+            // THUMB_URL
+            $xiaomiRedmiNote13_8_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::THUMB_URL],
+                    ['value' => 'https://cdn.tgdd.vn/Products/Images/42/320461/xiaomi-redmi-note-13-green-thumb-600x600.jpg']
+                );
+
+            // GIFT
+            $xiaomiRedmiNote13_8_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::GIFT],
+                    ['value' => '300000']
+                );
 
             // RAM
             $xiaomiRedmiNote13_8_128->productMeta()
@@ -283,7 +395,7 @@ class DtddXiaomiSeeder extends Seeder
             $xiaomiRedmiNote13_8_128->productMeta()
                 ->firstOrCreate(
                     ['key' => ModelMetaKey::FRONT_CAMERA],
-                    ['value' => 'yellow']
+                    ['value' => '16 MP']
                 );
 
             // BATTERY
@@ -317,11 +429,57 @@ class DtddXiaomiSeeder extends Seeder
             DB::beginTransaction();
             $xiaomiRedmiNote13_6_128 = $this->productRepository->model()->firstOrCreate([
                 'title' => 'Xiaomi Redmi Note 13 6GB/128GB',
-                'type' => ProductType::DTDD,
+                'type' => ProductTypeEnum::DTDD,
                 'parent_id' => $xiaomiRedmiNote13->id,
                 'status' => 'in stock',
                 'url' => Str::slug('Xiaomi Redmi Note 13 6GB 128GB mau den'),
             ]);
+
+            // MEMORY
+            $xiaomiRedmiNote13_6_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::MEMORY],
+                    ['value' => '6GB - 128GB']
+                );
+
+            // COMPARE_TAGS
+            $xiaomiRedmiNote13_6_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::COMPARE_TAGS],
+                    ['value' => serialize(['6.67"', 'Full HD+'])]
+                );
+
+            // BADGE
+            $xiaomiRedmiNote13_6_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::BADGE],
+                    ['value' => serialize([
+                        'icon' => 'https://cdn.tgdd.vn/2020/10/content/icon4-50x50.png',
+                        'bg' => 'bg3',
+                        'text' => 'Đổi 4G tặng 480K',
+                    ])]
+                );
+
+            // REGULAR_PRICE
+            $xiaomiRedmiNote13_6_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::REGULAR_PRICE],
+                    ['value' => '4890000']
+                );
+
+            // THUMB_URL
+            $xiaomiRedmiNote13_6_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::THUMB_URL],
+                    ['value' => 'https://cdn.tgdd.vn/Products/Images/42/320460/xiaomi-redmi-note-13-black-thumb-600x600.jpg']
+                );
+
+            // GIFT
+            $xiaomiRedmiNote13_6_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::GIFT],
+                    ['value' => '300000']
+                );
 
             // RAM
             $xiaomiRedmiNote13_6_128->productMeta()
@@ -376,7 +534,7 @@ class DtddXiaomiSeeder extends Seeder
             $xiaomiRedmiNote13_6_128->productMeta()
                 ->firstOrCreate(
                     ['key' => ModelMetaKey::FRONT_CAMERA],
-                    ['value' => 'yellow']
+                    ['value' => '16 MP']
                 );
 
             // BATTERY
@@ -410,11 +568,57 @@ class DtddXiaomiSeeder extends Seeder
             DB::beginTransaction();
             $xiaomiRedmiNote13_6_128 = $this->productRepository->model()->firstOrCreate([
                 'title' => 'Xiaomi Redmi Note 13 6GB/128GB',
-                'type' => ProductType::DTDD,
+                'type' => ProductTypeEnum::DTDD,
                 'parent_id' => $xiaomiRedmiNote13->id,
                 'status' => 'in stock',
                 'url' => Str::slug('Xiaomi Redmi Note 13 6GB 128GB mau xanh la'),
             ]);
+
+            // MEMORY
+            $xiaomiRedmiNote13_6_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::MEMORY],
+                    ['value' => '6GB - 128GB']
+                );
+
+            // COMPARE_TAGS
+            $xiaomiRedmiNote13_6_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::COMPARE_TAGS],
+                    ['value' => serialize(['6.67"', 'Full HD+'])]
+                );
+
+            // BADGE
+            $xiaomiRedmiNote13_6_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::BADGE],
+                    ['value' => serialize([
+                        'icon' => 'https://cdn.tgdd.vn/2020/10/content/icon4-50x50.png',
+                        'bg' => 'bg3',
+                        'text' => 'Đổi 4G tặng 480K',
+                    ])]
+                );
+
+            // REGULAR_PRICE
+            $xiaomiRedmiNote13_6_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::REGULAR_PRICE],
+                    ['value' => '4890000']
+                );
+
+            // THUMB_URL
+            $xiaomiRedmiNote13_6_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::THUMB_URL],
+                    ['value' => 'https://cdn.tgdd.vn/Products/Images/42/320461/xiaomi-redmi-note-13-green-thumb-600x600.jpg']
+                );
+
+            // GIFT
+            $xiaomiRedmiNote13_6_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::GIFT],
+                    ['value' => '300000']
+                );
 
             // RAM
             $xiaomiRedmiNote13_6_128->productMeta()
@@ -469,7 +673,7 @@ class DtddXiaomiSeeder extends Seeder
             $xiaomiRedmiNote13_6_128->productMeta()
                 ->firstOrCreate(
                     ['key' => ModelMetaKey::FRONT_CAMERA],
-                    ['value' => 'yellow']
+                    ['value' => '16 MP']
                 );
 
             // BATTERY
@@ -503,11 +707,46 @@ class DtddXiaomiSeeder extends Seeder
             DB::beginTransaction();
             $xiaomiRedmiNote13_8_256 = $this->productRepository->model()->firstOrCreate([
                 'title' => 'Xiaomi Redmi Note 13 8GB/256GB',
-                'type' => ProductType::DTDD,
+                'type' => ProductTypeEnum::DTDD,
                 'parent_id' => $xiaomiRedmiNote13->id,
                 'status' => 'in stock',
                 'url' => Str::slug('Xiaomi Redmi Note 13 8GB 256GB mau xanh la'),
             ]);
+
+            // MEMORY
+            $xiaomiRedmiNote13_8_256->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::MEMORY],
+                    ['value' => '8GB - 256GB']
+                );
+
+            // COMPARE_TAGS
+            $xiaomiRedmiNote13_6_128->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::COMPARE_TAGS],
+                    ['value' => serialize(['6.67"', 'Full HD+'])]
+                );
+
+            // BOTTOM_LEFT_BADGE_URL
+            $xiaomiRedmiNote13_8_256->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::BOTTOM_LEFT_STAMP_URL],
+                    ['value' => 'https://cdn.tgdd.vn/2023/10/campaign/label-tgdd-200x200.png']
+                );
+
+            // THUMB_URL
+            $xiaomiRedmiNote13_8_256->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::THUMB_URL],
+                    ['value' => 'https://cdn.tgdd.vn/Products/Images/42/320461/xiaomi-redmi-note-13-green-thumb-600x600.jpg']
+                );
+
+            // GIFT
+            $xiaomiRedmiNote13_8_256->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::GIFT],
+                    ['value' => '300000']
+                );
 
             // RAM
             $xiaomiRedmiNote13_8_256->productMeta()
@@ -562,7 +801,7 @@ class DtddXiaomiSeeder extends Seeder
             $xiaomiRedmiNote13_8_256->productMeta()
                 ->firstOrCreate(
                     ['key' => ModelMetaKey::FRONT_CAMERA],
-                    ['value' => 'yellow']
+                    ['value' => '16 MP']
                 );
 
             // BATTERY
@@ -596,11 +835,46 @@ class DtddXiaomiSeeder extends Seeder
             DB::beginTransaction();
             $xiaomiRedmiNote13_8_256 = $this->productRepository->model()->firstOrCreate([
                 'title' => 'Xiaomi Redmi Note 13 8GB/256GB',
-                'type' => ProductType::DTDD,
+                'type' => ProductTypeEnum::DTDD,
                 'parent_id' => $xiaomiRedmiNote13->id,
                 'status' => 'in stock',
                 'url' => Str::slug('Xiaomi Redmi Note 13 8GB 256GB mau vang'),
             ]);
+
+            // MEMORY
+            $xiaomiRedmiNote13_8_256->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::MEMORY],
+                    ['value' => '8GB - 256GB']
+                );
+
+            // COMPARE_TAGS
+            $xiaomiRedmiNote13_8_256->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::COMPARE_TAGS],
+                    ['value' => serialize(['6.67"', 'Full HD+'])]
+                );
+
+            // BOTTOM_LEFT_BADGE_URL
+            $xiaomiRedmiNote13_8_256->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::BOTTOM_LEFT_STAMP_URL],
+                    ['value' => 'https://cdn.tgdd.vn/2023/10/campaign/label-tgdd-200x200.png']
+                );
+
+            // THUMB_URL
+            $xiaomiRedmiNote13_8_256->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::THUMB_URL],
+                    ['value' => 'https://cdn.tgdd.vn/Products/Images/42/309831/xiaomi-redmi-note-13-gold-thumb-600x600.jpg']
+                );
+
+            // GIFT
+            $xiaomiRedmiNote13_8_256->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::GIFT],
+                    ['value' => '300000']
+                );
 
             // RAM
             $xiaomiRedmiNote13_8_256->productMeta()
@@ -655,7 +929,7 @@ class DtddXiaomiSeeder extends Seeder
             $xiaomiRedmiNote13_8_256->productMeta()
                 ->firstOrCreate(
                     ['key' => ModelMetaKey::FRONT_CAMERA],
-                    ['value' => 'yellow']
+                    ['value' => '16 MP']
                 );
 
             // BATTERY
@@ -689,11 +963,46 @@ class DtddXiaomiSeeder extends Seeder
             DB::beginTransaction();
             $xiaomiRedmiNote13_8_256 = $this->productRepository->model()->firstOrCreate([
                 'title' => 'Xiaomi Redmi Note 13 8GB/256GB',
-                'type' => ProductType::DTDD,
+                'type' => ProductTypeEnum::DTDD,
                 'parent_id' => $xiaomiRedmiNote13->id,
                 'status' => 'in stock',
                 'url' => Str::slug('Xiaomi Redmi Note 13 8GB 256GB mau den'),
             ]);
+
+            // MEMORY
+            $xiaomiRedmiNote13_8_256->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::MEMORY],
+                    ['value' => '8GB - 256GB']
+                );
+
+            // COMPARE_TAGS
+            $xiaomiRedmiNote13_8_256->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::COMPARE_TAGS],
+                    ['value' => serialize(['6.67"', 'Full HD+'])]
+                );
+
+            // BOTTOM_LEFT_BADGE_URL
+            $xiaomiRedmiNote13_8_256->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::BOTTOM_LEFT_STAMP_URL],
+                    ['value' => 'https://cdn.tgdd.vn/2023/10/campaign/label-tgdd-200x200.png']
+                );
+
+            // THUMB_URL
+            $xiaomiRedmiNote13_8_256->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::THUMB_URL],
+                    ['value' => 'https://cdn.tgdd.vn/Products/Images/42/320460/xiaomi-redmi-note-13-black-thumb-600x600.jpg']
+                );
+
+            // GIFT
+            $xiaomiRedmiNote13_8_256->productMeta()
+                ->firstOrCreate(
+                    ['key' => ModelMetaKey::GIFT],
+                    ['value' => '300000']
+                );
 
             // RAM
             $xiaomiRedmiNote13_8_256->productMeta()
@@ -748,7 +1057,7 @@ class DtddXiaomiSeeder extends Seeder
             $xiaomiRedmiNote13_8_256->productMeta()
                 ->firstOrCreate(
                     ['key' => ModelMetaKey::FRONT_CAMERA],
-                    ['value' => 'yellow']
+                    ['value' => '16 MP']
                 );
 
             // BATTERY

@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use ReflectionClass;
 
-class ActionStatus
+class ActionStatusEnum
 {
     public const WARNING = 'warning';
     public const ERROR = 'error';

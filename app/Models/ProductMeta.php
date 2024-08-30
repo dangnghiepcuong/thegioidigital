@@ -15,6 +15,11 @@ class ProductMeta extends Model
         'value',
     ];
 
+    public function getCurrency($prefix = null, $decimal = 0, $postfix = '₫')
+    {
+        return $prefix . number_format($this->value, $decimal) . $postfix;
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class);

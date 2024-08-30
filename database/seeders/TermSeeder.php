@@ -7,6 +7,7 @@ use App\Repositories\Eloquents\ProductMetaRepository;
 use App\Repositories\Eloquents\ProductRepository;
 use App\Repositories\Eloquents\TermRepository;
 use App\Repositories\Eloquents\TermTaxonomyRepository;
+use Exception;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -47,39 +48,39 @@ class TermSeeder extends Seeder
             $termTaxonomyMemory = $this->termTaxonomyRepository->model()->firstOrCreate([
                 'term_id' => $termMemory->id,
                 'taxonomy' => ModelMetaKey::MEMORY,
-                'description' => 'RAM/ROM',
+                'description' => 'RAM/Storage',
             ]);
 
-            $termRamRom = $this->termRepository->model()->firstOrCreate([
+            $termRamStorage = $this->termRepository->model()->firstOrCreate([
                 'name' => '8GB - 128GB',
                 'slug' => Str::slug('8GB - 128GB'),
             ]);
-            $termTaxonomyRamRom = $this->termTaxonomyRepository->model()->firstOrCreate([
-                'term_id' => $termRamRom->id,
+            $termTaxonomyRamStorage = $this->termTaxonomyRepository->model()->firstOrCreate([
+                'term_id' => $termRamStorage->id,
                 'taxonomy' => $termTaxonomyMemory->taxonomy,
-                'description' => 'RAM/ROM',
+                'description' => $termRamStorage->name,
                 'parent_id' => $termMemory->id,
             ]);
 
-            $termRamRom = $this->termRepository->model()->firstOrCreate([
+            $termRamStorage = $this->termRepository->model()->firstOrCreate([
                 'name' => '6GB - 128GB',
                 'slug' => Str::slug('6GB - 128GB'),
             ]);
-            $termTaxonomyRamRom = $this->termTaxonomyRepository->model()->firstOrCreate([
-                'term_id' => $termRamRom->id,
+            $termTaxonomyRamStorage = $this->termTaxonomyRepository->model()->firstOrCreate([
+                'term_id' => $termRamStorage->id,
                 'taxonomy' => $termTaxonomyMemory->taxonomy,
-                'description' => 'RAM/ROM',
+                'description' => $termRamStorage->name,
                 'parent_id' => $termMemory->id,
             ]);
 
-            $termRamRom = $this->termRepository->model()->firstOrCreate([
+            $termRamStorage = $this->termRepository->model()->firstOrCreate([
                 'name' => '8GB - 256GB',
                 'slug' => Str::slug('8GB - 256GB'),
             ]);
-            $termTaxonomyRamRom = $this->termTaxonomyRepository->model()->firstOrCreate([
-                'term_id' => $termRamRom->id,
+            $termTaxonomyRamStorage = $this->termTaxonomyRepository->model()->firstOrCreate([
+                'term_id' => $termRamStorage->id,
                 'taxonomy' => $termTaxonomyMemory->taxonomy,
-                'description' => 'RAM/ROM',
+                'description' => $termRamStorage->name,
                 'parent_id' => $termMemory->id,
             ]);
 
@@ -100,34 +101,37 @@ class TermSeeder extends Seeder
                 'description' => 'color',
             ]);
 
-            $termColor = $this->termRepository->model()->firstOrCreate([
+            $termYellow = $this->termRepository->model()->firstOrCreate([
                 'name' => 'yellow',
                 'slug' => Str::slug('yellow'),
             ]);
             $termTaxonomyColor = $this->termTaxonomyRepository->model()->firstOrCreate([
-                'term_id' => $termColor->id,
+                'term_id' => $termYellow->id,
                 'taxonomy' => ModelMetaKey::COLOR,
                 'description' => 'yellow',
+                'parent_id' => $termColor->id,
             ]);
 
-            $termColor = $this->termRepository->model()->firstOrCreate([
+            $termBlack = $this->termRepository->model()->firstOrCreate([
                 'name' => 'black',
                 'slug' => Str::slug('black'),
             ]);
             $termTaxonomyColor = $this->termTaxonomyRepository->model()->firstOrCreate([
-                'term_id' => $termColor->id,
+                'term_id' => $termBlack->id,
                 'taxonomy' => ModelMetaKey::COLOR,
                 'description' => 'black',
+                'parent_id' => $termColor->id,
             ]);
 
-            $termColor = $this->termRepository->model()->firstOrCreate([
+            $termGreen = $this->termRepository->model()->firstOrCreate([
                 'name' => 'green',
                 'slug' => Str::slug('green'),
             ]);
             $termTaxonomyColor = $this->termTaxonomyRepository->model()->firstOrCreate([
-                'term_id' => $termColor->id,
+                'term_id' => $termGreen->id,
                 'taxonomy' => ModelMetaKey::COLOR,
                 'description' => 'green',
+                'parent_id' => $termColor->id,
             ]);
 
             DB::commit();
@@ -142,13 +146,12 @@ class TermSeeder extends Seeder
                 ->with('product')
                 ->get();
 
-            // dump($productsMeta);
             foreach ($productsMeta as $productMeta) {
                 $term = $this->termRepository->findByConditions(['name' => $productMeta->value])
-                    ->with('termTaxonomy')
                     ->first();
 
-                $productMeta->product->termTaxonomies()->syncWithoutDetaching([$term->termTaxonomy->id => ['termable_type' => 'product']]);
+                $parentProduct = $this->productRepository->findOrFail($productMeta->product->parent_id)->first();
+                $parentProduct->termTaxonomies()->syncWithoutDetaching([$term->termTaxonomy->id => ['termable_type' => 'product']]);
             }
 
             DB::commit();
@@ -157,12 +160,13 @@ class TermSeeder extends Seeder
             DB::rollBack();
         }
 
-        // Attach term memory (RAM/ROM) to product
+        // Attach term memory (RAM/Storage) to product
         try {
             DB::beginTransaction();
             $products = $this->productRepository->all();
             foreach ($products as $product) {
                 if (!$product->parent_id) {
+                    DB::rollBack();
                     continue;
                 }
 
@@ -170,29 +174,135 @@ class TermSeeder extends Seeder
                     'product_id' => $product->id,
                     'key' => ModelMetaKey::RAM,
                 ])->first();
-                $productRom = $this->productMetaRepository->findByConditions([
+                $productStorage = $this->productMetaRepository->findByConditions([
                     'product_id' => $product->id,
-                    'key' => ModelMetaKey::ROM,
+                    'key' => ModelMetaKey::STORAGE,
                 ])->first();
 
                 $ram = $productRam->value ?? '';
-                $rom = $productRom->value ?? '';
+                $storage = $productStorage->value ?? '';
 
-                $productMemory = "$ram - $rom";
-                dump($product->title);
-                dump($productMemory);
+                $productMemory = "$ram - $storage";
                 $term = $this->termRepository->findByConditions(['name' => $productMemory])->first();
-                $termTaxonomy = $this->termTaxonomyRepository->find([
-                    'term_id' => $term->id,
-                    'taxonomy' => ModelMetaKey::MEMORY,
-                ])->first();
+                if (!$term) {
+                    DB::rollBack();
+                    continue;
+                }
 
-                $product->termTaxonomies()->syncWithoutDetaching([$termTaxonomy->id => ['termable_type' => 'product']]);
+                $parentProduct = $this->productRepository->findOrFail($productMeta->product->parent_id)->first();
+                $parentProduct->termTaxonomies()->syncWithoutDetaching([$term->termTaxonomy->id => ['termable_type' => 'product']]);
             }
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
             throw ($exception);
+        }
+
+        try {
+            DB::beginTransaction();
+            $termStorage = $this->termRepository->model()->firstOrCreate([
+                'name' => 'storage',
+                'slug' => Str::slug('storage'),
+            ]);
+            $termTaxonomyStorage = $this->termTaxonomyRepository->model()->firstOrCreate([
+                'term_id' => $termStorage->id,
+                'taxonomy' => ModelMetaKey::STORAGE,
+                'description' => 'storage',
+            ]);
+            $termStorageParentId = $termTaxonomyStorage->id;
+
+            $termStorage = $this->termRepository->model()->firstOrCreate([
+                'name' => '16GB',
+                'slug' => Str::slug('16GB'),
+            ]);
+            $termTaxonomyStorage = $this->termTaxonomyRepository->model()->firstOrCreate([
+                'term_id' => $termStorage->id,
+                'taxonomy' => ModelMetaKey::STORAGE,
+                'description' => '16GB',
+                'parent_id' => $termStorageParentId,
+            ]);
+
+            $termStorage = $this->termRepository->model()->firstOrCreate([
+                'name' => '32GB',
+                'slug' => Str::slug('32GB'),
+            ]);
+            $termTaxonomyStorage = $this->termTaxonomyRepository->model()->firstOrCreate([
+                'term_id' => $termStorage->id,
+                'taxonomy' => ModelMetaKey::STORAGE,
+                'description' => '32GB',
+                'parent_id' => $termStorageParentId,
+            ]);
+
+            $termStorage = $this->termRepository->model()->firstOrCreate([
+                'name' => '64GB',
+                'slug' => Str::slug('64GB'),
+            ]);
+            $termTaxonomyStorage = $this->termTaxonomyRepository->model()->firstOrCreate([
+                'term_id' => $termStorage->id,
+                'taxonomy' => ModelMetaKey::STORAGE,
+                'description' => '64GB',
+                'parent_id' => $termStorageParentId,
+            ]);
+
+            $termStorage = $this->termRepository->model()->firstOrCreate([
+                'name' => '128GB',
+                'slug' => Str::slug('128GB'),
+            ]);
+            $termTaxonomyStorage = $this->termTaxonomyRepository->model()->firstOrCreate([
+                'term_id' => $termStorage->id,
+                'taxonomy' => ModelMetaKey::STORAGE,
+                'description' => '128GB',
+                'parent_id' => $termStorageParentId,
+            ]);
+
+            $termStorage = $this->termRepository->model()->firstOrCreate([
+                'name' => '256GB',
+                'slug' => Str::slug('256GB'),
+            ]);
+            $termTaxonomyStorage = $this->termTaxonomyRepository->model()->firstOrCreate([
+                'term_id' => $termStorage->id,
+                'taxonomy' => ModelMetaKey::STORAGE,
+                'description' => '256GB',
+                'parent_id' => $termStorageParentId,
+            ]);
+
+            $termStorage = $this->termRepository->model()->firstOrCreate([
+                'name' => '512GB',
+                'slug' => Str::slug('512GB'),
+            ]);
+            $termTaxonomyStorage = $this->termTaxonomyRepository->model()->firstOrCreate([
+                'term_id' => $termStorage->id,
+                'taxonomy' => ModelMetaKey::STORAGE,
+                'description' => '512GB',
+                'parent_id' => $termStorageParentId,
+            ]);
+
+            $termStorage = $this->termRepository->model()->firstOrCreate([
+                'name' => '1TB',
+                'slug' => Str::slug('1TB'),
+            ]);
+            $termTaxonomyStorage = $this->termTaxonomyRepository->model()->firstOrCreate([
+                'term_id' => $termStorage->id,
+                'taxonomy' => ModelMetaKey::STORAGE,
+                'description' => '1TB',
+                'parent_id' => $termStorageParentId,
+            ]);
+
+            $termStorage = $this->termRepository->model()->firstOrCreate([
+                'name' => '2TB',
+                'slug' => Str::slug('2TB'),
+            ]);
+            $termTaxonomyStorage = $this->termTaxonomyRepository->model()->firstOrCreate([
+                'term_id' => $termStorage->id,
+                'taxonomy' => ModelMetaKey::STORAGE,
+                'description' => '2TB',
+                'parent_id' => $termStorageParentId,
+            ]);
+
+            DB::commit();
+        } catch (Exception $exception) {
+            DB::rollBack();
+            throw $exception;
         }
     }
 }

@@ -21,6 +21,15 @@ class ModelMetaKey
     public const CPU = 'product_attr_CPU';
     public const MEMORY = 'product_attr_memory';
     public const BRAND = 'product_attr_brand';
+    public const TOP_TAGS = 'product_attr_top_tags';
+    public const GIFT = 'product_attr_gift';
+    public const REGULAR_PRICE = 'product_attr_regular_price';
+    public const THUMB_URL = 'product_attr_thumb_url';
+    public const BOTTOM_LEFT_STAMP_URL = 'product_attr_bottom_left_stamp_url';
+    public const TOP_RIGHT_STAMP_URL = 'product_attr_top_right_stamp_url';
+    public const BADGE = 'product_attr_badge';
+    public const COMPARE_TAGS = 'product_attr_compare_tags';
+    public const STORAGE = 'product_attr_storage';
 
     private static function getConstants()
     {

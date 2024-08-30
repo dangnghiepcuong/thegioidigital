@@ -4,18 +4,13 @@ namespace App\Enums;
 
 use ReflectionClass;
 
-final class ProductType
+final class ProductStatusEnum
 {
-    const DTDD = 'dtdd';
-    const LAPTOP = 'laptop';
-    const TABLET = 'tablet';
-    const PHUKIEN = 'phu_kien';
-    const SMARTWATCH = 'smartwatch';
-    const OLD_DEVICE = 'OLD_DEVICE';
-    const PC = 'PC';
-    const PRINTER = 'printer';
-    const SIM = 'sim';
-    const CARD = 'card';
+    const IN_PROCESS = 'in_process';
+    const IN_STOCK = 'in_stock';
+    const OUT_OF_STOCK = 'out_of_stock';
+    const STOP_FOR_SALE = 'stop_for_sale';
+    const COMMING_SOON = 'comming_soon';
 
     private static function getConstants()
     {
