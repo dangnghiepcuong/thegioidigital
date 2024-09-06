@@ -23,7 +23,7 @@
     background-color: white;
 }
 
-.layout-top {
+.layout-location-select .layout-top {
     padding: 10px;
     border-top-left-radius: var(--popup-border-radius);
     border-top-right-radius: var(--popup-border-radius);
@@ -31,16 +31,19 @@
     color: white;
 }
 
-.layout-control-panel {
+
+.layout-location-select .layout-control-panel {
     margin-bottom: 20px;
 }
 
-.text {
+
+.layout-location-select .text {
     display: inline-block;
     width: 83%;
 }
 
-.btn-close {
+
+.layout-location-select .btn-close {
     float: right;
     padding: 6px;
     border: 1px solid white;
@@ -48,26 +51,31 @@
     cursor: pointer;
 }
 
-.btn-close span {
+
+.layout-location-select .btn-close span {
     vertical-align: middle;
     color: white;
 }
 
-.btn-close span.icon {
+
+.layout-location-select .btn-close span.icon {
     font-size: 20px;
 }
 
-.bar-search {
+
+.layout-location-select .bar-search {
     height: 35px;
 }
 
-.layout-location-list .title {
+
+.layout-location-select .layout-location-list .title {
     margin: 5px 0px;
     text-align: center;
     font-weight: bold;
 }
 
-.list-location {
+
+.layout-location-select .list-location {
     display: grid;
     grid-auto-rows: minmax(min-content, max-content);
     grid-template-columns: repeat(2, auto);
@@ -76,7 +84,8 @@
     margin: 10px 0px;
 }
 
-.item-location {
+
+.layout-location-select .item-location {
     width: 85%;
     margin: auto;
     padding: 10px;
@@ -84,7 +93,8 @@
     cursor: pointer;
 }
 
-.item-location:hover {
+
+.layout-location-select .item-location:hover {
     background-color: rgb(30, 144, 255, 0.1);
     transition: 300ms;
 }

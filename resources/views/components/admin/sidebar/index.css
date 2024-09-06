@@ -1,0 +1,7 @@
+.nav-item a span.icon {
+    padding: 5px;
+}
+
+.collapse {
+    transition: 300ms;
+}

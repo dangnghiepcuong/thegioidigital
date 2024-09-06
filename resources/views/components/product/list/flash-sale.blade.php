@@ -1,3 +1,6 @@
+@push('styles')
+    @vite($viewsDir . '/components/product/list/flash-sale.css')
+@endPush
 <div id="component-product-list-flash-sale">
     <!-- Waste no more time arguing what a good man should be, be one. - Marcus Aurelius -->
     <div class="nav-slider">
@@ -9,14 +12,11 @@
         </div>
     </div>
     <div class="layout-product-sale">
-        <div class="box-slider-relative">
+        <div class="frame-slider-outer">
             <div class="frame-slider" id="frame-slider-grid-product-sale">
                 <ul class="slider">
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/44/302207/hp-pavilion-15-eg2086tu-i3-7c0q8pa-050223-080308-600x600.jpg"
                                     class=" lazyloaded" alt="HP Pavilion 15 eg2086TU i3 1215U (7C0Q8PA)"
@@ -34,7 +34,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-24%</span>
+                                <span class="sale">-24%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -45,11 +45,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/44/302207/hp-pavilion-15-eg2086tu-i3-7c0q8pa-050223-080308-600x600.jpg"
                                     class=" lazyloaded" alt="HP Pavilion 15 eg2086TU i3 1215U (7C0Q8PA)"
@@ -67,7 +64,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-24%</span>
+                                <span class="sale">-24%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -78,11 +75,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/44/302207/hp-pavilion-15-eg2086tu-i3-7c0q8pa-050223-080308-600x600.jpg"
                                     class=" lazyloaded" alt="HP Pavilion 15 eg2086TU i3 1215U (7C0Q8PA)"
@@ -100,7 +94,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-24%</span>
+                                <span class="sale">-24%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -111,11 +105,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/44/302207/hp-pavilion-15-eg2086tu-i3-7c0q8pa-050223-080308-600x600.jpg"
                                     class=" lazyloaded" alt="HP Pavilion 15 eg2086TU i3 1215U (7C0Q8PA)"
@@ -133,7 +124,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-24%</span>
+                                <span class="sale">-24%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -144,11 +135,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/44/302207/hp-pavilion-15-eg2086tu-i3-7c0q8pa-050223-080308-600x600.jpg"
                                     class=" lazyloaded" alt="HP Pavilion 15 eg2086TU i3 1215U (7C0Q8PA)"
@@ -166,7 +154,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-24%</span>
+                                <span class="sale">-24%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -177,11 +165,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/44/302207/hp-pavilion-15-eg2086tu-i3-7c0q8pa-050223-080308-600x600.jpg"
                                     class=" lazyloaded" alt="HP Pavilion 15 eg2086TU i3 1215U (7C0Q8PA)"
@@ -199,7 +184,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-24%</span>
+                                <span class="sale">-24%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -210,11 +195,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/44/302207/hp-pavilion-15-eg2086tu-i3-7c0q8pa-050223-080308-600x600.jpg"
                                     class=" lazyloaded" alt="HP Pavilion 15 eg2086TU i3 1215U (7C0Q8PA)"
@@ -232,7 +214,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-24%</span>
+                                <span class="sale">-24%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -243,11 +225,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/44/302207/hp-pavilion-15-eg2086tu-i3-7c0q8pa-050223-080308-600x600.jpg"
                                     class=" lazyloaded" alt="HP Pavilion 15 eg2086TU i3 1215U (7C0Q8PA)"
@@ -265,7 +244,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-24%</span>
+                                <span class="sale">-24%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -276,11 +255,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/44/302207/hp-pavilion-15-eg2086tu-i3-7c0q8pa-050223-080308-600x600.jpg"
                                     class=" lazyloaded" alt="HP Pavilion 15 eg2086TU i3 1215U (7C0Q8PA)"
@@ -298,7 +274,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-24%</span>
+                                <span class="sale">-24%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -309,11 +285,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/44/302207/hp-pavilion-15-eg2086tu-i3-7c0q8pa-050223-080308-600x600.jpg"
                                     class=" lazyloaded" alt="HP Pavilion 15 eg2086TU i3 1215U (7C0Q8PA)"
@@ -331,7 +304,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-24%</span>
+                                <span class="sale">-24%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -342,11 +315,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/44/302207/hp-pavilion-15-eg2086tu-i3-7c0q8pa-050223-080308-600x600.jpg"
                                     class=" lazyloaded" alt="HP Pavilion 15 eg2086TU i3 1215U (7C0Q8PA)"
@@ -364,7 +334,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-24%</span>
+                                <span class="sale">-24%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -375,11 +345,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/44/302207/hp-pavilion-15-eg2086tu-i3-7c0q8pa-050223-080308-600x600.jpg"
                                     class=" lazyloaded" alt="HP Pavilion 15 eg2086TU i3 1215U (7C0Q8PA)"
@@ -397,7 +364,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-24%</span>
+                                <span class="sale">-24%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -408,11 +375,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/54/325878/tai-nghe-co-day-ava-pc-25-1-600x600.jpg"
                                     class=" lazyloaded" alt="Tai nghe Có dây EP AVA+ PC-25" height="207"
@@ -430,7 +394,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-50%</span>
+                                <span class="sale">-50%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -441,11 +405,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/54/325878/tai-nghe-co-day-ava-pc-25-1-600x600.jpg"
                                     class=" lazyloaded" alt="Tai nghe Có dây EP AVA+ PC-25" height="207"
@@ -463,7 +424,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-50%</span>
+                                <span class="sale">-50%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -474,11 +435,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/54/325878/tai-nghe-co-day-ava-pc-25-1-600x600.jpg"
                                     class=" lazyloaded" alt="Tai nghe Có dây EP AVA+ PC-25" height="207"
@@ -496,7 +454,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-50%</span>
+                                <span class="sale">-50%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -507,11 +465,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/54/325878/tai-nghe-co-day-ava-pc-25-1-600x600.jpg"
                                     class=" lazyloaded" alt="Tai nghe Có dây EP AVA+ PC-25" height="207"
@@ -529,7 +484,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-50%</span>
+                                <span class="sale">-50%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -540,11 +495,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/54/325878/tai-nghe-co-day-ava-pc-25-1-600x600.jpg"
                                     class=" lazyloaded" alt="Tai nghe Có dây EP AVA+ PC-25" height="207"
@@ -562,7 +514,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-50%</span>
+                                <span class="sale">-50%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -573,11 +525,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/54/325878/tai-nghe-co-day-ava-pc-25-1-600x600.jpg"
                                     class=" lazyloaded" alt="Tai nghe Có dây EP AVA+ PC-25" height="207"
@@ -595,7 +544,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-50%</span>
+                                <span class="sale">-50%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -606,11 +555,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/54/325878/tai-nghe-co-day-ava-pc-25-1-600x600.jpg"
                                     class=" lazyloaded" alt="Tai nghe Có dây EP AVA+ PC-25" height="207"
@@ -628,7 +574,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-50%</span>
+                                <span class="sale">-50%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -639,11 +585,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/54/325878/tai-nghe-co-day-ava-pc-25-1-600x600.jpg"
                                     class=" lazyloaded" alt="Tai nghe Có dây EP AVA+ PC-25" height="207"
@@ -661,7 +604,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-50%</span>
+                                <span class="sale">-50%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -672,11 +615,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/54/325878/tai-nghe-co-day-ava-pc-25-1-600x600.jpg"
                                     class=" lazyloaded" alt="Tai nghe Có dây EP AVA+ PC-25" height="207"
@@ -694,7 +634,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-50%</span>
+                                <span class="sale">-50%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -705,11 +645,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/54/325878/tai-nghe-co-day-ava-pc-25-1-600x600.jpg"
                                     class=" lazyloaded" alt="Tai nghe Có dây EP AVA+ PC-25" height="207"
@@ -727,7 +664,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-50%</span>
+                                <span class="sale">-50%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -738,11 +675,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/54/325878/tai-nghe-co-day-ava-pc-25-1-600x600.jpg"
                                     class=" lazyloaded" alt="Tai nghe Có dây EP AVA+ PC-25" height="207"
@@ -760,7 +694,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-50%</span>
+                                <span class="sale">-50%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">
@@ -771,11 +705,8 @@
                             </div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
-                            </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/54/325878/tai-nghe-co-day-ava-pc-25-1-600x600.jpg"
                                     class=" lazyloaded" alt="Tai nghe Có dây EP AVA+ PC-25" height="207"
@@ -793,7 +724,7 @@
                             </div>
                             <div class="layout-original-price">
                                 <span class="original-price">15.200.000đ</span>
-                                <span class="discount">-50%</span>
+                                <span class="sale">-50%</span>
                             </div>
                             <div class="layout-quantity">
                                 <span class="icon">

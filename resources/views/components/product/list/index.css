@@ -1,0 +1,7 @@
+.layout-list-product {
+    display: grid;
+    grid-auto-rows: minmax(min-content, max-content);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+}

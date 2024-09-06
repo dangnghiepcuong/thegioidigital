@@ -1,0 +1,18 @@
+.f-container {
+    width: 100%;
+    min-width: 1024px;
+    padding: 20px 25px;
+    padding-left: 290px;
+}
+
+#component-admin-sidebar {
+    width: 265px;
+}
+
+span.icon{
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}

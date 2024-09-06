@@ -1,5 +1,5 @@
 <div id="header-top-slider" class="layout-slider">
-    <div class="slider advertise">
+    <div class="slider advertise" id="slider-advertise">
         <div class="nav">
             <div class="prev" onclick="navigateSlider('#frame-slider-top-long-banner', 'left', 0, 1)">
                 <div class="arrow arrow-left"></div>
@@ -8,28 +8,25 @@
                 <div class="arrow arrow-right"></div>
             </div>
         </div>
-        <div class="box-slider-relative">
+        <div class="frame-slider-outer">
             <div class="frame-slider" id="frame-slider-top-long-banner">
                 <ul class="slider" id="slider-top-long-banner">
                     <li class="slide">
                         <a href="">
-                            <img width="1200" height="44" loading="lazy" class="owl-lazy lazyloaded"
-                                data-src="//cdn.tgdd.vn/2024/06/banner/1200x44-1200x44-1.jpg" alt="honor"
+                            <img width="1200" height="44" loading="lazy" class="owl-lazy lazyloaded" alt="honor"
                                 src="//cdn.tgdd.vn/2024/06/banner/1200x44-1200x44-1.jpg">
                         </a>
                     </li>
                     <li class="slide">
                         <a href="">
-                            <img width="1200" height="44" loading="lazy" class="owl-lazy lazyloaded"
-                                data-src="//cdn.tgdd.vn/2024/04/banner/dandau-1200-44-1200x44.png" alt="TZ GTQ"
+                            <img width="1200" height="44" loading="lazy" class="owl-lazy lazyloaded" alt="TZ GTQ"
                                 src="//cdn.tgdd.vn/2024/04/banner/dandau-1200-44-1200x44.png">
                         </a>
                     </li>
                     <li class="slide">
                         <a href="">
-                            <img width="1200" height="44" loading="lazy" class="owl-lazy lazyloaded"
-                                data-src="//cdn.tgdd.vn/2024/06/banner/1200x44-1200x44-1.jpg" alt="honor"
-                                src="//cdn.tgdd.vn/2024/06/banner/1200x44-1200x44-1.jpg">
+                            <img width="1200" height="44" loading="lazy" class="owl-lazy lazyloaded" alt="honor"
+                                src="//cdn.tgdd.vn/2024/06/banner/Frame-427319876-1200x44-1.png">
                         </a>
                     </li>
                 </ul>
@@ -88,8 +85,11 @@
     </div>
     <div class="layout-header-bottom">
         <div>
-            <x-general.super-menu.index :menu-items="$menuItems" />
+            <x-general.super-menu :menu-items="$menuItems" />
         </div>
     </div>
 </div>
 <x-general.popup.location-select.index />
+@push('scripts')
+    @vite($viewsDir . '/components/general/header/index.js')
+@endPush
