@@ -13,6 +13,7 @@ class ProductMeta extends Model
     protected $fillable = [
         'key',
         'value',
+        'product_id',
     ];
 
     public function getCurrency($prefix = null, $decimal = 0, $postfix = '₫')

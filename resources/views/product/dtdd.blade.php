@@ -5,7 +5,7 @@
     @parent
     @vite($viewsDir . '/product/dtdd.css')
 @endsection
-
+@use('App\Enums\ModelMetaKey')
 @section('content')
     @parent
     <!-- Simplicity is the ultimate sophistication. - Leonardo da Vinci -->
@@ -22,29 +22,23 @@
 
     </div>
     <x-product.list.index>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
-        <x-product.card.index/>
+        @foreach ($products as $product)
+            @php
+                $productVariants = $variants->where('parent_id', $product->id) ?? null;
+                $firstOption = $product->termTaxonomies->sortByDesc('taxonomy')->first();
+                $firstOptionValue = $firstOption ? $firstOption->term->name : null;
+                $firstVariant = $productVariants
+                    ? $productVariants
+                        ->filter(function ($variant) use ($firstOptionValue) {
+                            return $variant->productMeta->where('value', $firstOptionValue)->first();
+                        })
+                        ->first()
+                    : null;
+                $productMeta = $firstVariant->productMeta ?? null;
+            @endphp
+            <x-product.card.index :product="$product" :first-option="$firstOption" :product-meta="$productMeta"
+                :url="route('products.dtdd.slug', $firstVariant->slug ?? '')" />
+        @endforeach
     </x-product.list.index>
 @endsection
 

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ config('app.name') }} - @yield('title')</title>
+    <title>@yield('title') - {{ config('app.name') }}</title>
 
     <link rel="icon" href="{{ Vite::asset('resources/images/digitalworld.webp') }}">
     <link rel="stylesheet"
@@ -13,13 +13,13 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..40,200..400,0..1,0" />
 
-    @vite($cssDir . '/admin/bootstrap.min.css')
     @vite($cssDir . '/admin/kaiadmin.css')
     @vite($cssDir . '/admin/plugins.min.css')
     @vite($cssDir . '/main.css')
     @vite($cssDir . '/element.css')
     @vite($viewsDir . '/layouts/admin/index.css')
     @vite($viewsDir . '/components/admin/sidebar/index.css')
+    @stack('styles')
     @yield('styles')
 </head>
 
@@ -34,6 +34,7 @@
     @vite($jsDir . '/admin/bootstrap.min.js')
     @vite($jsDir . '/admin/popper.min.js')
     @vite($jsDir . '/admin/kaiadmin.min.js')
+    @stack('scripts')
     @yield('scripts')
 </body>
 

@@ -2,6 +2,10 @@
 
 function get_meta($collection, $key = null)
 {
+    if (!isset($collection)) {
+        return null;
+    }
+
     if (isset($key)) {
         $meta = $collection->filter(function ($meta) use ($key) {
             return $meta->key === $key;

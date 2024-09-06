@@ -14,7 +14,7 @@ class Product extends Model
         'parent_id',
         'type',
         'status',
-        'url',
+        'slug',
         'description',
     ];
 
