@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('terms', function (Blueprint $table) {
-            $table->unique(['name']);
+        Schema::table('products', function(Blueprint $table) {
+            $table->renameColumn('url', 'slug');
             $table->unique(['slug']);
         });
     }
@@ -22,9 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('terms', function (Blueprint $table) {
-            $table->dropUnique(['name']);
+        Schema::table('products', function(Blueprint $table) {
             $table->dropUnique(['slug']);
+            $table->renameColumn('slug', 'url');
         });
     }
 };
