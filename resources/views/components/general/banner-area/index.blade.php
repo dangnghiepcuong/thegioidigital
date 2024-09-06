@@ -9,59 +9,63 @@
                 <ul class="slider" id="slider-dual-banner">
                     <li class="slide">
                         <a href="">
-                            <img width="600" height="180" src="//cdn.tgdd.vn/2024/07/banner/720x220-720x220-100.png"
-                                alt="iPhone 12">
-                        </a>
-                    </li>
-                    <li class="slide">
-                        <a href="">
-                            <img width="600" height="180"
-                                src="//cdn.tgdd.vn/2024/07/banner/720x220-new-720x220-1.png" alt="R12">
-                        </a>
-                    </li>
-                    <li class="slide">
-                        <a href="">
-                            <img width="600" height="180" loading="lazy" class="owl-lazy lazyloaded"
-                                data-src="//cdn.tgdd.vn/2024/07/banner/mb-dhtt-720x220.jpg" alt="Hotsale Online ĐHTT T7"
-                                src="//cdn.tgdd.vn/2024/07/banner/mb-dhtt-720x220.jpg">
-                        </a>
-                    </li>
-                    <li class="slide">
-                        <a href="">
-                            <img width="600" height="180"
-                                src="https://cdnv2.tgdd.vn/mwg-static/common/Banner/48/0c/480c7735dd1894f6292bf33cef09be5a.png"
-                                alt="PRE SAMSUNG BUDS 3 SERIES">
-                        </a>
-                    </li>
-                    <li class="slide">
-                        <a href="">
-                            <img width="600" height="180"
-                                src="https://cdnv2.tgdd.vn/mwg-static/common/Banner/bc/36/bc363d42facdd592bc12225532d49f49.jpg"
+                            <img src="https://cdnv2.tgdd.vn/mwg-static/common/Banner/13/10/1310ee5eccaca4942ca21336e511bdd5.jpg"
                                 alt="SAMSUNG">
                         </a>
                     </li>
                     <li class="slide">
                         <a href="">
-                            <img width="600" height="180" loading="lazy" class="owl-lazy lazyloaded"
-                                data-src="//cdn.tgdd.vn/2024/07/banner/rm13-1-720x220-720x220-1.png" alt="TLTH Xiaomi"
-                                src="//cdn.tgdd.vn/2024/07/banner/rm13-1-720x220-720x220-1.png">
+                            <img src="https://cdnv2.tgdd.vn/mwg-static/common/Banner/5e/13/5e1351684bfec3771489d03df82389af.png"
+                                alt="R12">
                         </a>
                     </li>
                     <li class="slide">
                         <a href="">
-                            <img width="600" height="180"
-                                src="https://cdnv2.tgdd.vn/mwg-static/common/Banner/b7/b1/b7b16a360ce0d909d1367f6e109cd5d9.png"
-                                alt="Xiaomi Band 9">
+                            <img loading="lazy" class="owl-lazy lazyloaded"
+                                src="//cdn.tgdd.vn/2024/07/banner/Nha-via-Doi-diem-720x220-720x220-1.png"
+                                alt="Laptop">
+                        </a>
+                    </li>
+                    <li class="slide">
+                        <a href="">
+                            <img loading="lazy" class="owl-lazy lazyloaded"
+                                src="https://cdnv2.tgdd.vn/mwg-static/common/Banner/3d/04/3d04157a765d043fe2f760625ca482a5.png"
+                                alt="realme C65">
+                        </a>
+                    </li>
+                    <li class="slide">
+                        <a href="">
+                            <img src="https://cdnv2.tgdd.vn/mwg-static/common/Banner/12/b4/12b462d8e4ff3909414d3cf648c75620.png"
+                                alt="iPhone 12">
+                        </a>
+                    </li>
+                    <li class="slide">
+                        <a href="">
+                            <img src="https://cdnv2.tgdd.vn/mwg-static/common/Banner/9d/53/9d531bfccfd975c12409024212b262e9.png"
+                                alt="CASIO điện tử">
+                        </a>
+                    </li>
+                    <li class="slide">
+                        <a href="">
+                            <img loading="lazy" class="owl-lazy lazyloaded"
+                                src="https://cdnv2.tgdd.vn/mwg-static/common/Banner/1c/c9/1cc9cb444fa6bf7d101e1352f8797d23.png"
+                                alt="TAI NGHE AVA">
+                        </a>
+                    </li>
+                    <li class="slide">
+                        <a href="">
+                            <img src="https://cdnv2.tgdd.vn/mwg-static/common/Banner/94/89/948949fadc1637ff4dbf8e5d88319cfe.png"
+                                alt="y28">
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="layout-nav-slider" id="nav-slider-dual-banner">
-            <div class="left" onclick="navigateSlider('#frame-slider-dual-banner', 'left', 10, 2)">
+            <div class="prev" onclick="navigateSlider('#frame-slider-dual-banner', 'left', 0, 2)">
                 <span class="icon material-symbols-outlined">arrow_back_ios</span>
             </div>
-            <div class="right" onclick="navigateSlider('#frame-slider-dual-banner', 'right', 10, 2)">
+            <div class="next" onclick="navigateSlider('#frame-slider-dual-banner', 'right', 0, 2)">
                 <span class="icon material-symbols-outlined">arrow_forward_ios</span>
             </div>
         </div>
@@ -118,12 +122,3 @@
             alt="Promote iPhone 15">
     </a>
 </div>
-@pushOnce('scripts')
-    <script>
-        import {
-            navigateSlider
-        } from './animation';
-
-        window.navigateSlider = navigateSlider;
-    </script>
-@endPushOnce

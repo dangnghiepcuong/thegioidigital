@@ -18,8 +18,8 @@
     margin: auto;
 }
 
-#banner-area-slider .layout-nav-slider .left,
-.right {
+#banner-area-slider .layout-nav-slider .prev,
+#banner-area-slider .layout-nav-slider .next {
     display: inline-block;
     position: absolute;
     width: 45px;
@@ -32,12 +32,12 @@
     cursor: pointer;
 }
 
-#banner-area-slider .layout-nav-slider .left {
+#banner-area-slider .layout-nav-slider .prev {
     left: 0;
     transform: translate(-50%, -65%);
 }
 
-#banner-area-slider .layout-nav-slider .right {
+#banner-area-slider .layout-nav-slider .next {
     right: 0;
     transform: translate(50%, -65%);
 }
@@ -51,17 +51,20 @@
 }
 
 #banner-area-slider .slider {
-    position: relative;
-    display: flex;
     justify-content: space-between;
-    gap: 10px;
-    margin: auto;
+    gap: 10px; 
+    width: calc(400%);
     transition: 500ms;
 }
 
-#banner-area-slider .slider img {
-    width: 595px;
+#banner-area-slider .slider .slide a {
+    display: inline-block;
+}
+
+#banner-area-slider .slider .slide img {
+    width: 100%;
     border-radius: var(--card-large-border-radius);
+    object-fit: contain;
 }
 
 #banner-area-campaign-cards.layout-campaign-cards {
@@ -90,25 +93,23 @@
 }
 
 #banner-area-campaign-cards .campaign-cards .card a {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
-    text-decoration: none;
     text-align: center;
-    color: var(--color-default);
 }
 
 #banner-area-campaign-cards .campaign-cards .card img {
     display: inline-block;
     width: auto;
     height: 70px;
-    vertical-align: middle;
 }
 
 #banner-area-campaign-cards .campaign-cards .card a span {
     display: inline-block;
     max-width: 65%;
     margin-left: 15px;
-    vertical-align: middle;
     text-align: left;
     font-size: 1.5rem;
     overflow: hidden;
