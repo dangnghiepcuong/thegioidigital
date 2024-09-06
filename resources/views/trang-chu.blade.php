@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Homepage')
+@section('title', 'Trang chủ')
 @section('large-banner')
     <div class="large-banner">
         <img width="1920" height="920"
