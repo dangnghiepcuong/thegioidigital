@@ -45,6 +45,12 @@ Route::middleware(['auth'])->group(function () {
                     ->can('create', Permission::class)
                     ->name('admin.permissions.store');
             });
+
+            Route::prefix('products')->controller(ProductController::class)->group(function () {
+                Route::get('', 'index')->name('admin.products.index');
+                Route::get('{slug}/edit', 'edit')->name('admin.products.slug');
+                Route::get('create', 'create')->name('admin.products.create');
+            });
         });
 
     Route::prefix('lich-su-mua-hang')->group(function () {
@@ -57,5 +63,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::controller(ProductController::class)->group(function () {
-    Route::get('dtdd/{slug?}', 'dtdd')->name('product.dtdd');
+    Route::get('dtdd/', 'dtdd')->name('products.dtdd');
+    Route::get('dtdd/{slug}', 'show')->name('products.dtdd.slug');
+    Route::get('dtdd-xiaomi/{slug?}', 'dtddXiaomi')->name('product.dtdd-xiaomi');
 });

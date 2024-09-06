@@ -25,7 +25,7 @@ class index extends Component
             0 => [
                 'title' => 'Điện thoại',
                 'icon' => 'phone_iphone',
-                'route' => route('product.dtdd'),
+                'route' => route('products.dtdd'),
             ],
             1 => [
                 'title' => 'Laptop',
