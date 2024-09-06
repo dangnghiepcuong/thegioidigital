@@ -1,0 +1,78 @@
+.page-create-edit-product {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.layout-form,
+.layout-demo-product,
+.layout-demo-product-term {
+    padding: 5px;
+}
+
+.layout-form {
+    min-width: 250px;
+}
+
+.form-item {
+    margin-bottom: 5px;
+}
+
+label {
+    display: block;
+    height: unset;
+    font-size: calc(1rem + 1px);
+}
+
+input,
+textarea,
+select {
+    width: 200px;
+    vertical-align: middle;
+}
+
+.layout-demo-product {
+    min-width: 280px;
+}
+
+.layout-list-product {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    max-width: 240px;
+}
+
+.layout-demo-product-meta {
+    margin-top: 10px;
+}
+
+.layout-demo-product-term {
+    min-width: 560px;
+}
+
+.layout-demo-product-term table {
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-spacing: 0px;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    background: white;
+}
+
+th {
+    background: #eee;
+}
+
+table th,
+table td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    overflow-wrap: break-word;
+}
+
+.table-product-term-taxonomy .term-taxonomy {
+    display: flex;
+    justify-content: space-between;
+}
