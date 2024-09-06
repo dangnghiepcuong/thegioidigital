@@ -48,4 +48,24 @@ class ModelMetaKey
 
         return $array;
     }
+
+    public static function notShownInCardCases()
+    {
+        return [
+            ModelMetaKey::RAM,
+            ModelMetaKey::ROM,
+            ModelMetaKey::STORAGE,
+            ModelMetaKey::COLOR,
+            ModelMetaKey::SCREEN_SIZE,
+            ModelMetaKey::SCREEN_RESOLUTION,
+            ModelMetaKey::SCREEN_MATERIAL,
+            ModelMetaKey::BACK_CAMERA,
+            ModelMetaKey::FRONT_CAMERA,
+            ModelMetaKey::BATTERY,
+            ModelMetaKey::CHARGE_POWER,
+            ModelMetaKey::CPU,
+            ModelMetaKey::MEMORY,
+            ModelMetaKey::BRAND,
+        ];
+    }
 }
