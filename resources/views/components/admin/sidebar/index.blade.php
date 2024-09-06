@@ -75,71 +75,46 @@
                                     <span class="sub-item">Grid System</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="components/panels.html">
-                                    <span class="sub-item">Panels</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="components/notifications.html">
-                                    <span class="sub-item">Notifications</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="components/sweetalert.html">
-                                    <span class="sub-item">Sweet Alert</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="components/font-awesome-icons.html">
-                                    <span class="sub-item">Font Awesome Icons</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="components/simple-line-icons.html">
-                                    <span class="sub-item">Simple Line Icons</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="components/typography.html">
-                                    <span class="sub-item">Typography</span>
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#forms">
-                        <span class="icon material-symbols-outlined">edit_document</span>
-                        <p>Forms</p>
+                    <a data-bs-toggle="collapse" href="#products">
+                        <span class="icon material-symbols-outlined">category</span>
+                        <p>Products</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="forms">
+                    <div class="collapse" id="products">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="forms/forms.html">
-                                    <span class="sub-item">Basic Form</span>
+                                <a href="{{ route('admin.products.index') }}">
+                                    <span class="sub-item">Product List</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.products.create') }}">
+                                    <span class="sub-item">Create Product</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#tables">
-                        <span class="icon material-symbols-outlined">table</span>
-                        <p>Tables</p>
+                    <a data-bs-toggle="collapse" href="#terminologies">
+                        <span class="icon material-symbols-outlined">book_3</span>
+                        <p>Terminologies</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="tables">
+                    <div class="collapse" id="terminologies">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="tables/tables.html">
-                                    <span class="sub-item">Basic Table</span>
+                                    <span class="sub-item">Terminology List</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="tables/datatables.html">
-                                    <span class="sub-item">Datatables</span>
+                                    <span class="sub-item">Create Terminology</span>
                                 </a>
                             </li>
                         </ul>

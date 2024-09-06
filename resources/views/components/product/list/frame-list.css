@@ -1,0 +1,32 @@
+.layout-product {
+    border-radius: var(--card-large-border-radius);
+    background-color: var(--color-sale-primary);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.banner-product {
+    width: 100%;
+}
+
+.banner-product img{
+    height: max-content;
+    object-fit: cover;
+}
+
+.slide {
+    position: relative;
+}
+
+.card-product .product-name {
+    height: 3rem;
+}
+
+.card-product .price {
+    font-size: calc(1rem + 4px);
+    margin-bottom: 8px;
+}
+
+.card-product .layout-gift {
+    margin-bottom: 8px;
+}

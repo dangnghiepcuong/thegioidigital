@@ -15,10 +15,10 @@
         <div class="frame-slider-outer">
             <div class="frame-slider" id="frame-slider-grid-product-dong-ho">
                 <ul class="slider">
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/7264/278403/elio-es110-01-nu-thumb-fix-600x600.jpg"
@@ -27,7 +27,7 @@
                                     src="https://cdn.tgdd.vn/Products/Images/7264/278403/elio-es110-01-nu-thumb-fix-600x600.jpg">
                                 <img data-src="https://cdn.tgdd.vn/2023/10/campaign/label-tgdd-200x200.png"
                                     width="40" height="40"
-                                    class="badge lbliconimg lbliconimg_7264 tgdd ls-is-cached lazyloaded"
+                                    class="stamp bottom-left lbliconimg lbliconimg_7264 tgdd ls-is-cached lazyloaded"
                                     src="https://cdn.tgdd.vn/2023/10/campaign/label-tgdd-200x200.png">
                             </div>
                             <div class="product-name">
@@ -39,22 +39,22 @@
                                 <span>
                                     690.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
                                 <span class="gift"><b></b></span>
                             </div>
-                            <div class="layout-rate">
-                                <span class="rate">4.8<span class="icon material-symbols-outlined">star</span></span>
+                            <div class="layout-vote">
+                                <span class="vote"><b>4.8<span class="icon material-symbols-outlined">star</span></b></span>
                                 <span class="vote">(11)</span>
                             </div>
-                            <div class="badge-corner"></div>
+                            <div class="stamp-corner"></div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/7264/278403/elio-es110-01-nu-thumb-fix-600x600.jpg"
@@ -63,7 +63,7 @@
                                     src="https://cdn.tgdd.vn/Products/Images/7264/278403/elio-es110-01-nu-thumb-fix-600x600.jpg">
                                 <img data-src="https://cdn.tgdd.vn/2023/10/campaign/label-tgdd-200x200.png"
                                     width="40" height="40"
-                                    class="badge lbliconimg lbliconimg_7264 tgdd ls-is-cached lazyloaded"
+                                    class="stamp bottom-left lbliconimg lbliconimg_7264 tgdd ls-is-cached lazyloaded"
                                     src="https://cdn.tgdd.vn/2023/10/campaign/label-tgdd-200x200.png">
                             </div>
                             <div class="product-name">
@@ -75,22 +75,22 @@
                                 <span>
                                     690.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
                                 <span class="gift"><b></b></span>
                             </div>
-                            <div class="layout-rate">
-                                <span class="rate">4.8<span class="icon material-symbols-outlined">star</span></span>
+                            <div class="layout-vote">
+                                <span class="vote"><b>4.8<span class="icon material-symbols-outlined">star</span></b></span>
                                 <span class="vote">(11)</span>
                             </div>
-                            <div class="badge-corner"></div>
+                            <div class="stamp-corner"></div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/7264/278403/elio-es110-01-nu-thumb-fix-600x600.jpg"
@@ -99,7 +99,7 @@
                                     src="https://cdn.tgdd.vn/Products/Images/7264/278403/elio-es110-01-nu-thumb-fix-600x600.jpg">
                                 <img data-src="https://cdn.tgdd.vn/2023/10/campaign/label-tgdd-200x200.png"
                                     width="40" height="40"
-                                    class="badge lbliconimg lbliconimg_7264 tgdd ls-is-cached lazyloaded"
+                                    class="stamp bottom-left lbliconimg lbliconimg_7264 tgdd ls-is-cached lazyloaded"
                                     src="https://cdn.tgdd.vn/2023/10/campaign/label-tgdd-200x200.png">
                             </div>
                             <div class="product-name">
@@ -111,22 +111,22 @@
                                 <span>
                                     690.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
                                 <span class="gift"><b></b></span>
                             </div>
-                            <div class="layout-rate">
-                                <span class="rate">4.8<span class="icon material-symbols-outlined">star</span></span>
+                            <div class="layout-vote">
+                                <span class="vote"><b>4.8<span class="icon material-symbols-outlined">star</span></b></span>
                                 <span class="vote">(11)</span>
                             </div>
-                            <div class="badge-corner"></div>
+                            <div class="stamp-corner"></div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/7264/278403/elio-es110-01-nu-thumb-fix-600x600.jpg"
@@ -135,7 +135,7 @@
                                     src="https://cdn.tgdd.vn/Products/Images/7264/278403/elio-es110-01-nu-thumb-fix-600x600.jpg">
                                 <img data-src="https://cdn.tgdd.vn/2023/10/campaign/label-tgdd-200x200.png"
                                     width="40" height="40"
-                                    class="badge lbliconimg lbliconimg_7264 tgdd ls-is-cached lazyloaded"
+                                    class="stamp bottom-left lbliconimg lbliconimg_7264 tgdd ls-is-cached lazyloaded"
                                     src="https://cdn.tgdd.vn/2023/10/campaign/label-tgdd-200x200.png">
                             </div>
                             <div class="product-name">
@@ -147,23 +147,22 @@
                                 <span>
                                     690.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
                                 <span class="gift"><b></b></span>
                             </div>
-                            <div class="layout-rate">
-                                <span class="rate">4.8<span
-                                        class="icon material-symbols-outlined">star</span></span>
+                            <div class="layout-vote">
+                                <span class="vote"><b>4.8<span class="icon material-symbols-outlined">star</span></b></span>
                                 <span class="vote">(11)</span>
                             </div>
-                            <div class="badge-corner"></div>
+                            <div class="stamp-corner"></div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/7264/278403/elio-es110-01-nu-thumb-fix-600x600.jpg"
@@ -172,7 +171,7 @@
                                     src="https://cdn.tgdd.vn/Products/Images/7264/278403/elio-es110-01-nu-thumb-fix-600x600.jpg">
                                 <img data-src="https://cdn.tgdd.vn/2023/10/campaign/label-tgdd-200x200.png"
                                     width="40" height="40"
-                                    class="badge lbliconimg lbliconimg_7264 tgdd ls-is-cached lazyloaded"
+                                    class="stamp bottom-left lbliconimg lbliconimg_7264 tgdd ls-is-cached lazyloaded"
                                     src="https://cdn.tgdd.vn/2023/10/campaign/label-tgdd-200x200.png">
                             </div>
                             <div class="product-name">
@@ -184,23 +183,22 @@
                                 <span>
                                     690.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
                                 <span class="gift"><b></b></span>
                             </div>
-                            <div class="layout-rate">
-                                <span class="rate">4.8<span
-                                        class="icon material-symbols-outlined">star</span></span>
+                            <div class="layout-vote">
+                                <span class="vote"><b>4.8<span class="icon material-symbols-outlined">star</span></b></span>
                                 <span class="vote">(11)</span>
                             </div>
-                            <div class="badge-corner"></div>
+                            <div class="stamp-corner"></div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/7264/326357/tommy-hilfiger-1710394-nam-thumb-600x600.jpg"
@@ -216,22 +214,22 @@
                                 <span>
                                     690.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
                                 <span class="gift"><b></b></span>
                             </div>
-                            <div class="layout-rate">
-                                <span class="rate"><span class="icon material-symbols-outlined"></span></span>
+                            <div class="layout-vote">
+                                <span class="vote"><span class="icon material-symbols-outlined"></span></span>
                                 <span class="vote"></span>
                             </div>
-                            <div class="badge-corner"></div>
+                            <div class="stamp-corner"></div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/7264/326357/tommy-hilfiger-1710394-nam-thumb-600x600.jpg"
@@ -247,22 +245,22 @@
                                 <span>
                                     690.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
                                 <span class="gift"><b></b></span>
                             </div>
-                            <div class="layout-rate">
-                                <span class="rate"><span class="icon material-symbols-outlined"></span></span>
+                            <div class="layout-vote">
+                                <span class="vote"><span class="icon material-symbols-outlined"></span></span>
                                 <span class="vote"></span>
                             </div>
-                            <div class="badge-corner"></div>
+                            <div class="stamp-corner"></div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/7264/326357/tommy-hilfiger-1710394-nam-thumb-600x600.jpg"
@@ -278,22 +276,22 @@
                                 <span>
                                     690.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
                                 <span class="gift"><b></b></span>
                             </div>
-                            <div class="layout-rate">
-                                <span class="rate"><span class="icon material-symbols-outlined"></span></span>
+                            <div class="layout-vote">
+                                <span class="vote"><span class="icon material-symbols-outlined"></span></span>
                                 <span class="vote"></span>
                             </div>
-                            <div class="badge-corner"></div>
+                            <div class="stamp-corner"></div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/7264/326357/tommy-hilfiger-1710394-nam-thumb-600x600.jpg"
@@ -309,22 +307,22 @@
                                 <span>
                                     690.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
                                 <span class="gift"><b></b></span>
                             </div>
-                            <div class="layout-rate">
-                                <span class="rate"><span class="icon material-symbols-outlined"></span></span>
+                            <div class="layout-vote">
+                                <span class="vote"><span class="icon material-symbols-outlined"></span></span>
                                 <span class="vote"></span>
                             </div>
-                            <div class="badge-corner"></div>
+                            <div class="stamp-corner"></div>
                         </a>
                     </li>
-                    <li class="slide">
+                    <li class="slide card-product">
                         <a href="">
-                            <div class="holder-label">
-                                <span class="top-label">Trả góp 0%</span>
+                            <div class="holder-top-tags">
+                                <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
                                 <img data-src="https://cdn.tgdd.vn/Products/Images/7264/326357/tommy-hilfiger-1710394-nam-thumb-600x600.jpg"
@@ -340,16 +338,16 @@
                                 <span>
                                     690.000₫
                                 </span>
-                                <span class="discount">-4%</span>
+                                <span class="sale">-4%</span>
                             </div>
                             <div class="layout-gift">
                                 <span class="gift"><b></b></span>
                             </div>
-                            <div class="layout-rate">
-                                <span class="rate"><span class="icon material-symbols-outlined"></span></span>
+                            <div class="layout-vote">
+                                <span class="vote"><span class="icon material-symbols-outlined"></span></span>
                                 <span class="vote"></span>
                             </div>
-                            <div class="badge-corner"></div>
+                            <div class="stamp-corner"></div>
                         </a>
                     </li>
                 </ul>

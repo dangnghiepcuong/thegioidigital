@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Models\Permission;
 use App\Models\UserMeta;
@@ -44,6 +45,16 @@ Route::middleware(['auth'])->group(function () {
                     ->can('create', Permission::class)
                     ->name('admin.permissions.store');
             });
+
+            Route::prefix('products')->controller(ProductController::class)->group(function () {
+                Route::get('getParentProducts', 'getParentProducts');
+                Route::get('', 'index')->name('admin.products.index');
+                Route::get('create', 'create')->name('admin.products.create');
+                Route::post('', 'store')->name('admin.products.store');
+                Route::get('{slug}/edit', 'edit')->name('admin.products.slug');
+                Route::patch('{slug}', 'update')->name('admin.products.update');
+                Route::post('{slug}', 'copy')->name('admin.products.copy');
+            });
         });
 
     Route::prefix('lich-su-mua-hang')->group(function () {
@@ -53,4 +64,10 @@ Route::middleware(['auth'])->group(function () {
 
     // Resource routes
     Route::resource('lich-su-mua-hang', OrderController::class);
+});
+
+Route::controller(ProductController::class)->group(function () {
+    Route::get('dtdd/', 'dtdd')->name('products.dtdd');
+    Route::get('dtdd/{slug}', 'show')->name('products.dtdd.slug');
+    Route::get('dtdd-xiaomi/{slug?}', 'dtddXiaomi')->name('product.dtdd-xiaomi');
 });

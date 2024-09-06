@@ -50,6 +50,16 @@ abstract class BaseRepository
             ->firstOrFail();
     }
 
+    public function firstByConditions($conditions = [])
+    {
+        return $this->model()->where($conditions)->first();
+    }
+
+    public function firstOrFailByConditions($conditions = [])
+    {
+        return $this->model()->where($conditions)->firstOrFail();
+    }
+
     public function with($relationship)
     {
         return $this->model()->with($relationship);
