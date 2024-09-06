@@ -17,7 +17,7 @@
                 <ul class="slider">
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-top-tags">
+                            <div class="layout-top-tags">
                                 <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
@@ -52,7 +52,7 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-top-tags">
+                            <div class="layout-top-tags">
                                 <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
@@ -83,7 +83,7 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-top-tags">
+                            <div class="layout-top-tags">
                                 <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
@@ -114,7 +114,7 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-top-tags">
+                            <div class="layout-top-tags">
                                 <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
@@ -145,7 +145,7 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-top-tags">
+                            <div class="layout-top-tags">
                                 <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
@@ -176,7 +176,7 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-top-tags">
+                            <div class="layout-top-tags">
                                 <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
@@ -208,7 +208,7 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-top-tags">
+                            <div class="layout-top-tags">
                                 <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
@@ -240,7 +240,7 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-top-tags">
+                            <div class="layout-top-tags">
                                 <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
@@ -272,7 +272,7 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-top-tags">
+                            <div class="layout-top-tags">
                                 <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
@@ -304,7 +304,7 @@
                     </li>
                     <li class="slide card-product">
                         <a href="">
-                            <div class="holder-top-tags">
+                            <div class="layout-top-tags">
                                 <span class="top-tag">Trả góp 0%</span>
                             </div>
                             <div class="holder-img">
