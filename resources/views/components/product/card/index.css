@@ -137,11 +137,11 @@
     font-weight: bold;
 }
 
-.card-product .layout-original-price {
+.card-product .layout-regular-price {
     margin-bottom: 5px;
 }
 
-.card-product .original-price {
+.card-product .regular-price {
     color: #999;
     text-decoration: line-through;
 }

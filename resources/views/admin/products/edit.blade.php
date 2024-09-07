@@ -4,6 +4,7 @@
 @section('styles')
     @parent
     @vite($viewsDir . '/admin/products/create-edit.css')
+    @vite($viewsDir . '/components/product/card/index.css')
 @endsection
 @use('App\Enums\ModelMetaKey')
 @section('content')

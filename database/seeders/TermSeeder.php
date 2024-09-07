@@ -101,6 +101,28 @@ class TermSeeder extends Seeder
                 'description' => 'color',
             ]);
 
+            $termViolet = $this->termRepository->model()->firstOrCreate([
+                'name' => 'violet',
+                'slug' => Str::slug('violet'),
+            ]);
+            $termTaxonomyStorage = $this->termTaxonomyRepository->model()->firstOrCreate([
+                'term_id' => $termViolet->id,
+                'taxonomy' => ModelMetaKey::COLOR,
+                'description' => 'violet',
+                'parent_id' => $termColor->id,
+            ]);
+
+            $termDarkGreen = $this->termRepository->model()->firstOrCreate([
+                'name' => 'darkgreen',
+                'slug' => Str::slug('darkgreen'),
+            ]);
+            $termTaxonomyStorage = $this->termTaxonomyRepository->model()->firstOrCreate([
+                'term_id' => $termDarkGreen->id,
+                'taxonomy' => ModelMetaKey::COLOR,
+                'description' => 'darkgreen',
+                'parent_id' => $termColor->id,
+            ]);
+
             $termYellow = $this->termRepository->model()->firstOrCreate([
                 'name' => 'yellow',
                 'slug' => Str::slug('yellow'),
@@ -156,8 +178,8 @@ class TermSeeder extends Seeder
 
             DB::commit();
         } catch (\Exception $exception) {
-            throw $exception;
             DB::rollBack();
+            throw $exception;
         }
 
         // Attach term memory (RAM/Storage) to product

@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Enums\ModelMetaKey;
+use App\Enums\ProductStatusEnum;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,23 +21,48 @@ class Product extends Model
         'description',
     ];
 
+    protected static function booted(): void
+    {
+        static::addGlobalScope('notInProcess', function (Builder $builder) {
+            $builder->where('status', '!=', ProductStatusEnum::IN_PROCESS);
+        });
+    }
+
     public function children()
     {
         return $this->hasMany(Product::class, 'parent_id');
     }
-    
+
     public function parent()
     {
         return $this->belongsTo(Product::class, 'parent_id');
     }
 
-    public function productMeta($key = null)
+    public function productMeta()
+    {
+        return $this->hasMany(ProductMeta::class);
+    }
+
+    public function productMetaByKey($key)
     {
         if ($key) {
-            return $this->hasMany(ProductMeta::class)->where('key', $key);
+            return $this->productMeta->firstWhere('key', $key);
         }
 
-        return $this->hasMany(ProductMeta::class);
+    }
+
+    public function productMetaInCardView()
+    {
+        return $this->hasMany(ProductMeta::class)->whereIn(
+            'key',
+            array_merge(ModelMetaKey::inProductCardView(), ModelMetaKey::inPriorTerms())
+        );
+    }
+
+    public function productMetaInCardViewByKey($key)
+    {
+        return $this->productMetaInCardView
+            ->firstWhere('key', $key);
     }
 
     public function termTaxonomies()
