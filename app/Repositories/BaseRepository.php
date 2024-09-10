@@ -107,6 +107,16 @@ abstract class BaseRepository
 
     public function queryByIds($ids)
     {
-        return $this->whereIn('id', $ids);
+        return $this->model()->whereIn('id', $ids);
+    }
+
+    public function withoutGlobalScope($scope)
+    {
+        return $this->model()->withoutGlobalScope($scope);
+    }
+
+    public function withoutGlobalScopes($scopes = null)
+    {
+        return $this->model()->withoutGlobalScopes($scopes);
     }
 }

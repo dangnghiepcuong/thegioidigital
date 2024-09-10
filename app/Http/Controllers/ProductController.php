@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUpdateCopyProductRequest;
+use App\Http\Requests\GetProductVariantBySlugAndTermRequest;
 use App\Repositories\Eloquents\ProductMetaRepository;
 use App\Repositories\Eloquents\ProductRepository;
 use App\Repositories\Eloquents\TermRepository;
 use App\Repositories\Eloquents\TermTaxonomyRepository;
 use App\Services\ProductServices\CopyProductService;
 use App\Services\ProductServices\CreateNewProductService;
+use App\Services\ProductServices\GenerateProductCardListViewService;
+use App\Services\ProductServices\GenerateProductCardViewService;
 use App\Services\ProductServices\UpdateProductService;
 use Exception;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,6 +27,8 @@ class ProductController extends Controller
     protected CreateNewProductService $createNewProductService;
     protected UpdateProductService $updateProductService;
     protected CopyProductService $copyProductService;
+    protected GenerateProductCardListViewService $generateProductCardListViewService;
+    protected GenerateProductCardViewService $generateProductCardViewService;
 
     public function __construct(
         ProductRepository $productRepository,
@@ -31,7 +37,9 @@ class ProductController extends Controller
         TermTaxonomyRepository $termTaxonomyRepository,
         CreateNewProductService $createNewProductService,
         UpdateProductService $updateProductService,
-        CopyProductService $copyProductService
+        CopyProductService $copyProductService,
+        GenerateProductCardListViewService $generateProductCardListViewService,
+        GenerateProductCardViewService $generateProductCardViewService
     ) {
         $this->productRepository = $productRepository;
         $this->productMetaRepository = $productMetaRepository;
@@ -40,12 +48,15 @@ class ProductController extends Controller
         $this->createNewProductService = $createNewProductService;
         $this->updateProductService = $updateProductService;
         $this->copyProductService = $copyProductService;
+        $this->generateProductCardListViewService = $generateProductCardListViewService;
+        $this->generateProductCardViewService = $generateProductCardViewService;
     }
 
     public function index()
     {
         $products = $this->productRepository
             ->with(['termTaxonomies.term'])
+            ->withoutGlobalScopes()
             ->get();
 
         if (!$products) {
@@ -54,10 +65,12 @@ class ProductController extends Controller
             ]);
         }
 
-        $productVariants = $this->productRepository->whereIn('parent_id', $products->pluck('id'))
-            ->with(['productMeta'])
+        $productVariants = $this->productRepository
+            ->whereIn('parent_id', $products->pluck('id'))
+            ->with(['productMetaInCardView'])
             ->orderBy('title')
-            ->paginate(config('parameter.default_paginate_number'));
+            ->withoutGlobalScopes()
+            ->get();
 
         return view('admin.products.index', [
             'products' => $products,
@@ -67,24 +80,34 @@ class ProductController extends Controller
 
     public function dtdd(Request $request, ?string $slug = null)
     {
-        $products = $this->productRepository->findByConditions(['parent_id' => null])
-            ->with(['termTaxonomies.term'])
-            ->get();
+        try {
+            DB::beginTransaction();
+            $products = $this->productRepository
+                ->findByConditions(['parent_id' => null])
+                ->with(['termTaxonomies.term'])
+                ->get();
 
-        if (!$products) {
+            if (!$products) {
+                return view('product.dtdd', [
+                    'products' => null,
+                ]);
+            }
+
+            $variants = $this->productRepository->model()->whereIn('parent_id', $products->pluck('id'))
+                ->with(['productMetaInCardView'])
+                ->get();
+
+            $htmlProductCardList = $this->generateProductCardListViewService->__invoke($products, $variants);
+
+            DB::commit();
+
             return view('product.dtdd', [
-                'products' => null,
+                'htmlProductCardList' => $htmlProductCardList,
             ]);
+        } catch (Exception $exception) {
+            DB::rollBack();
+            throw $exception;
         }
-
-        $variants = $this->productRepository->model()->whereIn('parent_id', $products->pluck('id'))
-            ->with('productMeta')
-            ->get();
-
-        return view('product.dtdd', [
-            'products' => $products,
-            'variants' => $variants,
-        ]);
     }
 
     public function dtddXiaomi(Request $request)
@@ -95,6 +118,7 @@ class ProductController extends Controller
     public function getParentProducts(Request $request)
     {
         $products = $this->productRepository->findByConditions(['parent_id' => null])
+            ->withoutGlobalScopes()
             ->paginate(config('parameter.default_paginate_number'));
 
         return response()->json($products);
@@ -126,8 +150,9 @@ class ProductController extends Controller
             $termTaxonomies = $this->termTaxonomyRepository->model()
                 ->where('taxonomy', 'like', 'product_attr_%')
                 ->get();
-                
+
             $product = $this->productRepository->with(['productMeta', 'termTaxonomies'])
+                ->withoutGlobalScopes()
                 ->where('slug', $slug)
                 ->firstOrFail();
 
@@ -160,5 +185,29 @@ class ProductController extends Controller
     {
         $newSlug = $this->copyProductService->__invoke($request, $slug);
         return redirect()->route('admin.products.slug', $newSlug);
+    }
+
+    public function getProductVariantBySlugAndTerm(GetProductVariantBySlugAndTermRequest $request, string $slug)
+    {
+        try {
+            DB::beginTransaction();
+            $product = $this->productRepository
+                ->findByConditions(['slug' => $slug])
+                ->with(['productMetaInCardView'])
+                ->first();
+            $siblings = $this->productRepository->findByConditions(['parent_id' => $product->parent_id])
+                ->with(['productMetaInCardView'])
+                ->get();
+            $parent = $product->parent()->with(['termTaxonomies.term'])->first();
+
+            DB::commit();
+
+            $html = $this->generateProductCardViewService->__invoke($product, $siblings, $parent);
+
+            return $html;
+        } catch (Exception $exception) {
+            DB::rollBack();
+            throw $exception;
+        }
     }
 }

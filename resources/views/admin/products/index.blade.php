@@ -4,6 +4,7 @@
 @section('styles')
     @vite($viewsDir . '/layouts/product/index.css')
     @vite($viewsDir . '/product/dtdd.css')
+    @vite($viewsDir . '/components/product/card/index.css')
 @endsection
 @section('content')
     <x-partial.filter.product />
@@ -19,7 +20,11 @@
 
     <x-product.list.index>
         @foreach ($products as $product)
-            <x-product.card.index :product="$product" :product-meta="$product->productMeta ?? null" :url="route('admin.products.slug', $product->slug ?? '')" />
+            <x-product.card.index :product="$product" :selected-variant-meta="$product->productMetaInCardView ?? null" :url="route('admin.products.slug', $product->slug ?? '')" />
         @endforeach
     </x-product.list.index>
+@endsection
+
+@section('scripts')
+    @vite($viewsDir . '/components/product/card/index.js')
 @endsection

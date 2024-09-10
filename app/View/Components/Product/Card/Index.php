@@ -8,6 +8,7 @@ use App\Models\TermTaxonomy;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection as SupportCollection;
 use Illuminate\View\Component;
 
 class Index extends Component
@@ -17,9 +18,9 @@ class Index extends Component
      */
     public function __construct(
         public ?Product $product,
-        public ?Collection $variants,
-        public ?TermTaxonomy $firstOption,
-        public ?Collection $productMeta,
+        public ?SupportCollection $productVariants,
+        public ?TermTaxonomy $selectedTermTaxonomy,
+        public ?Collection $selectedVariantMeta,
         public ?string $url
     )
     {
