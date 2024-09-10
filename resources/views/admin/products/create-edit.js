@@ -75,6 +75,10 @@ $(document).ready(async function () {
     })
 
     // catch on btn remove click, apply change to demo UI
+    $('.table-product-meta').on('click', '.btn-remove', function () {
+        let row = $(this).parent().parent()
+        row.remove()
+    })
     $('.table-product-term-taxonomy').on('click', '.btn-remove', function () {
         let row = $(this).parent().parent()
         let termTaxonomyId = row.find('[name="term_taxonomy_id"]').val()
@@ -90,6 +94,11 @@ $(document).ready(async function () {
         metaKeys.each(function (index, key) {
             console.log(key.text())
         })
+    })
+
+    // catch on btn submit form copy, perform a request
+    $('#btn-submit-form-update-product').on('click', function () {
+        $('#form-update-product').submit()
     })
 })
 
@@ -211,31 +220,28 @@ function bindAttribute(triggerElement, targetParentElements) {
 }
 
 function bindAttributeToTableProductMeta(metaKey, metaValue, targetTbodyElement) {
-    let flagEmpty = false
     let checkSpaceStr = metaValue.val().replace(/\s/g, '')
     if (!_get(checkSpaceStr, 'length')) {
-        metaValue.val(checkSpaceStr)
-        flagEmpty = true
+        return
     }
 
     let metaKeyCell = targetTbodyElement.find(`tr td[class="meta-key"]:contains('${metaKey.val()}')`)
     if (_get(metaKeyCell, 'length')) {
         let trParent = metaKeyCell.parent()
         let metaValueCell = trParent.find(`td[class="meta-value"]`)
-        if (flagEmpty) {
-            metaValueCell.parent().remove()
-        } else {
-            let hiddenInput = trParent.find(`input[name="${metaKey.val()}"]`)
-            hiddenInput.val(metaValue.val())
-            metaValueCell.text(metaValue.val())
-        }
+        let hiddenInput = trParent.find(`input[name="${metaKey.val()}"]`)
+        hiddenInput.val(metaValue.val())
+        metaValueCell.text(metaValue.val())
         return
     }
 
     targetTbodyElement.append(`
             <tr>
                 <td class="meta-key">${metaKey.val()}</td>
-                <td class="meta-value">${metaValue.val()}</td>
+                <td class="meta-value">
+                    ${metaValue.val()}
+                    <span class="icon material-symbols-outlined btn-remove">close</span>
+                </td>
                 <input type="hidden" name="${metaKey.val()}" value="${metaValue.val()}">
             </tr>
             `)
@@ -259,7 +265,7 @@ function bindAttributeToTableProductTermTaxonomy(termTaxonomyId, termTaxonomy, t
             <tr>
                 <td class="term-taxonomy">
                     ${termTaxonomy}
-                    <button type="button" class="btn btn-remove">X</button>
+                    <span class="icon material-symbols-outlined btn-remove">close</span>
                     <input type="hidden" name="term_taxonomy_id" value="${termTaxonomyId}">
                 </td>
             </tr>

@@ -1,0 +1,187 @@
+.page-edit-product {
+    display: flex;
+}
+
+.section {
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    background: #bbb;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.section:hover {
+    background: #999;
+}
+
+.open-section {
+    background: #999;
+}
+
+.section .icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+}
+
+.section-content {
+    max-height: 0;
+    margin: 10px 0;
+    padding: 0 5px;
+    overflow-y: scroll;
+    transition: max-height 0.3s ease-out;
+}
+
+.layout-editing-fields {
+    width: 80%;
+    padding: 10px;
+}
+
+.form-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-item .input-field {
+    width: 100%;
+}
+
+.form-item label[for^="form-"] {
+    display: inline-block;
+    width: 15%;
+    height: unset;
+    margin-right: 10px;
+    font-size: calc(1rem + 2px);
+    text-align: right;
+}
+
+.form-item input,
+.form-item textarea,
+.form-item select,
+.form-item option {
+    height: calc(2rem + 6px);
+    padding: 8px;
+    outline-width: 0;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: calc(1rem + 1px);
+}
+
+.form-item textarea {
+    height: calc(4rem + 8px);
+}
+
+.form-item .select-multiple {
+    max-height: 170px;
+    border-radius: var(--border-radius);
+    background: white;
+    overflow-y: scroll;
+}
+
+.form-item .select-item {
+    display: flex;
+    height: calc(2rem + 6px);
+    padding: 8px;
+    font-size: calc(1rem + 1px);
+}
+
+.form-item .select-item:hover {
+    background-color: #eee;
+}
+
+.form-item .select-item input[type="radio"] {
+    height: unset;
+    margin-right: 8px;
+}
+
+.form-item .select-item .label-radio {
+    display: inline-block;
+    width: 100%;
+}
+
+.form-item .btn-add {
+    border-radius: 50px;
+    background: #ccc;
+    color: white;
+    cursor: pointer;
+}
+
+.layout-btn-demo-change {
+    display: flex;
+    justify-content: right;
+}
+
+.btn-add {
+    margin-left: 10px;
+}
+
+table {
+    width: 100%;
+    border-spacing: 0px;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    background: white;
+}
+
+table tr:hover {
+    background: #ddd;
+}
+
+table th {
+    background: #ddd;
+}
+
+table th,
+table td {
+    position: relative;
+    width: 50%;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    overflow-wrap: break-word;
+}
+
+table td .btn-remove {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    border-radius: 50px;
+    background: white;
+    color: white;
+    cursor: pointer;
+}
+
+table td:hover>.btn-remove {
+    color: #ddd;
+}
+
+.layout-demo-product {
+    width: 20%;
+    min-width: 250px;
+    padding: 10px;
+}
+
+.layout-action-buttons {
+    display: flex;
+    margin-top: 10px;
+}
+
+.item-btn {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 2px 4px;
+    border: 2px solid;
+    border-radius: var(--card-border-radius);
+    background: white;
+    cursor: pointer;
+}
+
+.item-btn:hover {
+    background: #eee;
+}
