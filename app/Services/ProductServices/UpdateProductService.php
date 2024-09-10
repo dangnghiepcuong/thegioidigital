@@ -63,20 +63,14 @@ class UpdateProductService
 
         try {
             DB::beginTransaction();
-            $product = $this->productRepository->firstOrFailByColumnName('slug', $slug);
-
-            $this->productRepository->updateOrCreate(
-                [
-                    'id' => $product->id,
-                ],
-                [
-                    'type' => $type,
-                    'parent_id' => $parentId,
-                    'title' => $title,
-                    'slug' => $newSlug,
-                    'status' => $status,
-                ]
-            );
+            $product = $this->productRepository->withoutGlobalScopes()->firstWhere('slug', $slug);
+            $product->update([
+                'type' => $type,
+                'parent_id' => $parentId,
+                'title' => $title,
+                'slug' => $newSlug,
+                'status' => $status,
+            ]);
 
             if (!all_null_array($badge)) {
                 $productMeta = $this->productMetaRepository->updateOrCreate(

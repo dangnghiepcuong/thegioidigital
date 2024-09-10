@@ -68,4 +68,28 @@ class ModelMetaKey
             ModelMetaKey::BRAND,
         ];
     }
+
+    public static function inProductCardView()
+    {
+        return [
+            ModelMetaKey::TOP_TAGS,
+            ModelMetaKey::THUMB_URL,
+            ModelMetaKey::BOTTOM_LEFT_STAMP_URL,
+            ModelMetaKey::TOP_RIGHT_STAMP_URL,
+            ModelMetaKey::BADGE,
+            ModelMetaKey::COMPARE_TAGS,
+            ModelMetaKey::REGULAR_PRICE,
+            ModelMetaKey::PRICE,
+            ModelMetaKey::GIFT,
+        ];
+    }
+
+    public static function inPriorTerms()
+    {
+        return [
+            ModelMetaKey::MEMORY,
+            ModelMetaKey::STORAGE,
+            ModelMetaKey::COLOR,
+        ];
+    }
 }
