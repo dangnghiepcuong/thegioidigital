@@ -4,7 +4,7 @@
 @section('large-banner')
     <div class="large-banner">
         <img width="1920" height="920"
-            src="https://cdnv2.tgdd.vn/mwg-static/common/Banner/b8/ec/b8ec344dbac719a813fd59e83110ed5d.jpg" alt="Redmi 14C">
+            src="https://cdnv2.tgdd.vn/mwg-static/common/Banner/7f/1e/7f1e57ef79341d4bf2f63189ffa792a4.jpg" alt="Banner Big iPhone 16">
     </div>
 @endsection
 
