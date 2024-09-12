@@ -100,6 +100,9 @@ $(document).ready(async function () {
     $('#btn-submit-form-update-product').on('click', function () {
         $('#form-update-product').submit()
     })
+    $('#btn-submit-form-copy-product').on('click', function () {
+        $('#form-copy-product').submit()
+    })
 })
 
 function bindAttribute(triggerElement, targetParentElements) {

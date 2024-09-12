@@ -3,13 +3,12 @@
 
 @section('styles')
     @parent
-    @vite($viewsDir . '/admin/products/edit.css')
+    @vite($viewsDir . '/admin/products/create-edit.css')
     @vite($viewsDir . '/components/product/card/index.css')
 @endsection
 @use('App\Enums\ModelMetaKey')
 @section('content')
     <!-- Simplicity is the ultimate sophistication. - Leonardo da Vinci -->
-
     <div class="page-edit-product">
         <div class="layout-editing-fields">
             <form id="form-update-product" method="POST" action="{{ route('admin.products.update', $product->slug) }}">
