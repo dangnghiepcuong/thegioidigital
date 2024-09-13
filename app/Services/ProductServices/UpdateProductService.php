@@ -129,12 +129,8 @@ class UpdateProductService
                 $productMeta = $productMeta ? $productMeta->delete() : null;
             }
 
-            foreach ($request->all() as $key => $value) {
-                if (!in_array($key, $this->autoFillData)) {
-                    continue;
-                }
-
-                if ($value) {
+            foreach ($this->autoFillData as $key) {
+                if ($request->str($key)->value()) {
                     $productMeta = $this->productMetaRepository->updateOrCreate(
                         [
                             'product_id' => $product->id,

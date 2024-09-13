@@ -229,11 +229,6 @@ h1, h2, .h1, .h2 {
     font-size: 1rem;
 }
 
-select, option, label {
-    height: 1.75rem;
-    vertical-align: middle;
-}
-
 .icon {
     vertical-align: middle;
 }
