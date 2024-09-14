@@ -41,6 +41,11 @@
     padding: 10px;
 }
 
+.form-update-product {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #999;
+}
+
 .form-item {
     display: flex;
     align-items: center;
@@ -111,9 +116,10 @@
     cursor: pointer;
 }
 
-.layout-btn-demo-change {
+.layout-btn-demo {
     display: flex;
     justify-content: right;
+    margin: 10px 0;
 }
 
 .btn-add {
@@ -188,4 +194,12 @@ table td:hover>.btn-remove {
 
 .item-btn:hover {
     background: #eee;
+}
+
+.layout-demo-product-description {
+    max-width: 700px;
+    max-height: 700px;
+    overflow-y: scroll;
+    padding: 15px 5px;
+    background: white;
 }
