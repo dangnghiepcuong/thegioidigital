@@ -98,6 +98,8 @@ $(document).ready(async function () {
 
     // catch on btn submit form copy, perform a request
     $('#btn-submit-form-update-product').on('click', function () {
+        console.log(window.productDescriptionEditor.getData())
+        $('input[name="description"]').val(window.productDescriptionEditor.getData())
         $('#form-update-product').submit()
     })
     $('#btn-submit-form-copy-product').on('click', function () {

@@ -51,8 +51,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('create', 'create')->name('admin.products.create');
             Route::post('', 'store')->name('admin.products.store');
             Route::get('{slug}/edit', 'edit')->name('admin.products.slug');
-            Route::patch('{slug}', 'update')->name('admin.products.update');
-            Route::post('{slug}', 'copy')->name('admin.products.copy');
+            Route::patch('{slug}/update', 'update')->name('admin.products.update');
+            Route::post('{slug}/copy', 'copy')->name('admin.products.copy');
+            Route::post('upload-image', 'uploadImage');
         });
     });
 

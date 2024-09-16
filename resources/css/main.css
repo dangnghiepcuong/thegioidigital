@@ -23,6 +23,16 @@ a {
     color: var(--color-default);
 }
 
+p a {
+    color: #2f80ed;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+p {
+    line-height: 2rem;
+}
+
 body {
     background-color: #f2f2f2;
 }

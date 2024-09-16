@@ -11,7 +11,8 @@
     <!-- Simplicity is the ultimate sophistication. - Leonardo da Vinci -->
     <div class="page-edit-product">
         <div class="layout-editing-fields">
-            <form id="form-update-product" method="POST" action="{{ route('admin.products.update', $product->slug) }}">
+            <form id="form-update-product" class="form-update-product" method="POST"
+                action="{{ route('admin.products.update', $product->slug) }}">
                 @csrf
                 @method('patch')
                 <div class="section" for="layout-basic-info">
@@ -206,9 +207,9 @@
                             type="text" id="form-gift" layout="layout-gift" element="span" class-name="gift"
                             bound-attr="text/html" class="input-field">
                     </div>
-                    <div class="layout-btn-demo-change">
+                    <div class="layout-btn-demo">
                         <div class="item-btn" id="btn-demo-change">
-                            Changes
+                            Demo
                             <span class="icon material-symbols-outlined">done_all</span>
                         </div>
                     </div>
@@ -304,7 +305,26 @@
                     <input type="hidden" name="term_taxonomy_ids"
                         value="{{ implode("\n", $productTermTaxonomies->pluck('id')->toArray()) }}" />
                 </div>
+                <div class="section" for="layout-wysiwyg-product-description">
+                    Product Description
+                    <span class="icon material-symbols-outlined">add</span>
+                </div>
+                <div class="section-content layout-wysiwyg-product-description" id="layout-wysiwyg-product-description">
+                    <div id="wysiwyg-product-description">
+                        {!! old('description') ?? $product->description !!}
+                    </div>
+                    <input type="hidden" name="description" value="{{ old('description') ?? $product->description }}">
+                    <div class="layout-btn-demo">
+                        <div class="item-btn" id="btn-demo-product-description">
+                            Demo
+                            <span class="icon material-symbols-outlined">done_all</span>
+                        </div>
+                    </div>
+                </div>
             </form>
+            <div id="layout-demo-product-description" class="layout-demo-product-description ck-content">
+                {!! old('description') ?? $product->description !!}
+            </div>
         </div>
         <div class="layout-demo-product">
             <x-product.card.index :product="$product ?? null" :url="null" />
@@ -327,10 +347,13 @@
             @endforeach
         </div>
     </div>
+    <input type="hidden" id="csrf-token" value="{{ csrf_token() }}"/>
+    <input type="hidden" id="product-id" value="{{ $product->id }}"/>
 @endsection
 
 @section('scripts')
     @parent
     @vite($viewsDir . '/admin/products/create-edit.js')
     @vite($viewsDir . '/admin/products/edit.js')
+    @vite($viewsDir . '/admin/products/wysiwyg.js')
 @endsection

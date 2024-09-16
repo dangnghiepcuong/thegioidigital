@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUpdateCopyProductRequest;
 use App\Http\Requests\GetProductVariantBySlugAndTermRequest;
+use App\Http\Requests\UploadImageRequest;
 use App\Repositories\Eloquents\ProductMetaRepository;
 use App\Repositories\Eloquents\ProductRepository;
 use App\Repositories\Eloquents\TermRepository;
 use App\Repositories\Eloquents\TermTaxonomyRepository;
+use App\Services\FileServices\UploadImageService;
 use App\Services\ProductServices\CopyProductService;
 use App\Services\ProductServices\CreateNewProductService;
 use App\Services\ProductServices\GenerateProductCardListViewService;
 use App\Services\ProductServices\GenerateProductCardViewService;
 use App\Services\ProductServices\UpdateProductService;
 use Exception;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -29,6 +30,7 @@ class ProductController extends Controller
     protected CopyProductService $copyProductService;
     protected GenerateProductCardListViewService $generateProductCardListViewService;
     protected GenerateProductCardViewService $generateProductCardViewService;
+    protected UploadImageService $uploadImageService;
 
     public function __construct(
         ProductRepository $productRepository,
@@ -39,7 +41,8 @@ class ProductController extends Controller
         UpdateProductService $updateProductService,
         CopyProductService $copyProductService,
         GenerateProductCardListViewService $generateProductCardListViewService,
-        GenerateProductCardViewService $generateProductCardViewService
+        GenerateProductCardViewService $generateProductCardViewService,
+        UploadImageService $uploadImageService
     ) {
         $this->productRepository = $productRepository;
         $this->productMetaRepository = $productMetaRepository;
@@ -50,6 +53,7 @@ class ProductController extends Controller
         $this->copyProductService = $copyProductService;
         $this->generateProductCardListViewService = $generateProductCardListViewService;
         $this->generateProductCardViewService = $generateProductCardViewService;
+        $this->uploadImageService = $uploadImageService;
     }
 
     public function index()
@@ -209,5 +213,11 @@ class ProductController extends Controller
             DB::rollBack();
             throw $exception;
         }
+    }
+
+    public function uploadImage(UploadImageRequest $request)
+    {
+        $response = $this->uploadImageService->__invoke($request);
+        return $response;
     }
 }
