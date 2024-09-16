@@ -17,3 +17,12 @@ Homepage
 
 Product Page
 <img width="1280" alt="image" src="https://github.com/user-attachments/assets/8a30d9e2-76e8-4c6c-8095-f7babece8db3">
+
+Admin Feature:
++ Edit Product:
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/7024d72c-04fa-4a1c-81ed-7ecdc972b15b">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/999e40db-4e9e-4b70-8226-3364ea18c836">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/d85cd665-c5cf-43ef-880c-66b4622302c5">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/dd412112-75d0-41f5-a9c4-81e709a80fb5">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/58e00bbb-1067-4098-b2e5-c5f6a0133589">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/ee95b813-c161-428c-af08-78ba6935e9ec">
