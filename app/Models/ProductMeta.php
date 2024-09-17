@@ -16,9 +16,32 @@ class ProductMeta extends Model
         'product_id',
     ];
 
-    public function getCurrency($prefix = null, $decimal = 0, $postfix = '₫')
+    public function getCurrency($currencyCode = 'VND', $decimal = 0, $decimalSeparator = ',', $thousandSeparator = '.')
     {
-        return $prefix . number_format($this->value, $decimal) . $postfix;
+        $prefix = null;
+        $postfix = null;
+
+        switch (strtoupper($currencyCode)) {
+            case 'VND':
+                $postfix = '₫';
+                break;
+            case 'USD':
+                $prefix = '$';
+                break;
+            case 'JPY':
+            case 'CNY':
+                $prefix = '¥';
+                break;
+            case 'KPW':
+            case 'KRW':
+                $prefix = '₩';
+                break;
+            case 'GBP':
+                $prefix = '£';
+                break;
+            default:
+        }
+        return $prefix . number_format($this->value, $decimal, $decimalSeparator, $thousandSeparator) . $postfix;
     }
 
     public function product()

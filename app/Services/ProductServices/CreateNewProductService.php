@@ -59,6 +59,7 @@ class CreateNewProductService
             'product_attr_badge_background' => $request->product_attr_badge_background,
             'product_attr_badge_text' => $request->product_attr_badge_text,
         ];
+        $description = $request->description;
         $termTaxonomyIds = explode("\r\n", $request->term_taxonomy_ids);
 
         try {
@@ -69,6 +70,7 @@ class CreateNewProductService
                 'title' => $title,
                 'slug' => $slug,
                 'status' => $status,
+                'description' => $description,
             ]);
 
             $productMeta = !all_null_array($badge) ? $this->productMetaRepository->model()->firstOrCreate([

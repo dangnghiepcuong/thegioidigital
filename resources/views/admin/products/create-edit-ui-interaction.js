@@ -1,29 +1,13 @@
-import { fetchAsyncData } from '/resources/js/fetch';
 import _get from 'lodash/get';
 
 import $ from 'jquery';
 window.jQuery = $;
 export default $;
 
-$(document).ready(async function () {
-    // get parent product data & bind in form dropdown
-    try {
-        const response = await fetchAsyncData({
-            url: '/admin/products/getParentProducts',
-            cache: false,
-            method: 'GET',
-        })
-
-        let oldValue = $('#parent_id').attr('value')
-
-        response.data.forEach(item => {
-            $('#parent_id').append(`<option value="${_get(item, 'id')}">${_get(item, 'title')}</option>`)
-        });
-
-        $('#parent_id').val(oldValue)
-    } catch (error) {
-        throw (error)
-    }
+$(document).ready(function () {
+    // set max height for layout-editing-sections depends on screen height
+    let height = screen.height;
+    $('.layout-editing-sections').css('max-height', height * 0.83)
 
     // bind data from form inputs to product card
     $('.demo-attribute').each(function () {
@@ -40,6 +24,34 @@ $(document).ready(async function () {
     ids.forEach(id => {
         let option = $('[name="term_taxonomy"]').find(`option[value="${id}"]`)
         bindAttributeToTableProductTermTaxonomy(option.val(), option.text(), $('.table-product-term-taxonomy'))
+    })
+
+    // Open & Closed sections
+    $('.section').click(function () {
+        let isOpen = $(this).hasClass('open-section')
+        $('.section').removeClass('open-section')
+        $('.section').find('span.icon').text('add')
+        $('.section-content').css('max-height', 0)
+        $('.section-content').css('border-bottom', 'unset')
+
+        if (isOpen) {
+            $(this).removeClass('open-section')
+            $(this).find('span.icon').text('add')
+        } else {
+            $(this).addClass('open-section')
+            $(this).find('span.icon').text('remove')
+        }
+
+        let sectionName = $(this).attr('for')
+
+        if ($(`#${sectionName}`).css('max-height') === '0px' || $(`#${sectionName}`).css('max-height') === '0') {
+            let sectionContentHeight = $(`#${sectionName}`).prop('scrollHeight') + 1 < 600 ? 600 : $(`#${sectionName}`).prop('scrollHeight') + 1
+            $(`#${sectionName}`).css('max-height', sectionContentHeight)
+            $(`#${sectionName}`).css('border-bottom', '1px solid #999')
+        } else {
+            $(`#${sectionName}`).css('max-height', 0)
+            $(`#${sectionName}`).css('border-bottom', 'unset')
+        }
     })
 
     // catch on event add demo btn click, apply change to demo UI
@@ -88,22 +100,29 @@ $(document).ready(async function () {
         row.remove()
     })
 
-    // catch on btn create product click, perform a request
-    $('#create_product').on('click', function () {
-        let metaKeys = $('.table-product-meta').find('tr td[class="meta-key"]')
-        metaKeys.each(function (index, key) {
-            console.log(key.text())
-        })
+    // catch on checked applying data input to selected variants/siblings
+    $('#layout-siblings .layout-applied-data-checkbox .applied-data-field').on('change', 'input[name*="siblings_"]', function () {
+        if ($(this).is(':checked')) {
+            let separator = $('#siblings_applied_data').val() ? `,` : ``
+            $('#siblings_applied_data').val(`${$('#siblings_applied_data').val()}${separator}${$(this).val()}`)
+            return
+        }
+        let value = $('#siblings_applied_data').val()
+        value = value.replace(`,${$(this).val()}`, ``)
+        value = value.replace(`${$(this).val()}`, ``)
+        $('#siblings_applied_data').val(value)
     })
+    $('#layout-variants .layout-applied-data-checkbox .applied-data-field').on('change', 'input[name*="variants_"]', function () {
+        if ($(this).is(':checked')) {
+            let separator = $('#variants_applied_data').val() ? `,` : ``
+            $('#variants_applied_data').val(`${$('#variants_applied_data').val()}${separator}${$(this).val()}`)
+            return
+        }
 
-    // catch on btn submit form copy, perform a request
-    $('#btn-submit-form-update-product').on('click', function () {
-        console.log(window.productDescriptionEditor.getData())
-        $('input[name="description"]').val(window.productDescriptionEditor.getData())
-        $('#form-update-product').submit()
-    })
-    $('#btn-submit-form-copy-product').on('click', function () {
-        $('#form-copy-product').submit()
+        let value = $('#variants_applied_data').val()
+        value = value.replace(`,${$(this).val()}`, ``)
+        value = value.replace(`${$(this).val()}`, ``)
+        $('#variants_applied_data').val(value)
     })
 })
 

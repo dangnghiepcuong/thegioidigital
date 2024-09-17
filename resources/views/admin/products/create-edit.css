@@ -178,7 +178,7 @@ table td:hover>.btn-remove {
     display: flex;
 }
 
-.card-product {
+.layout-demo-product .card-product {
     width: 230px;
     max-width: 230px;
     min-height: 420px;
