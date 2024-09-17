@@ -10,7 +10,7 @@
 @section('content')
     <!-- Simplicity is the ultimate sophistication. - Leonardo da Vinci -->
     <div class="page-edit-product">
-        <div class="layout-editing-fields">
+        <div class="layout-editing-sections">
             <form id="form-update-product" class="form-update-product" method="POST"
                 action="{{ route('admin.products.update', $product->slug) }}">
                 @csrf
@@ -34,7 +34,7 @@
                     <div class="form-item">
                         <label for="form-type">type</label>
                         <div class="select-multiple input-field">
-                            @if ($product->type)
+                            @if ($product->type && !old('type'))
                                 <div class="select-item">
                                     <input name="type" type="radio" value="{{ $product->type }}"
                                         id="{{ $product->type }}" checked>
@@ -69,7 +69,7 @@
                     <div class="form-item">
                         <label for="form-status">status</label>
                         <div class="select-multiple input-field" id="form-status">
-                            @if ($product->status)
+                            @if ($product->status && !old('status'))
                                 <div class="select-item">
                                     <input name="status" type="radio" value="{{ $product->status }}"
                                         id="{{ $product->status }}" checked>
@@ -214,6 +214,24 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="section" for="layout-wysiwyg-product-description">
+                    Product Description
+                    <span class="icon material-symbols-outlined">add</span>
+                </div>
+                <div class="section-content layout-wysiwyg-product-description" id="layout-wysiwyg-product-description">
+                    <div id="wysiwyg-product-description">
+                        {!! old('description') ?? $product->description !!}
+                    </div>
+                    <input type="hidden" name="description" value="{{ old('description') ?? $product->description }}">
+                    <div class="layout-btn-demo">
+                        <div class="item-btn" id="btn-demo-product-description">
+                            Demo
+                            <span class="icon material-symbols-outlined">done_all</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="section" for="layout-meta-data">
                     Meta Data
                     <span class="icon material-symbols-outlined">add</span>
@@ -267,6 +285,7 @@
                         </tbody>
                     </table>
                 </div>
+
                 <div class="section" for="layout-term-taxonomy">
                     Terminology & Taxonomy
                     <span class="icon material-symbols-outlined">add</span>
@@ -305,41 +324,152 @@
                     <input type="hidden" name="term_taxonomy_ids"
                         value="{{ implode("\n", $productTermTaxonomies->pluck('id')->toArray()) }}" />
                 </div>
-                <div class="section" for="layout-wysiwyg-product-description">
-                    Product Description
+
+                <div class="section" for="layout-variants">
+                    VARIANTS
                     <span class="icon material-symbols-outlined">add</span>
                 </div>
-                <div class="section-content layout-wysiwyg-product-description" id="layout-wysiwyg-product-description">
-                    <div id="wysiwyg-product-description">
-                        {!! old('description') ?? $product->description !!}
-                    </div>
-                    <input type="hidden" name="description" value="{{ old('description') ?? $product->description }}">
-                    <div class="layout-btn-demo">
-                        <div class="item-btn" id="btn-demo-product-description">
-                            Demo
-                            <span class="icon material-symbols-outlined">done_all</span>
+                <div class="section-content layout-variants" id="layout-variants">
+                    <p>
+                        Apply the following data from the editing product to these selected products (variants):
+                    </p>
+                    <x-product.list.index>
+                        @foreach ($variants as $variant)
+                            <div class="outer-checkbox">
+                                <div class="layout-checkbox">
+                                    <input type="checkbox" name="{{ $variant->slug }}" value="{{ $variant->id }}">
+                                </div>
+                                <x-product.card.index :product="$variant" :selected-variant-meta="$variant->productMetaInCardView ?? null" :url="route('admin.products.slug', $variant->slug ?? '')" />
+                            </div>
+                        @endforeach
+                    </x-product.list.index>
+                </div>
+
+                <div class="section" for="layout-siblings">
+                    SIBLINGS
+                    <span class="icon material-symbols-outlined">add</span>
+                </div>
+                <div class="section-content layout-siblings" id="layout-siblings">
+                    <p>
+                        Apply the following data from the editing product to these selected products (variants):
+                    </p>
+                    <div class="layout-applied-data-checkbox">
+                        <p>Product fields</p>
+                        <div class="applied-data-field">
+                            <input type="checkbox" id="variants_title" name="variants_title" value="true">
+                            <label for="variants_title" class="applied-data-label">Title</label>
                         </div>
+
+                        <div class="applied-data-field">
+                            <input type="checkbox" id="variants_type" name="variants_type" value="true">
+                            <label for="variants_type" class="applied-data-label">Type</label>
+                        </div>
+
+                        <div class="applied-data-field">
+                            <input type="checkbox" id="variants_parent_id" name="variants_parent_id" value="true">
+                            <label for="variants_parent_id" class="applied-data-label">Parent id</label>
+                        </div>
+
+                        <div class="applied-data-field">
+                            <input type="checkbox" id="variants_status" name="variants_status" value="true">
+                            <label for="variants_status" class="applied-data-label">Status</label>
+                        </div>
+
+                        <div class="applied-data-field">
+                            <input type="checkbox" id="variants_top_tags" name="variants_top_tags" value="true">
+                            <label for="variants_top_tags" class="applied-data-label">Top tags</label>
+                        </div>
+
+                        <div class="applied-data-field">
+                            <input type="checkbox" id="variants_thumb_url" name="variants_thumb_url" value="true">
+                            <label for="variants_thumb_url" class="applied-data-label">Thumb url</label>
+                        </div>
+
+                        <div class="applied-data-field">
+                            <input type="checkbox" id="variants_bottom_left_stamp_url"
+                                name="variants_bottom_left_stamp_url" value="true">
+                            <label for="variants_bottom_left_stamp_url" class="applied-data-label">Bottom left stamp
+                                url</label>
+                        </div>
+
+                        <div class="applied-data-field">
+                            <input type="checkbox" id="variants_top_right_stamp_url" name="variants_top_right_stamp_url"
+                                value="true">
+                            <label for="variants_top_right_stamp_url" class="applied-data-label">Top right stamp
+                                url</label>
+                        </div>
+
+                        <div class="applied-data-field">
+                            <input type="checkbox" id="variants_badge" name="variants_badge" value="true">
+                            <label for="variants_badge" class="applied-data-label">Badge</label>
+                        </div>
+
+                        <div class="applied-data-field">
+                            <input type="checkbox" id="variants_compare_tags" name="variants_compare_tags"
+                                value="true">
+                            <label for="variants_compare_tags" class="applied-data-label">Compare tags</label>
+                        </div>
+
+                        <div class="applied-data-field">
+                            <input type="checkbox" id="variants_regular_price" name="variants_regular_price"
+                                value="true">
+                            <label for="variants_regular_price" class="applied-data-label">Regular price</label>
+                        </div>
+
+                        <div class="applied-data-field">
+                            <input type="checkbox" id="variants_price" name="variants_price" value="true">
+                            <label for="variants_price" class="applied-data-label">Price</label>
+                        </div>
+
+                        <div class="applied-data-field">
+                            <input type="checkbox" id="variants_gift" name="variants_gift" value="true">
+                            <label for="variants_gift" class="applied-data-label">Gift</label>
+                        </div>
+
+                        <div class="applied-data-field">
+                            <input type="checkbox" id="variants_description" name="variants_description" value="true">
+                            <label for="variants_description" class="applied-data-label">Description</label>
+                        </div>
+
+                        <p>Product Meta fields</p>
+                        <div class="applied-data-field">
+                            <input type="checkbox" id="variants_meta" name="variants_meta" value="true">
+                            <label for="variants_meta" class="applied-data-label">variants_meta</label>
+                        </div>
+
                     </div>
+                    <x-product.list.index>
+                        @foreach ($siblings as $sibling)
+                            <div class="outer-checkbox">
+                                <div class="layout-checkbox">
+                                    <input type="checkbox" name="{{ $sibling->slug }}" value="true">
+                                </div>
+                                <x-product.card.index :product="$sibling" :selected-variant-meta="$sibling->productMetaInCardView ?? null" :url="route('admin.products.slug', $sibling->slug ?? '')" />
+                            </div>
+                        @endforeach
+                    </x-product.list.index>
                 </div>
             </form>
-            <div id="layout-demo-product-description" class="layout-demo-product-description ck-content">
-                {!! old('description') ?? $product->description !!}
-            </div>
         </div>
         <div class="layout-demo-product">
-            <x-product.card.index :product="$product ?? null" :url="null" />
-            <div class="layout-action-buttons">
-                <div class="item-btn" id="btn-submit-form-update-product">
-                    Save
-                    <span class="icon material-symbols-outlined">save</span>
-                </div>
-                <form id="form-copy-product" method="POST" action="{{ route('admin.products.copy', $product->slug) }}">
-                    <div class="item-btn" id="btn-submit-form-copy-product">
-                        @csrf
-                        Copy
-                        <span class="icon material-symbols-outlined">content_copy</span>
+            <div class="layout-top-right-box">
+                <x-product.card.index :product="$product ?? null" :url="null" />
+                <div class="layout-summary-card">
+                    <div class="layout-action-buttons">
+                        <div class="item-btn" id="btn-submit-form-update-product">
+                            Save
+                            <span class="icon material-symbols-outlined">save</span>
+                        </div>
+                        <form id="form-copy-product" method="POST"
+                            action="{{ route('admin.products.copy', $product->slug) }}">
+                            <div class="item-btn" id="btn-submit-form-copy-product">
+                                @csrf
+                                Copy
+                                <span class="icon material-symbols-outlined">content_copy</span>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
             @foreach ($errors->all() as $error)
                 <span class="error">{{ $error }}</span>
@@ -347,8 +477,18 @@
             @endforeach
         </div>
     </div>
-    <input type="hidden" id="csrf-token" value="{{ csrf_token() }}"/>
-    <input type="hidden" id="product-id" value="{{ $product->id }}"/>
+    <div class="popup-demo-description layout-popup">
+        <a class="btn-close" onclick="popupPanel('close')">
+            <span class="icon material-symbols-outlined">close</span>
+            <span>Đóng</span>
+        </a>
+        <div id="layout-demo-product-description" class="layout-demo-product-description ck-content">
+            {!! old('description') ?? $product->description !!}
+        </div>
+    </div>
+    <div class="layer-shadow-overlay"></div>
+    <input type="hidden" id="csrf-token" value="{{ csrf_token() }}" />
+    <input type="hidden" id="product-id" value="{{ $product->id }}" />
 @endsection
 
 @section('scripts')
@@ -356,4 +496,5 @@
     @vite($viewsDir . '/admin/products/create-edit.js')
     @vite($viewsDir . '/admin/products/edit.js')
     @vite($viewsDir . '/admin/products/wysiwyg.js')
+
 @endsection

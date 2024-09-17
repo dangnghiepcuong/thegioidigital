@@ -55,6 +55,22 @@ export function popupLocationSelect(action) {
     }
 }
 
+export function popupPanel(action) {
+    switch (action) {
+        case 'show':
+            document.querySelector('.layer-shadow-overlay').style.display = 'block';
+            document.querySelector('.layout-popup').style.display = 'block';
+            break;
+
+        case 'close':
+            document.querySelector('.layer-shadow-overlay').style.display = 'none';
+            document.querySelector('.layout-popup').style.display = 'none';
+            break;
+
+        default:
+    }
+}
+
 export function showDropDownPanelFilter(element) {
     $('.layout-filter .pointer-arrow').css('display', 'none')
     $('.layout-filter .layout-panel-dropdown').css('display', 'none')

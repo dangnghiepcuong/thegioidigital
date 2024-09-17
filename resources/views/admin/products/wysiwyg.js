@@ -26,6 +26,8 @@ import {
     SimpleUploadAdapter
 } from 'ckeditor5';
 import 'ckeditor5/ckeditor5.css';
+import { popupPanel } from '/resources/js/animation';
+window.popupPanel = popupPanel;
 
 $(document).ready(async function () {
     let productId = $('#product-id').val()
@@ -116,5 +118,6 @@ $(document).ready(async function () {
     $('#btn-demo-product-description').on('click', function () {
         const editorData = window.productDescriptionEditor.getData();
         $('#layout-demo-product-description').html(editorData)
+        popupPanel('show')
     })
 })

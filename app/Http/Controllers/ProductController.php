@@ -160,6 +160,19 @@ class ProductController extends Controller
                 ->where('slug', $slug)
                 ->firstOrFail();
 
+            $variants = $this->productRepository->findByConditions(['parent_id' => $product->id])
+                ->withoutGlobalScopes()
+                ->with(['productMetaInCardView'])
+                ->get();
+
+            $siblings = $this->productRepository->findByConditions([
+                ['parent_id', '=', $product->parent_id],
+                ['parent_id', '!=', null],
+                ['id', '!=', $product->id]
+            ])->with(['productMetaInCardView'])
+                ->withoutGlobalScopes()
+                ->get();
+
             DB::commit();
         } catch (Exception $exception) {
             DB::rollBack();
@@ -171,6 +184,8 @@ class ProductController extends Controller
             'productMeta' => $product->productMeta,
             'productTermTaxonomies' => $product->termTaxonomies,
             'termTaxonomies' => $termTaxonomies,
+            'variants' => $variants,
+            'siblings' => $siblings,
         ]);
     }
 
