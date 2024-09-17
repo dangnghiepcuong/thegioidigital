@@ -1,5 +1,5 @@
 @extends('layouts.admin.index')
-@section('title', 'Edit Product')
+@section('title', 'Create Product')
 
 @section('styles')
     @parent
@@ -10,7 +10,7 @@
 @section('content')
     <!-- Simplicity is the ultimate sophistication. - Leonardo da Vinci -->
     <div class="page-create-product">
-        <div class="layout-editing-fields">
+        <div class="layout-editing-sections">
             <form id="form-update-product" method="POST" action="{{ route('admin.products.store') }}">
                 @csrf
                 <div class="section" for="layout-basic-info">
@@ -144,13 +144,31 @@
                             id="form-gift" layout="layout-gift" element="span" class-name="gift" bound-attr="text/html"
                             class="input-field">
                     </div>
-                    <div class="layout-btn-demo-change">
+                    <div class="layout-btn-demo">
                         <div class="item-btn" id="btn-demo-change">
-                            Changes
+                            Demo
                             <span class="icon material-symbols-outlined">done_all</span>
                         </div>
                     </div>
                 </div>
+
+                <div class="section" for="layout-wysiwyg-product-description">
+                    Product Description
+                    <span class="icon material-symbols-outlined">add</span>
+                </div>
+                <div class="section-content layout-wysiwyg-product-description" id="layout-wysiwyg-product-description">
+                    <div id="wysiwyg-product-description">
+                        {!! old('description') !!}
+                    </div>
+                    <input type="hidden" name="description" value="{{ old('description') }}">
+                    <div class="layout-btn-demo">
+                        <div class="item-btn" id="btn-demo-product-description">
+                            Demo
+                            <span class="icon material-symbols-outlined">done_all</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="section" for="layout-meta-data">
                     Meta Data
                     <span class="icon material-symbols-outlined">add</span>
@@ -192,6 +210,7 @@
                         </tbody>
                     </table>
                 </div>
+
                 <div class="section" for="layout-term-taxonomy">
                     Terminology & Taxonomy
                     <span class="icon material-symbols-outlined">add</span>
@@ -222,11 +241,15 @@
             </form>
         </div>
         <div class="layout-demo-product">
-            <x-product.card.index :product="$product ?? null" :url="null" />
-            <div class="layout-action-buttons">
-                <div class="item-btn" id="btn-submit-form-update-product">
-                    Save
-                    <span class="icon material-symbols-outlined">save</span>
+            <div class="layout-top-right-box">
+                <x-product.card.index :product="$product ?? null" :url="null" />
+                <div class="layout-summary-card">
+                    <div class="layout-action-buttons">
+                        <div class="item-btn" id="btn-submit-form-update-product">
+                            Save
+                            <span class="icon material-symbols-outlined">save</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             @foreach ($errors->all() as $error)
@@ -235,10 +258,21 @@
             @endforeach
         </div>
     </div>
+    <div class="popup-demo-description layout-popup">
+        <a class="btn-close" onclick="popupPanel('close')">
+            <span class="icon material-symbols-outlined">close</span>
+            <span>Đóng</span>
+        </a>
+        <div id="layout-demo-product-description" class="layout-demo-product-description ck-content">
+            {!! old('description') !!}
+        </div>
+    </div>
+    <div class="layer-shadow-overlay"></div>
 @endsection
 
 @section('scripts')
     @parent
     @vite($viewsDir . '/admin/products/create-edit.js')
     @vite($viewsDir . '/admin/products/edit.js')
+    @vite($viewsDir . '/admin/products/wysiwyg.js')
 @endsection

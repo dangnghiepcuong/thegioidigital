@@ -5,6 +5,11 @@
     @vite($viewsDir . '/layouts/product/index.css')
     @vite($viewsDir . '/product/dtdd.css')
     @vite($viewsDir . '/components/product/card/index.css')
+    <style>
+        .layout-list-product {
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+        }
+    </style>
 @endsection
 @section('content')
     <x-partial.filter.product />
