@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Enums\ModelMetaKey;
+use App\Enums\ProductStatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -24,20 +25,24 @@ class CreateUpdateCopyProductRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'title' => ['required', 'max:50'],
+            'slug' => ['required', 'max:128'],
             'type' => ['required', 'max:30'],
+            'status' => ['required', Rule::in(ProductStatusEnum::allCases())],
             'parent_id' => [
                 Rule::when(isset($this->parent_id), ['numeric', 'exists:products,id'])
             ],
-            'title' => ['required', 'max:50'],
             ModelMetaKey::TOP_TAGS => [
                 Rule::when(strlen($this->str(ModelMetaKey::TOP_TAGS)) !== 0, ['max:25'])
             ],
-            'slug' => ['required', 'max:128'],
             ModelMetaKey::THUMB_URL => [
                 Rule::when(strlen($this->str(ModelMetaKey::TOP_TAGS)) !== 0, ['url'])
             ],
             ModelMetaKey::BOTTOM_LEFT_STAMP_URL => [
                 Rule::when(strlen($this->str(ModelMetaKey::BOTTOM_LEFT_STAMP_URL)) !== 0, ['url'])
+            ],
+            ModelMetaKey::TOP_RIGHT_STAMP_URL => [
+                Rule::when(strlen($this->str(ModelMetaKey::TOP_RIGHT_STAMP_URL)) !== 0, ['url'])
             ],
             'product_attr_badge_icon_url' => [
                 Rule::when(strlen($this->product_attr_badge_icon_url), ['url'])

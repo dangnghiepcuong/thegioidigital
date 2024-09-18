@@ -54,14 +54,20 @@ class CopyProductService
 
         try {
             DB::beginTransaction();
-            $product = $this->productRepository->firstOrFailByColumnName('slug', $slug);
+            $product = $this->productRepository
+                ->withoutGlobalScopes()
+                ->where('slug', $slug)
+                ->firstOrFail();
             $productMeta = $this->productMetaRepository->findByConditions(['product_id' => $product->id])->get();
             $termTaxonomyIds = $product->termTaxonomies()->pluck('term_taxonomies.id');
             
+            $product->title = $product->title . ' ' . now();
             $product->slug = Str::slug($product->slug . '_' . now());
             $product->status = ProductStatusEnum::IN_PROCESS;
 
-            $copyProduct = $this->productRepository->model()->firstOrCreate($product->toArray());
+            $copyProduct = $this->productRepository
+                ->withoutGlobalScopes()
+                ->firstOrCreate($product->toArray());
 
             foreach ($productMeta as $meta) {
                 $meta->product_id = $copyProduct->id;

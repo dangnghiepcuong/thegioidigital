@@ -1,7 +1,8 @@
 .card-product {
-    padding: 10px 15px 20px 15px;
-    border-right: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    border: 1px solid rgba(234, 236, 240, 1);
+    border-radius: 8px;
+    margin: 5px 10px 5px 0;
+    padding: 10px;
     background-color: white;
     overflow: hidden;
 }
@@ -31,7 +32,7 @@
 
 .card-product .holder-img {
     position: relative;
-    height: 220px;
+    height: 200px;
     margin: 10px 0;
     text-align: center;
     transition: 300ms;
@@ -46,6 +47,7 @@
     display: inline-block;
     max-height: 20px;
     height: 20px;
+    overflow: hidden;
     margin-bottom: 5px;
     padding-right: 10px;
     border-radius: 50px;
@@ -83,7 +85,7 @@
 }
 
 .card-product .holder-product-name {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     line-height: 1.5rem;
 }
 
@@ -96,7 +98,8 @@
     font-size: calc(1rem - 2px);
     padding: 4px 5px;
     border-radius: var(--border-radius);
-    background-color: #eaeaea;
+    background: #f2f4f7;
+    color: #667085;
 }
 
 .card-product .layout-attribute-options {
@@ -106,8 +109,9 @@
 
 .card-product .layout-attribute-options .attribute-option {
     display: inline-flex;
-    margin: 0px 4px 5px 0px;
+    margin: 5px 10px 5px 0;
     padding: 5px 8px;
+    border-radius: var(--popup-border-radius);
     line-height: calc(1rem + 2px);
     font-size: calc(1rem - 2px);
     transition: 0ms;
@@ -128,22 +132,26 @@
 }
 
 .card-product .layout-price {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 .card-product .price {
     color: var(--color-sale-primary);
-    font-size: calc(1rem + 2px);
+    font-size: calc(1rem + 4px);
     font-weight: bold;
 }
 
 .card-product .layout-regular-price {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 .card-product .regular-price {
     color: #999;
     text-decoration: line-through;
+}
+
+.card-product .discount {
+    color: #dd2f2c;
 }
 
 .card-product .sale {
@@ -161,7 +169,7 @@
 }
 
 .card-product .layout-gift {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-size: 1rem;
 }
 

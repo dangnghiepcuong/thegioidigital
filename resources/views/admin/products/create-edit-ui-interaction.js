@@ -1,29 +1,13 @@
-import { fetchAsyncData } from '/resources/js/fetch';
 import _get from 'lodash/get';
 
 import $ from 'jquery';
 window.jQuery = $;
 export default $;
 
-$(document).ready(async function () {
-    // get parent product data & bind in form dropdown
-    try {
-        const response = await fetchAsyncData({
-            url: '/admin/products/getParentProducts',
-            cache: false,
-            method: 'GET',
-        })
-
-        let oldValue = $('#parent_id').attr('value')
-
-        response.data.forEach(item => {
-            $('#parent_id').append(`<option value="${_get(item, 'id')}">${_get(item, 'title')}</option>`)
-        });
-
-        $('#parent_id').val(oldValue)
-    } catch (error) {
-        throw (error)
-    }
+$(document).ready(function () {
+    // set max height for layout-editing-sections depends on screen height
+    let height = screen.height;
+    $('.layout-editing-sections').css('max-height', height * 0.83)
 
     // bind data from form inputs to product card
     $('.demo-attribute').each(function () {
@@ -40,6 +24,34 @@ $(document).ready(async function () {
     ids.forEach(id => {
         let option = $('[name="term_taxonomy"]').find(`option[value="${id}"]`)
         bindAttributeToTableProductTermTaxonomy(option.val(), option.text(), $('.table-product-term-taxonomy'))
+    })
+
+    // Open & Closed sections
+    $('.section').click(function () {
+        let isOpen = $(this).hasClass('open-section')
+        $('.section').removeClass('open-section')
+        $('.section').find('span.icon').text('add')
+        $('.section-content').css('max-height', 0)
+        $('.section-content').css('border-bottom', 'unset')
+
+        if (isOpen) {
+            $(this).removeClass('open-section')
+            $(this).find('span.icon').text('add')
+        } else {
+            $(this).addClass('open-section')
+            $(this).find('span.icon').text('remove')
+        }
+
+        let sectionName = $(this).attr('for')
+
+        if ($(`#${sectionName}`).css('max-height') === '0px' || $(`#${sectionName}`).css('max-height') === '0') {
+            let sectionContentHeight = $(`#${sectionName}`).prop('scrollHeight') + 1 < 600 ? 600 : $(`#${sectionName}`).prop('scrollHeight') + 1
+            $(`#${sectionName}`).css('max-height', sectionContentHeight)
+            $(`#${sectionName}`).css('border-bottom', '1px solid #999')
+        } else {
+            $(`#${sectionName}`).css('max-height', 0)
+            $(`#${sectionName}`).css('border-bottom', 'unset')
+        }
     })
 
     // catch on event add demo btn click, apply change to demo UI
@@ -75,6 +87,10 @@ $(document).ready(async function () {
     })
 
     // catch on btn remove click, apply change to demo UI
+    $('.table-product-meta').on('click', '.btn-remove', function () {
+        let row = $(this).parent().parent()
+        row.remove()
+    })
     $('.table-product-term-taxonomy').on('click', '.btn-remove', function () {
         let row = $(this).parent().parent()
         let termTaxonomyId = row.find('[name="term_taxonomy_id"]').val()
@@ -84,12 +100,29 @@ $(document).ready(async function () {
         row.remove()
     })
 
-    // catch on btn create product click, perform a request
-    $('#create_product').on('click', function () {
-        let metaKeys = $('.table-product-meta').find('tr td[class="meta-key"]')
-        metaKeys.each(function (index, key) {
-            console.log(key.text())
-        })
+    // catch on checked applying data input to selected variants/siblings
+    $('#layout-siblings .layout-applied-data-checkbox .applied-data-field').on('change', 'input[name*="siblings_"]', function () {
+        if ($(this).is(':checked')) {
+            let separator = $('#siblings_applied_data').val() ? `,` : ``
+            $('#siblings_applied_data').val(`${$('#siblings_applied_data').val()}${separator}${$(this).val()}`)
+            return
+        }
+        let value = $('#siblings_applied_data').val()
+        value = value.replace(`,${$(this).val()}`, ``)
+        value = value.replace(`${$(this).val()}`, ``)
+        $('#siblings_applied_data').val(value)
+    })
+    $('#layout-variants .layout-applied-data-checkbox .applied-data-field').on('change', 'input[name*="variants_"]', function () {
+        if ($(this).is(':checked')) {
+            let separator = $('#variants_applied_data').val() ? `,` : ``
+            $('#variants_applied_data').val(`${$('#variants_applied_data').val()}${separator}${$(this).val()}`)
+            return
+        }
+
+        let value = $('#variants_applied_data').val()
+        value = value.replace(`,${$(this).val()}`, ``)
+        value = value.replace(`${$(this).val()}`, ``)
+        $('#variants_applied_data').val(value)
     })
 })
 
@@ -211,31 +244,28 @@ function bindAttribute(triggerElement, targetParentElements) {
 }
 
 function bindAttributeToTableProductMeta(metaKey, metaValue, targetTbodyElement) {
-    let flagEmpty = false
     let checkSpaceStr = metaValue.val().replace(/\s/g, '')
     if (!_get(checkSpaceStr, 'length')) {
-        metaValue.val(checkSpaceStr)
-        flagEmpty = true
+        return
     }
 
     let metaKeyCell = targetTbodyElement.find(`tr td[class="meta-key"]:contains('${metaKey.val()}')`)
     if (_get(metaKeyCell, 'length')) {
         let trParent = metaKeyCell.parent()
         let metaValueCell = trParent.find(`td[class="meta-value"]`)
-        if (flagEmpty) {
-            metaValueCell.parent().remove()
-        } else {
-            let hiddenInput = trParent.find(`input[name="${metaKey.val()}"]`)
-            hiddenInput.val(metaValue.val())
-            metaValueCell.text(metaValue.val())
-        }
+        let hiddenInput = trParent.find(`input[name="${metaKey.val()}"]`)
+        hiddenInput.val(metaValue.val())
+        metaValueCell.text(metaValue.val())
         return
     }
 
     targetTbodyElement.append(`
             <tr>
                 <td class="meta-key">${metaKey.val()}</td>
-                <td class="meta-value">${metaValue.val()}</td>
+                <td class="meta-value">
+                    ${metaValue.val()}
+                    <span class="icon material-symbols-outlined btn-remove">close</span>
+                </td>
                 <input type="hidden" name="${metaKey.val()}" value="${metaValue.val()}">
             </tr>
             `)
@@ -259,7 +289,7 @@ function bindAttributeToTableProductTermTaxonomy(termTaxonomyId, termTaxonomy, t
             <tr>
                 <td class="term-taxonomy">
                     ${termTaxonomy}
-                    <button type="button" class="btn btn-remove">X</button>
+                    <span class="icon material-symbols-outlined btn-remove">close</span>
                     <input type="hidden" name="term_taxonomy_id" value="${termTaxonomyId}">
                 </td>
             </tr>

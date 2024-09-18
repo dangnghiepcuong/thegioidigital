@@ -85,32 +85,6 @@ danger-color : #f3545d
 
 -------------------------------------------------------------------*/
 /*   Typography    */
-body,
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6,
-p,
-.navbar,
-.brand,
-.btn-simple,
-.alert,
-a,
-.td-name,
-td,
-button.close {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-family: 'Public Sans', sans-serif;
-}
 
 body,
 html {
@@ -148,13 +122,6 @@ h6,
 .h6 {
   font-size: 1.07rem;
   font-weight: 400;
-}
-
-p {
-  font-size: 1.07rem;
-  line-height: 1.82;
-  margin-bottom: 1rem;
-  word-break: break-word;
 }
 
 h1,
@@ -2892,13 +2859,6 @@ body[data-background-color="dark"] .border-top {
   color: #8d9498;
   margin-bottom: 0px;
   word-break: normal;
-}
-
-label {
-  font-size: 1rem;
-  font-weight: 400;
-  color: #8d9498;
-  margin-bottom: 0px;
 }
 
 .card-transparent {
