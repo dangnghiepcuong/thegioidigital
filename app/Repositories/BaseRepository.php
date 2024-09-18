@@ -60,6 +60,11 @@ abstract class BaseRepository
         return $this->model()->where($conditions)->firstOrFail();
     }
 
+    public function firstOrNewByConditions($conditions = [])
+    {
+        return $this->model()->firstOrNew($conditions);
+    }
+
     public function with($relationship)
     {
         return $this->model()->with($relationship);

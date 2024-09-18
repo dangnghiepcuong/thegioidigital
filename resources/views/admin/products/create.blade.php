@@ -11,7 +11,7 @@
     <!-- Simplicity is the ultimate sophistication. - Leonardo da Vinci -->
     <div class="page-create-product">
         <div class="layout-editing-sections">
-            <form id="form-update-product" method="POST" action="{{ route('admin.products.store') }}">
+            <form id="form-create-product" method="POST" action="{{ route('admin.products.store') }}">
                 @csrf
                 <div class="section" for="layout-basic-info">
                     Basic Information
@@ -245,9 +245,9 @@
                 <x-product.card.index :product="$product ?? null" :url="null" />
                 <div class="layout-summary-card">
                     <div class="layout-action-buttons">
-                        <div class="item-btn" id="btn-submit-form-update-product">
-                            Save
-                            <span class="icon material-symbols-outlined">save</span>
+                        <div class="item-btn" id="btn-submit-form-create-product">
+                            Create
+                            <span class="icon material-symbols-outlined">add_circle</span>
                         </div>
                     </div>
                 </div>
@@ -272,7 +272,7 @@
 
 @section('scripts')
     @parent
-    @vite($viewsDir . '/admin/products/create-edit.js')
-    @vite($viewsDir . '/admin/products/edit.js')
+    @vite($viewsDir . '/admin/products/create-edit-ui-interaction.js')
+    @vite($viewsDir . '/admin/products/create-edit-server-interaction.js')
     @vite($viewsDir . '/admin/products/wysiwyg.js')
 @endsection

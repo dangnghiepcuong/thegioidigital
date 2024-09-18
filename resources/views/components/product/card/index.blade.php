@@ -48,6 +48,12 @@
 
         {!! $slot ?? null !!}
 
+        @isset(get_meta($selectedVariantMeta, ModelMetaKey::PRICE)->value)
+            <div class="layout-price">
+                <span class="price">{{ get_meta($selectedVariantMeta, ModelMetaKey::PRICE)->getCurrency() }}</span>
+            </div>
+        @endisset
+
         @isset(get_meta($selectedVariantMeta, ModelMetaKey::REGULAR_PRICE)->value)
             <div class="layout-regular-price">
                 <span
@@ -64,12 +70,6 @@
                             '%' }}
                     </span>
                 @endisset
-            </div>
-        @endisset
-
-        @isset(get_meta($selectedVariantMeta, ModelMetaKey::PRICE)->value)
-            <div class="layout-price">
-                <span class="price">{{ get_meta($selectedVariantMeta, ModelMetaKey::PRICE)->getCurrency() }}</span>
             </div>
         @endisset
 
