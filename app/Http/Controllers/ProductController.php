@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateUpdateCopyProductRequest;
+use App\Http\Requests\CreateUpdateReplicateProductRequest;
 use App\Http\Requests\GetProductVariantBySlugAndTermRequest;
 use App\Http\Requests\UploadImageRequest;
 use App\Repositories\Eloquents\ProductMetaRepository;
@@ -10,7 +10,7 @@ use App\Repositories\Eloquents\ProductRepository;
 use App\Repositories\Eloquents\TermRepository;
 use App\Repositories\Eloquents\TermTaxonomyRepository;
 use App\Services\FileServices\UploadImageService;
-use App\Services\ProductServices\CopyProductService;
+use App\Services\ProductServices\ReplicateProductService;
 use App\Services\ProductServices\CreateNewProductService;
 use App\Services\ProductServices\GenerateProductCardListViewService;
 use App\Services\ProductServices\GenerateProductCardViewService;
@@ -27,7 +27,7 @@ class ProductController extends Controller
     protected TermTaxonomyRepository $termTaxonomyRepository;
     protected CreateNewProductService $createNewProductService;
     protected UpdateProductService $updateProductService;
-    protected CopyProductService $copyProductService;
+    protected ReplicateProductService $replicateProductService;
     protected GenerateProductCardListViewService $generateProductCardListViewService;
     protected GenerateProductCardViewService $generateProductCardViewService;
     protected UploadImageService $uploadImageService;
@@ -39,7 +39,7 @@ class ProductController extends Controller
         TermTaxonomyRepository $termTaxonomyRepository,
         CreateNewProductService $createNewProductService,
         UpdateProductService $updateProductService,
-        CopyProductService $copyProductService,
+        ReplicateProductService $replicateProductService,
         GenerateProductCardListViewService $generateProductCardListViewService,
         GenerateProductCardViewService $generateProductCardViewService,
         UploadImageService $uploadImageService
@@ -50,7 +50,7 @@ class ProductController extends Controller
         $this->termTaxonomyRepository = $termTaxonomyRepository;
         $this->createNewProductService = $createNewProductService;
         $this->updateProductService = $updateProductService;
-        $this->copyProductService = $copyProductService;
+        $this->replicateProductService = $replicateProductService;
         $this->generateProductCardListViewService = $generateProductCardListViewService;
         $this->generateProductCardViewService = $generateProductCardViewService;
         $this->uploadImageService = $uploadImageService;
@@ -139,7 +139,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function store(CreateUpdateCopyProductRequest $request)
+    public function store(CreateUpdateReplicateProductRequest $request)
     {
         $newSlug = $this->createNewProductService->__invoke($request);
         return redirect()->route('admin.products.slug', $newSlug);
@@ -189,7 +189,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(CreateUpdateCopyProductRequest $request, string $slug)
+    public function update(CreateUpdateReplicateProductRequest $request, string $slug)
     {
         $newSlug = $this->updateProductService->__invoke($request, $slug);
         return redirect()->route('admin.products.slug', $newSlug);
@@ -200,9 +200,9 @@ class ProductController extends Controller
         //
     }
 
-    public function copy(Request $request, $slug)
+    public function replicate(Request $request, $slug)
     {
-        $newSlug = $this->copyProductService->__invoke($request, $slug);
+        $newSlug = $this->replicateProductService->__invoke($request, $slug);
         return redirect()->route('admin.products.slug', $newSlug);
     }
 
