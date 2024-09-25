@@ -52,7 +52,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('', 'store')->name('admin.products.store');
             Route::get('{slug}/edit', 'edit')->name('admin.products.slug');
             Route::patch('{slug}/update', 'update')->name('admin.products.update');
-            Route::post('{slug}/copy', 'copy')->name('admin.products.copy');
+            Route::post('{slug}/replicate', 'replicate')->name('admin.products.replicate');
             Route::post('upload-image', 'uploadImage');
         });
     });

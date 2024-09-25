@@ -3,7 +3,7 @@
 namespace App\Services\ProductServices;
 
 use App\Enums\ModelMetaKey;
-use App\Http\Requests\CreateUpdateCopyProductRequest;
+use App\Http\Requests\CreateUpdateReplicateProductRequest;
 use App\Models\Product;
 use App\Repositories\Eloquents\ProductMetaRepository;
 use App\Repositories\Eloquents\ProductRepository;
@@ -54,7 +54,7 @@ class UpdateProductService
     }
 
 
-    public function __invoke(CreateUpdateCopyProductRequest $request, string $slug)
+    public function __invoke(CreateUpdateReplicateProductRequest $request, string $slug)
     {
         $type = $request->type;
         $parentId = $request->parent_id;
@@ -137,7 +137,7 @@ class UpdateProductService
         }
     }
 
-    public function applyDataToVariantsAndSiblings(Product $product, CreateUpdateCopyProductRequest $request)
+    public function applyDataToVariantsAndSiblings(Product $product, CreateUpdateReplicateProductRequest $request)
     {
         $appliedDataToVariants = explode(",", $request->variants_applied_data);
         $appliedDataToSiblings = explode(",", $request->siblings_applied_data);
@@ -152,6 +152,7 @@ class UpdateProductService
             'product_attr_badge_background' => $request->product_attr_badge_background,
             'product_attr_badge_text' => $request->product_attr_badge_text,
         ];
+
         $description = $request->description;
 
         $processedData = [

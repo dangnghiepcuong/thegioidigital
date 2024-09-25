@@ -4,7 +4,7 @@ namespace App\Services\ProductServices;
 
 use App\Enums\ModelMetaKey;
 use App\Enums\ProductStatusEnum;
-use App\Http\Requests\CreateUpdateCopyProductRequest;
+use App\Http\Requests\CreateUpdateReplicateProductRequest;
 use App\Repositories\Eloquents\ProductMetaRepository;
 use App\Repositories\Eloquents\ProductRepository;
 use Exception;
@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class CopyProductService
+class ReplicateProductService
 {
     protected ProductRepository $productRepository;
     protected ProductMetaRepository $productMetaRepository;
