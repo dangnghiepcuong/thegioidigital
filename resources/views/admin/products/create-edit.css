@@ -4,7 +4,7 @@
 }
 
 .layout-editing-sections {
-    width: 50%;
+    width: 70%;
     overflow-y: scroll;
     padding: 10px;
 }
@@ -164,12 +164,12 @@ table td .btn-remove {
     cursor: pointer;
 }
 
-table td:hover>.btn-remove {
+table tr:hover .btn-remove {
     color: #ddd;
 }
 
 .layout-demo-product {
-    width: 50%;
+    width: 30%;
     min-width: 250px;
     padding: 10px;
 }
@@ -187,12 +187,15 @@ table td:hover>.btn-remove {
 
 .layout-action-buttons {
     display: flex;
+    flex-wrap: wrap;
     margin: 10px 0;
 }
 
 .item-btn {
     display: inline-block;
+    width: fit-content;
     margin-right: 5px;
+    margin-bottom: 5px;
     padding: 2px 4px;
     border: 2px solid;
     border-radius: var(--card-border-radius);
@@ -241,7 +244,7 @@ table td:hover>.btn-remove {
 
 .section-content.layout-variants .layout-list-product,
 .section-content.layout-siblings .layout-list-product {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .layout-applied-data-checkbox .applied-data-field {

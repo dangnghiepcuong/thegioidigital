@@ -60,6 +60,7 @@ class ProductController extends Controller
     {
         $products = $this->productRepository
             ->with(['termTaxonomies.term'])
+            ->orderBy('title')
             ->withoutGlobalScopes()
             ->get();
 
@@ -69,16 +70,8 @@ class ProductController extends Controller
             ]);
         }
 
-        $productVariants = $this->productRepository
-            ->whereIn('parent_id', $products->pluck('id'))
-            ->with(['productMetaInCardView'])
-            ->orderBy('title')
-            ->withoutGlobalScopes()
-            ->get();
-
         return view('admin.products.index', [
             'products' => $products,
-            'productVariants' => $productVariants,
         ]);
     }
 
