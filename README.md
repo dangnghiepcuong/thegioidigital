@@ -20,10 +20,11 @@ Product Page
 
 Admin Feature:
 + Edit Product:
-<img width="1280" alt="image" src="https://github.com/user-attachments/assets/77f08817-caff-458e-ac8f-4dc9fabe5bdc">
-<img width="1280" alt="image" src="https://github.com/user-attachments/assets/00ece783-856a-4550-86a6-5ea434f7365d">
-<img width="1280" alt="image" src="https://github.com/user-attachments/assets/e931ad82-b13f-4f27-aac8-dbb61d72baef">
-<img width="1280" alt="image" src="https://github.com/user-attachments/assets/e96160dc-2a4a-4594-bd56-7083f0c6f3d7">
-<img width="1280" alt="image" src="https://github.com/user-attachments/assets/27a01d0b-257d-494f-8a7d-85cad742689f">
-<img width="1280" alt="image" src="https://github.com/user-attachments/assets/1afdb25d-904b-429c-a220-fa83dbea5d88">
-<img width="1280" alt="image" src="https://github.com/user-attachments/assets/dbf54754-42b6-4e5f-960d-e908c5a6f8a4">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/5eb0e6d8-a78d-4c14-9d0c-ccb92708741c">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/ef573750-0bd5-44c1-a1db-a210fe46d481">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/76df284c-cacd-4a2c-bb0f-b9fcea34a425">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/503b03d5-d78e-4d78-8da9-6effb856e65b">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/05ffbd11-fd12-46b8-9252-15f9b5a9894a">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/bc951e47-eec7-46c0-b696-4217653f876c">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/76d4c97a-9822-47c6-a4ae-285bbed1702d">
+<img width="1280" alt="image" src="https://github.com/user-attachments/assets/3404c686-44e2-46b0-a8ef-330698dab518">
