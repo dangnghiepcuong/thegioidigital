@@ -26,5 +26,6 @@ return [
     'tablet' => 'Máy tính bảng',
     'title' => 'Tên sản phẩm',
     'type' => 'Thể loại',
+    'upload_image' => 'Tải lên hình ảnh',
     'variants' => 'Các sản phẩm biến thể',
 ];

@@ -53,7 +53,6 @@ Route::middleware(['auth'])->group(function () {
             Route::get('{slug}/edit', 'edit')->name('admin.products.slug');
             Route::patch('{slug}/update', 'update')->name('admin.products.update');
             Route::post('{slug}/replicate', 'replicate')->name('admin.products.replicate');
-            Route::post('upload-image', 'uploadImage');
         });
     });
 
@@ -70,5 +69,5 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('dtdd/', 'dtdd')->name('products.dtdd');
     Route::get('dtdd/{slug}', 'show')->name('products.dtdd.slug');
     Route::get('dtdd-xiaomi/{slug?}', 'dtddXiaomi')->name('product.dtdd-xiaomi');
-    Route::get('dtdd/product-variant/{slug}', 'getProductVariantBySlugAndTerm');
+    Route::get('dtdd/product-variant/{slug}', 'getVariantBySlugAndTerm');
 });
