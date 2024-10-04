@@ -29,3 +29,12 @@ function all_null_array($array)
         return $a !== null && $a !== "";
     }));
 }
+
+function get_property($object, $property)
+{
+    if (!isset($object)) {
+        return null;
+    }
+
+    return strval($object->$property);
+}

@@ -15,6 +15,6 @@ return [
     ],
     'term' => 'Thuật ngữ thuộc tính',
     'terminology' => 'Thuật ngữ thuộc tính',
-    'term_taxonomy' => 'Thuộc tính phân loại',
+    'term_taxonomy' => 'Đặc trưng phân loại',
     'taxonomy' => 'Phân loại',
 ];

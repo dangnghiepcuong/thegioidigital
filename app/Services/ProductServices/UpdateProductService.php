@@ -130,9 +130,12 @@ class UpdateProductService
             self::applyDataToVariantsAndSiblings($product, $request);
             DB::commit();
 
-            return $newSlug;
+            return redirect()->route('admin.products.slug', $newSlug);
         } catch (Exception $exception) {
             DB::rollBack();
+            if ($exception->getCode() === '23000') {
+                return redirect()->back()->withErrors(['msg' => 'The slug has already been taken']);
+            }
             throw ($exception);
         }
     }
@@ -194,7 +197,7 @@ class UpdateProductService
                         $productMeta = $productMeta->delete();
                     }
                 }
-    
+
                 foreach ($this->autoFillData as $key) {
                     if (in_array($key, $appliedDataToVariants)) {
                         if ($request->str($key)->value()) {
@@ -240,7 +243,7 @@ class UpdateProductService
                         $productMeta = $productMeta->delete();
                     }
                 }
-    
+
                 foreach ($this->autoFillData as $key) {
                     if (in_array($key, $appliedDataToSiblings)) {
                         if ($request->str($key)->value()) {
