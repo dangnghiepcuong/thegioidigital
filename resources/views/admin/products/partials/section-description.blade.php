@@ -9,7 +9,7 @@
         {!! old('description') ?? $product->description ?? null !!}
     </div>
     <input type="hidden" name="description" value="{{ old('description') ?? $product->description ?? null }}">
-    <div class="layout-btn-demo">
+    <div class="layout-btn-line">
         <div class="item-btn" id="btn-demo-product-description">
             {{ __('button.demo') }}
             <span class="icon material-symbols-outlined">done_all</span>

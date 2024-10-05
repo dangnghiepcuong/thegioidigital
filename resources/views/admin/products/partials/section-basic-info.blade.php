@@ -111,7 +111,7 @@
             type="text" id="form-gift" layout="layout-gift" element="span" class-name="gift"
             bound-attr="text/html" class="input-field">
     </div>
-    <div class="layout-btn-demo">
+    <div class="layout-btn-line">
         <div class="item-btn" id="btn-demo-change">
             {{ __('button.demo') }}
             <span class="icon material-symbols-outlined">done_all</span>

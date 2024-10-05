@@ -25,6 +25,7 @@
                 @include('admin.products.partials.section-variants')
                 @include('admin.products.partials.section-siblings')
             </form>
+            @include('admin.products.partials.section-upload-image')
         </div>
         <div class="layout-demo-product">
             <div class="layout-top-right-box">
@@ -60,6 +61,6 @@
     @parent
     @vite($viewsDir . '/admin/products/create-edit-ui-interaction.js')
     @vite($viewsDir . '/admin/products/create-edit-server-interaction.js')
-    @vite($viewsDir . '/admin/products/wysiwyg.js')
-    @vite($viewsDir . '/admin/products/file-upload.js')
+    @vite($viewsDir . '/admin/products/partials/wysiwyg.js')
+    @vite($viewsDir . '/admin/products/partials/file-upload.js')
 @endsection

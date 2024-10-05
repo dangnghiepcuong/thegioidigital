@@ -103,7 +103,7 @@
     cursor: pointer;
 }
 
-.layout-btn-demo {
+.layout-btn-line {
     display: flex;
     justify-content: right;
     margin: 10px 0;
@@ -272,6 +272,15 @@ table tr:hover .btn-remove {
     left: 0px;
     margin-right: auto;
     margin-left: auto;
+}
+
+.layout-img-thumbs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.outer-slider-image{
+    display: inline-block;
 }
 
 .popup-demo-description {

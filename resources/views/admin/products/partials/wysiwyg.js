@@ -78,7 +78,7 @@ $(document).ready(async function () {
                     ],
                 },
                 simpleUpload: {
-                    uploadUrl: '/admin/products/description/upload-image',
+                    uploadUrl: '/admin/products/files/description-images',
                     headers: {
                         'X-CSRF-TOKEN': $('#csrf-token').val(),
                     },

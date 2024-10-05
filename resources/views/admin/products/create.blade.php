@@ -46,5 +46,5 @@
     @parent
     @vite($viewsDir . '/admin/products/create-edit-ui-interaction.js')
     @vite($viewsDir . '/admin/products/create-edit-server-interaction.js')
-    @vite($viewsDir . '/admin/products/wysiwyg.js')
+    @vite($viewsDir . '/admin/products/partials/wysiwyg.js')
 @endsection

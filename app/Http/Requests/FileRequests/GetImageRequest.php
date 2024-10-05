@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\FileRequests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UploadImageRequest extends FormRequest
+class GetImageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,7 @@ class UploadImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'upload' => [
-                'required',
-                'mimes:jpg,jpeg,png,bmp,gif,svg,webp',
-                'extensions:jpg,jpeg,png,bmp,gif,svg,webp',
-                'image',
-                'max:5120',
-            ],
+            'product_id' => ['required', 'exists:products,id'],
         ];
     }
 }

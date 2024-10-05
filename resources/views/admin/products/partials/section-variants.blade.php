@@ -23,27 +23,22 @@
 
         <div class="applied-data-field">
             <input type="checkbox" id="variants_parent_id" name="variants_parent_id" value="parent_id">
-            <label for="variants_parent_id"
-                class="applied-data-label">{{ __('product.parent_product') }}</label>
+            <label for="variants_parent_id" class="applied-data-label">{{ __('product.parent_product') }}</label>
         </div>
 
         <div class="applied-data-field">
             <input type="checkbox" id="variants_status" name="variants_status" value="status">
-            <label for="variants_status"
-                class="applied-data-label">{{ __('product.status.status') }}</label>
+            <label for="variants_status" class="applied-data-label">{{ __('product.status.status') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="variants_description" name="variants_description"
-                value="description">
-            <label for="variants_description"
-                class="applied-data-label">{{ __('product.description') }}</label>
+            <input type="checkbox" id="variants_description" name="variants_description" value="description">
+            <label for="variants_description" class="applied-data-label">{{ __('product.description') }}</label>
         </div>
 
         <p>Product Meta fields</p>
         <div class="applied-data-field">
-            <input type="checkbox" id="variants_top_tags" name="variants_top_tags"
-                value="{{ ModelMetaKey::TOP_TAGS }}">
+            <input type="checkbox" id="variants_top_tags" name="variants_top_tags" value="{{ ModelMetaKey::TOP_TAGS }}">
             <label for="variants_top_tags"
                 class="applied-data-label">{{ __('product_meta.product_attr_top_tags') }}</label>
         </div>
@@ -56,8 +51,8 @@
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="variants_bottom_left_stamp_url"
-                name="variants_bottom_left_stamp_url" value="{{ ModelMetaKey::BOTTOM_LEFT_STAMP_URL }}">
+            <input type="checkbox" id="variants_bottom_left_stamp_url" name="variants_bottom_left_stamp_url"
+                value="{{ ModelMetaKey::BOTTOM_LEFT_STAMP_URL }}">
             <label for="variants_bottom_left_stamp_url"
                 class="applied-data-label">{{ __('product_meta.product_attr_bottom_left_stamp_url') }}</label>
         </div>
@@ -70,10 +65,8 @@
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="variants_badge" name="variants_badge"
-                value="{{ ModelMetaKey::BADGE }}">
-            <label for="variants_badge"
-                class="applied-data-label">{{ __('product_meta.product_attr_badge') }}</label>
+            <input type="checkbox" id="variants_badge" name="variants_badge" value="{{ ModelMetaKey::BADGE }}">
+            <label for="variants_badge" class="applied-data-label">{{ __('product_meta.product_attr_badge') }}</label>
         </div>
 
         <div class="applied-data-field">
@@ -91,24 +84,33 @@
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="variants_price" name="variants_price"
-                value="{{ ModelMetaKey::PRICE }}">
-            <label for="variants_price"
-                class="applied-data-label">{{ __('product_meta.product_attr_price') }}</label>
+            <input type="checkbox" id="variants_price" name="variants_price" value="{{ ModelMetaKey::PRICE }}">
+            <label for="variants_price" class="applied-data-label">{{ __('product_meta.product_attr_price') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="variants_gift" name="variants_gift"
-                value="{{ ModelMetaKey::GIFT }}">
-            <label for="variants_gift"
-                class="applied-data-label">{{ __('product_meta.product_attr_gift') }}</label>
+            <input type="checkbox" id="variants_gift" name="variants_gift" value="{{ ModelMetaKey::GIFT }}">
+            <label for="variants_gift" class="applied-data-label">{{ __('product_meta.product_attr_gift') }}</label>
         </div>
     </div>
-    <x-product.list.index>
+
+    <h3>{{ __('product.product') }}</h3>
+    <div class="layout-btn-line">
+        <div class="item-btn" id="btn-select-all-variants">
+            {{ __('button.select_all') }}
+            <span class="icon material-symbols-outlined">check_box</span>
+        </div>
+        <div class="item-btn" id="btn-deselect-all-variants">
+            {{ __('button.deselect_all') }}
+            <span class="icon material-symbols-outlined">check_box_outline_blank</span>
+        </div>
+    </div>
+
+    <x-product.list.index id="layout-list-variants">
         @foreach ($variants as $variant)
             <div class="outer-checkbox">
                 <div class="layout-checkbox">
-                    <input type="checkbox" name="{{ $variant->slug }}" value="true">
+                    <input type="checkbox" name="{{ $variant->slug }}" value="true" class="checkbox-variant">
                 </div>
                 <x-product.card.index :product="$variant" :selected-variant-meta="$variant->productMetaInCardView ?? null" :url="route('admin.products.slug', $variant->slug ?? '')" />
             </div>
