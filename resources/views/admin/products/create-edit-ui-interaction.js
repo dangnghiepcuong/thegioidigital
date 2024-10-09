@@ -100,6 +100,21 @@ $(document).ready(function () {
         row.remove()
     })
 
+    // catch on select/deselect all variants/siblings
+    $('#btn-select-all-variants').on('click', function () {
+        $('#layout-list-variants .checkbox-variant').prop('checked', true)
+    })
+    $('#btn-deselect-all-variants').on('click', function () {
+        $('#layout-list-variants .checkbox-variant').prop('checked', false)
+    })
+
+    $('#btn-select-all-siblings').on('click', function () {
+        $('#layout-list-siblings .checkbox-sibling').prop('checked', true)
+    })
+    $('#btn-deselect-all-siblings').on('click', function () {
+        $('#layout-list-siblings .checkbox-sibling').prop('checked', false)
+    })
+
     // catch on checked applying data input to selected variants/siblings
     $('#layout-siblings .layout-applied-data-checkbox .applied-data-field').on('change', 'input[name*="siblings_"]', function () {
         if ($(this).is(':checked')) {

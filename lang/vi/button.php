@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'replicate' => 'Nhân bản',
     'demo' => 'Xem thử',
+    'deselect_all' => 'Bỏ chọn tất cả',
     'save' => 'Lưu',
     'action' => 'Hành động',
     'active' => 'Kích hoạt',
@@ -18,8 +18,10 @@ return [
     'edit' => 'Sửa :object',
     'import' => 'Nhập :object',
     'register' => 'Đăng ký',
+    'replicate' => 'Nhân bản',
     'reset' => 'Cấp lại',
     'restore' => 'Khôi phục',
+    'select_all' => 'Chọn tất cả',
     'trash' => 'Tạm xóa',
     'update' => 'Cập nhật :object',
     'updated_at' => 'Cập nhật lúc',

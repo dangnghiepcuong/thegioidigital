@@ -59,6 +59,7 @@ class EditPageProductService
             'termTaxonomies' => $termTaxonomies,
             'variants' => $variants,
             'siblings' => $siblings,
+            'sliderImages' => $product->getMedia('slider'),
         ]);
     }
 }

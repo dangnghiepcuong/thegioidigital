@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUpdateReplicateProductRequest;
-use App\Http\Requests\UploadImageRequest;
 use App\Repositories\Eloquents\ProductMetaRepository;
 use App\Repositories\Eloquents\ProductRepository;
 use App\Repositories\Eloquents\TermRepository;
 use App\Repositories\Eloquents\TermTaxonomyRepository;
-use App\Services\FileServices\UploadImageService;
 use App\Services\ProductServices\ReplicateProductService;
 use App\Services\ProductServices\CreateNewProductService;
 use App\Services\ProductServices\CreatePageProductService;
@@ -48,7 +46,6 @@ class ProductController extends Controller
         GenerateProductCardListViewService $generateProductCardListViewService,
         GenerateProductCardViewService $generateProductCardViewService,
         GetVariantBySlugAndTermService $getVariantBySlugAndTermService,
-        UploadImageService $uploadImageService,
         CreatePageProductService $createPageProductService,
         EditPageProductService $editPageProductService
     ) {
@@ -62,7 +59,6 @@ class ProductController extends Controller
         $this->generateProductCardListViewService = $generateProductCardListViewService;
         $this->generateProductCardViewService = $generateProductCardViewService;
         $this->getVariantBySlugAndTermService = $getVariantBySlugAndTermService;
-        $this->uploadImageService = $uploadImageService;
         $this->createPageProductService = $createPageProductService;
         $this->editPageProductService = $editPageProductService;
     }
@@ -176,12 +172,5 @@ class ProductController extends Controller
         $view = $this->getVariantBySlugAndTermService->__invoke($slug);
 
         return $view;
-    }
-
-    public function uploadImage(UploadImageRequest $request)
-    {
-        $response = $this->uploadImageService->__invoke($request);
-
-        return $response;
     }
 }

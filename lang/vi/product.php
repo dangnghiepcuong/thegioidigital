@@ -11,6 +11,7 @@ return [
     'PC' => 'Máy tính bàn',
     'phu_kien' => 'Phụ kiện',
     'printer' => 'Máy in',
+    'product' => 'Sản phẩm',
     'siblings' => 'Các sản phẩm cùng biến thể',
     'sim' => 'SIM',
     'slug' => 'Chuỗi slug',

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -53,6 +54,14 @@ Route::middleware(['auth'])->group(function () {
             Route::get('{slug}/edit', 'edit')->name('admin.products.slug');
             Route::patch('{slug}/update', 'update')->name('admin.products.update');
             Route::post('{slug}/replicate', 'replicate')->name('admin.products.replicate');
+
+            Route::prefix('files')->controller(FileController::class)->group(function () {
+                Route::get('slider-images', 'getImagesForProductSlider');
+                Route::post('description-images', 'uploadImagesForProductDescription');
+                Route::post('slider-images', 'uploadImagesForProductSlider')
+                    ->name('admin.products.slider.image');
+                Route::delete('slider-images', 'deleteImagesFromProductSlider');
+            });
         });
     });
 
