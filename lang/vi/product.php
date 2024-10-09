@@ -1,0 +1,32 @@
+<?php
+
+return [
+    'basic_information' => 'Thông tin cơ bản',
+    'description' => 'Mô tả sản phẩm',
+    'card' => 'Thẻ cào',
+    'dtdd' => 'Điện thoại di động',
+    'laptop' => 'Laptop',
+    'old_device' => 'Thiết bị cũ',
+    'parent_product' => 'Sản phẩm gốc',
+    'PC' => 'Máy tính bàn',
+    'phu_kien' => 'Phụ kiện',
+    'printer' => 'Máy in',
+    'product' => 'Sản phẩm',
+    'siblings' => 'Các sản phẩm cùng biến thể',
+    'sim' => 'SIM',
+    'slug' => 'Chuỗi slug',
+    'smartwatch' => 'Đồng hồ thông minh',
+    'status' => [
+        'comming_soon' => 'Sắp ra mắt',
+        'in_process' => 'Đang xử lý',
+        'in_stock' => 'Còn hàng',
+        'out_of_stock' => 'Hết hàng',
+        'status' => 'Trạng thái',
+        'stop_for_sale' => 'Ngừng kinh doanh',
+    ],
+    'tablet' => 'Máy tính bảng',
+    'title' => 'Tên sản phẩm',
+    'type' => 'Thể loại',
+    'upload_image' => 'Tải lên hình ảnh',
+    'variants' => 'Các sản phẩm biến thể',
+];

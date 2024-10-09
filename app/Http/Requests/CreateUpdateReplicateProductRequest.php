@@ -7,7 +7,7 @@ use App\Enums\ProductStatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class CreateUpdateCopyProductRequest extends FormRequest
+class CreateUpdateReplicateProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

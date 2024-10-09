@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateUpdateCopyProductRequest;
-use App\Http\Requests\GetProductVariantBySlugAndTermRequest;
-use App\Http\Requests\UploadImageRequest;
+use App\Http\Requests\CreateUpdateReplicateProductRequest;
 use App\Repositories\Eloquents\ProductMetaRepository;
 use App\Repositories\Eloquents\ProductRepository;
 use App\Repositories\Eloquents\TermRepository;
 use App\Repositories\Eloquents\TermTaxonomyRepository;
-use App\Services\FileServices\UploadImageService;
-use App\Services\ProductServices\CopyProductService;
+use App\Services\ProductServices\ReplicateProductService;
 use App\Services\ProductServices\CreateNewProductService;
+use App\Services\ProductServices\CreatePageProductService;
+use App\Services\ProductServices\EditPageProductService;
 use App\Services\ProductServices\GenerateProductCardListViewService;
 use App\Services\ProductServices\GenerateProductCardViewService;
+use App\Services\ProductServices\GetVariantBySlugAndTermService;
 use App\Services\ProductServices\UpdateProductService;
 use Exception;
 use Illuminate\Http\Request;
@@ -27,10 +27,13 @@ class ProductController extends Controller
     protected TermTaxonomyRepository $termTaxonomyRepository;
     protected CreateNewProductService $createNewProductService;
     protected UpdateProductService $updateProductService;
-    protected CopyProductService $copyProductService;
+    protected ReplicateProductService $replicateProductService;
     protected GenerateProductCardListViewService $generateProductCardListViewService;
     protected GenerateProductCardViewService $generateProductCardViewService;
+    protected GetVariantBySlugAndTermService $getVariantBySlugAndTermService;
     protected UploadImageService $uploadImageService;
+    protected CreatePageProductService $createPageProductService;
+    protected EditPageProductService $editPageProductService;
 
     public function __construct(
         ProductRepository $productRepository,
@@ -39,10 +42,12 @@ class ProductController extends Controller
         TermTaxonomyRepository $termTaxonomyRepository,
         CreateNewProductService $createNewProductService,
         UpdateProductService $updateProductService,
-        CopyProductService $copyProductService,
+        ReplicateProductService $replicateProductService,
         GenerateProductCardListViewService $generateProductCardListViewService,
         GenerateProductCardViewService $generateProductCardViewService,
-        UploadImageService $uploadImageService
+        GetVariantBySlugAndTermService $getVariantBySlugAndTermService,
+        CreatePageProductService $createPageProductService,
+        EditPageProductService $editPageProductService
     ) {
         $this->productRepository = $productRepository;
         $this->productMetaRepository = $productMetaRepository;
@@ -50,16 +55,19 @@ class ProductController extends Controller
         $this->termTaxonomyRepository = $termTaxonomyRepository;
         $this->createNewProductService = $createNewProductService;
         $this->updateProductService = $updateProductService;
-        $this->copyProductService = $copyProductService;
+        $this->replicateProductService = $replicateProductService;
         $this->generateProductCardListViewService = $generateProductCardListViewService;
         $this->generateProductCardViewService = $generateProductCardViewService;
-        $this->uploadImageService = $uploadImageService;
+        $this->getVariantBySlugAndTermService = $getVariantBySlugAndTermService;
+        $this->createPageProductService = $createPageProductService;
+        $this->editPageProductService = $editPageProductService;
     }
 
     public function index()
     {
         $products = $this->productRepository
             ->with(['termTaxonomies.term'])
+            ->orderBy('title')
             ->withoutGlobalScopes()
             ->get();
 
@@ -69,16 +77,8 @@ class ProductController extends Controller
             ]);
         }
 
-        $productVariants = $this->productRepository
-            ->whereIn('parent_id', $products->pluck('id'))
-            ->with(['productMetaInCardView'])
-            ->orderBy('title')
-            ->withoutGlobalScopes()
-            ->get();
-
         return view('admin.products.index', [
             'products' => $products,
-            'productVariants' => $productVariants,
         ]);
     }
 
@@ -130,18 +130,15 @@ class ProductController extends Controller
 
     public function create()
     {
-        $termTaxonomies = $this->termTaxonomyRepository->model()
-            ->where('taxonomy', 'like', 'product_attr_%')
-            ->get();
+        $view = $this->createPageProductService->__invoke();
 
-        return view('admin.products.create', [
-            'termTaxonomies' => $termTaxonomies,
-        ]);
+        return $view;
     }
 
-    public function store(CreateUpdateCopyProductRequest $request)
+    public function store(CreateUpdateReplicateProductRequest $request)
     {
         $newSlug = $this->createNewProductService->__invoke($request);
+
         return redirect()->route('admin.products.slug', $newSlug);
     }
 
@@ -149,50 +146,14 @@ class ProductController extends Controller
 
     public function edit(string $slug)
     {
-        try {
-            DB::beginTransaction();
-            $termTaxonomies = $this->termTaxonomyRepository->model()
-                ->where('taxonomy', 'like', 'product_attr_%')
-                ->get();
+        $view = $this->editPageProductService->__invoke($slug);
 
-            $product = $this->productRepository->with(['productMeta', 'termTaxonomies'])
-                ->withoutGlobalScopes()
-                ->where('slug', $slug)
-                ->firstOrFail();
-
-            $variants = $this->productRepository->findByConditions(['parent_id' => $product->id])
-                ->withoutGlobalScopes()
-                ->with(['productMetaInCardView'])
-                ->get();
-
-            $siblings = $this->productRepository->findByConditions([
-                ['parent_id', '=', $product->parent_id],
-                ['parent_id', '!=', null],
-                ['id', '!=', $product->id]
-            ])->with(['productMetaInCardView'])
-                ->withoutGlobalScopes()
-                ->get();
-
-            DB::commit();
-        } catch (Exception $exception) {
-            DB::rollBack();
-            throw $exception;
-        }
-
-        return view('admin.products.edit', [
-            'product' => $product,
-            'productMeta' => $product->productMeta,
-            'productTermTaxonomies' => $product->termTaxonomies,
-            'termTaxonomies' => $termTaxonomies,
-            'variants' => $variants,
-            'siblings' => $siblings,
-        ]);
+        return $view;
     }
 
-    public function update(CreateUpdateCopyProductRequest $request, string $slug)
+    public function update(CreateUpdateReplicateProductRequest $request, string $slug)
     {
-        $newSlug = $this->updateProductService->__invoke($request, $slug);
-        return redirect()->route('admin.products.slug', $newSlug);
+        return $this->updateProductService->__invoke($request, $slug);
     }
 
     public function destroy(string $id)
@@ -200,39 +161,16 @@ class ProductController extends Controller
         //
     }
 
-    public function copy(Request $request, $slug)
+    public function replicate(Request $request, $slug)
     {
-        $newSlug = $this->copyProductService->__invoke($request, $slug);
+        $newSlug = $this->replicateProductService->__invoke($request, $slug);
         return redirect()->route('admin.products.slug', $newSlug);
     }
 
-    public function getProductVariantBySlugAndTerm(GetProductVariantBySlugAndTermRequest $request, string $slug)
+    public function getVariantBySlugAndTerm(string $slug)
     {
-        try {
-            DB::beginTransaction();
-            $product = $this->productRepository
-                ->findByConditions(['slug' => $slug])
-                ->with(['productMetaInCardView'])
-                ->first();
-            $siblings = $this->productRepository->findByConditions(['parent_id' => $product->parent_id])
-                ->with(['productMetaInCardView'])
-                ->get();
-            $parent = $product->parent()->with(['termTaxonomies.term'])->first();
+        $view = $this->getVariantBySlugAndTermService->__invoke($slug);
 
-            DB::commit();
-
-            $html = $this->generateProductCardViewService->__invoke($product, $siblings, $parent);
-
-            return $html;
-        } catch (Exception $exception) {
-            DB::rollBack();
-            throw $exception;
-        }
-    }
-
-    public function uploadImage(UploadImageRequest $request)
-    {
-        $response = $this->uploadImageService->__invoke($request);
-        return $response;
+        return $view;
     }
 }

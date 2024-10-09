@@ -77,7 +77,7 @@ $(document).ready(function () {
     $('.demo-attribute-to-table-product-meta').on('click', '.btn-add', function () {
         let metaKey = $(this).parent().find('#form-meta-key option:selected')
         let metaValue = $(this).parent().find('#form-meta-value')
-        bindAttributeToTableProductMeta(metaKey, metaValue, $(`.table-product-meta tbody`))
+        bindAttributeToTableProductMeta(metaKey, metaValue, $(`#table-product-meta tbody`))
         metaValue.val(``)
     })
     $('.demo-attribute-to-table-product-term-taxonomy').on('click', '.btn-add', function () {
@@ -87,17 +87,32 @@ $(document).ready(function () {
     })
 
     // catch on btn remove click, apply change to demo UI
-    $('.table-product-meta').on('click', '.btn-remove', function () {
+    $('#table-product-meta').on('click', '.btn-remove', function () {
         let row = $(this).parent().parent()
         row.remove()
     })
-    $('.table-product-term-taxonomy').on('click', '.btn-remove', function () {
+    $('#table-product-term-taxonomy').on('click', '.btn-remove', function () {
         let row = $(this).parent().parent()
         let termTaxonomyId = row.find('[name="term_taxonomy_id"]').val()
         let ids = $('[name="term_taxonomy_ids"]').val()
         ids = ids.replace(termTaxonomyId, '')
         $('[name="term_taxonomy_ids"]').val(ids)
         row.remove()
+    })
+
+    // catch on select/deselect all variants/siblings
+    $('#btn-select-all-variants').on('click', function () {
+        $('#layout-list-variants .checkbox-variant').prop('checked', true)
+    })
+    $('#btn-deselect-all-variants').on('click', function () {
+        $('#layout-list-variants .checkbox-variant').prop('checked', false)
+    })
+
+    $('#btn-select-all-siblings').on('click', function () {
+        $('#layout-list-siblings .checkbox-sibling').prop('checked', true)
+    })
+    $('#btn-deselect-all-siblings').on('click', function () {
+        $('#layout-list-siblings .checkbox-sibling').prop('checked', false)
     })
 
     // catch on checked applying data input to selected variants/siblings

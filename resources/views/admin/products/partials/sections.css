@@ -1,0 +1,323 @@
+.section {
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    background: #bbb;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.section:hover {
+    background: #999;
+}
+
+.open-section {
+    background: #999;
+}
+
+.section .icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+}
+
+.section-content {
+    max-height: 0;
+    margin: 10px 0;
+    padding: 0 5px;
+    overflow-y: scroll;
+    transition: max-height 0.3s ease-out;
+}
+
+.form-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-item .input-field {
+    width: 100%;
+}
+
+.form-item label[for^="form-"] {
+    display: inline-block;
+    width: 15%;
+    height: unset;
+    margin-right: 10px;
+    font-size: calc(1rem + 2px);
+    text-align: right;
+}
+
+.form-item input,
+.form-item textarea,
+.form-item select,
+.form-item option {
+    height: calc(2rem + 6px);
+    padding: 8px;
+    outline-width: 0;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: calc(1rem + 1px);
+}
+
+.form-item textarea {
+    height: calc(4rem + 8px);
+    resize: none;
+}
+
+.form-item .select-multiple {
+    max-height: 170px;
+    border-radius: var(--border-radius);
+    background: white;
+    overflow-y: scroll;
+}
+
+.form-item .select-item {
+    display: flex;
+    height: calc(2rem + 6px);
+    padding: 8px;
+    font-size: calc(1rem + 1px);
+}
+
+.form-item .select-item:hover {
+    background-color: #eee;
+}
+
+.form-item .select-item input[type="radio"] {
+    height: unset;
+    margin-right: 8px;
+}
+
+.form-item .select-item .label-radio {
+    display: inline-block;
+    width: 100%;
+}
+
+.form-item .btn-add {
+    border-radius: 50px;
+    background: #ccc;
+    color: white;
+    cursor: pointer;
+}
+
+.layout-btn-line {
+    display: flex;
+    justify-content: right;
+    margin: 10px 0;
+}
+
+.btn-add {
+    margin-left: 10px;
+}
+
+table {
+    width: 100%;
+    border-spacing: 0px;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    background: white;
+}
+
+table tr:hover {
+    background: #ddd;
+}
+
+table th {
+    background: #ddd;
+}
+
+table th,
+table td {
+    position: relative;
+    width: 50%;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    overflow-wrap: break-word;
+}
+
+table td .btn-remove {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    border-radius: 50px;
+    background: white;
+    color: white;
+    cursor: pointer;
+}
+
+table tr:hover .btn-remove {
+    color: #ddd;
+}
+
+.section-content.layout-variants .layout-list-product,
+.section-content.layout-siblings .layout-list-product {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.layout-applied-data-checkbox .applied-data-field {
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-right: 15px;
+}
+
+.layout-applied-data-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 3px;
+    vertical-align: middle;
+}
+
+.layout-applied-data-checkbox .applied-data-label {
+    vertical-align: middle;
+}
+
+.layout-checkbox {
+    position: relative;
+}
+
+.layout-checkbox input[type="checkbox"] {
+    position: absolute;
+    right: 18px;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+}
+
+.Neon {
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #494949;
+    position: relative;
+
+
+}
+
+.Neon * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.Neon-input-dragDrop {
+    display: block;
+    width: 343px;
+    height: 150px;
+    margin: 0 auto 25px auto;
+    padding: 25px;
+    color: #8d9499;
+    color: #97A1A8;
+    background: #fff;
+    border: 2px dashed #C8CBCE;
+    text-align: center;
+    -webkit-transition: box-shadow 0.3s, border-color 0.3s;
+    -moz-transition: box-shadow 0.3s, border-color 0.3s;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.Neon-input-dragDrop .Neon-input-icon {
+    font-size: 48px;
+    margin-top: -10px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.Neon-input-text h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.Neon-input-text span {
+    font-size: 12px;
+}
+
+.Neon-input-choose-btn.blue {
+    color: #008BFF;
+    border: 1px solid #008BFF;
+}
+
+.Neon-input-choose-btn {
+    display: inline-block;
+    padding: 8px 14px;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: bold;
+    color: #8d9496;
+    border-radius: 3px;
+    border: 1px solid #c6c6c6;
+    vertical-align: middle;
+    background-color: #fff;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.05);
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.input-file-upload {
+    z-index: 999;
+    opacity: 0;
+    width: 320px;
+    height: 150px;
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.layout-img-thumbs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.outer-slider-image{
+    display: inline-block;
+}
+
+.popup-demo-description {
+    display: none;
+    position: absolute;
+    z-index: 25;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 90%;
+    height: 90%;
+}
+
+.popup-demo-description .btn-close {
+    display: inline-block;
+    padding: 6px;
+    border: 1px solid black;
+    border-radius: var(--border-radius);
+    background: white;
+    cursor: pointer;
+}
+
+.popup-demo-description .btn-close span {
+    vertical-align: middle;
+}
+
+.popup-demo-description .btn-close span.icon {
+    font-size: 20px;
+}
+
+.outer-scroll {
+    max-height: 100%;
+    overflow-y: scroll;
+}
+
+.layout-demo-product-description {
+    max-width: 700px;
+    padding: 15px 10px;
+    background: white;
+}

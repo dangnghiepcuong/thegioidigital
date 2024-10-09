@@ -170,11 +170,6 @@
     width: 5px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #888;
@@ -271,7 +266,7 @@ h1, h2, .h1, .h2 {
     opacity: var(--default-opacity);
 }
 
-.ck.ck-reset.ck-editor.ck-rounded-corners {
+.ck.ck-editor__main {
     max-height: 540px;
     overflow-y: scroll;
 }

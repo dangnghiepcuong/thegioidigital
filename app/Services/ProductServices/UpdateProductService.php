@@ -3,7 +3,7 @@
 namespace App\Services\ProductServices;
 
 use App\Enums\ModelMetaKey;
-use App\Http\Requests\CreateUpdateCopyProductRequest;
+use App\Http\Requests\CreateUpdateReplicateProductRequest;
 use App\Models\Product;
 use App\Repositories\Eloquents\ProductMetaRepository;
 use App\Repositories\Eloquents\ProductRepository;
@@ -54,7 +54,7 @@ class UpdateProductService
     }
 
 
-    public function __invoke(CreateUpdateCopyProductRequest $request, string $slug)
+    public function __invoke(CreateUpdateReplicateProductRequest $request, string $slug)
     {
         $type = $request->type;
         $parentId = $request->parent_id;
@@ -130,14 +130,17 @@ class UpdateProductService
             self::applyDataToVariantsAndSiblings($product, $request);
             DB::commit();
 
-            return $newSlug;
+            return redirect()->route('admin.products.slug', $newSlug);
         } catch (Exception $exception) {
             DB::rollBack();
+            if ($exception->getCode() === '23000') {
+                return redirect()->back()->withErrors(['msg' => 'The slug has already been taken']);
+            }
             throw ($exception);
         }
     }
 
-    public function applyDataToVariantsAndSiblings(Product $product, CreateUpdateCopyProductRequest $request)
+    public function applyDataToVariantsAndSiblings(Product $product, CreateUpdateReplicateProductRequest $request)
     {
         $appliedDataToVariants = explode(",", $request->variants_applied_data);
         $appliedDataToSiblings = explode(",", $request->siblings_applied_data);
@@ -152,6 +155,7 @@ class UpdateProductService
             'product_attr_badge_background' => $request->product_attr_badge_background,
             'product_attr_badge_text' => $request->product_attr_badge_text,
         ];
+
         $description = $request->description;
 
         $processedData = [
@@ -193,7 +197,7 @@ class UpdateProductService
                         $productMeta = $productMeta->delete();
                     }
                 }
-    
+
                 foreach ($this->autoFillData as $key) {
                     if (in_array($key, $appliedDataToVariants)) {
                         if ($request->str($key)->value()) {
@@ -239,7 +243,7 @@ class UpdateProductService
                         $productMeta = $productMeta->delete();
                     }
                 }
-    
+
                 foreach ($this->autoFillData as $key) {
                     if (in_array($key, $appliedDataToSiblings)) {
                         if ($request->str($key)->value()) {

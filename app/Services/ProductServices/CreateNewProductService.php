@@ -3,7 +3,7 @@
 namespace App\Services\ProductServices;
 
 use App\Enums\ModelMetaKey;
-use App\Http\Requests\CreateUpdateCopyProductRequest;
+use App\Http\Requests\CreateUpdateReplicateProductRequest;
 use App\Repositories\Eloquents\ProductMetaRepository;
 use App\Repositories\Eloquents\ProductRepository;
 use Exception;
@@ -45,7 +45,7 @@ class CreateNewProductService
     }
 
 
-    public function __invoke(CreateUpdateCopyProductRequest $request)
+    public function __invoke(CreateUpdateReplicateProductRequest $request)
     {
         $type = $request->type;
         $parentId = $request->parent_id;
