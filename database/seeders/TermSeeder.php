@@ -87,6 +87,7 @@ class TermSeeder extends Seeder
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
+            throw $exception;
         }
 
         // Taxonomy color
@@ -159,6 +160,7 @@ class TermSeeder extends Seeder
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
+            throw $exception;
         }
 
         // Attach term color to product
@@ -217,7 +219,7 @@ class TermSeeder extends Seeder
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
-            throw ($exception);
+            throw $exception;
         }
 
         try {

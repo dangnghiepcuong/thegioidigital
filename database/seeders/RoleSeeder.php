@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class RoleSeeder extends Seeder
 {
@@ -13,18 +14,23 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::create([
-            'id' => 1,
-            'name' => 'admin',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        
-        Role::create([
-            'id' => 2,
-            'name' => 'user',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        try {
+            Role::create([
+                'id' => 1,
+                'name' => 'admin',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            Role::create([
+                'id' => 2,
+                'name' => 'user',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 }
