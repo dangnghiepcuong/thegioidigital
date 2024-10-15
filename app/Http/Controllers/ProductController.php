@@ -15,6 +15,7 @@ use App\Services\ProductServices\GenerateProductCardListViewService;
 use App\Services\ProductServices\GenerateProductCardViewService;
 use App\Services\ProductServices\GetProductCardViewByDataService;
 use App\Services\ProductServices\GetVariantCardViewBySlugAndTermService;
+use App\Services\ProductServices\PageProductDetailService;
 use App\Services\ProductServices\UpdateProductService;
 use Exception;
 use Illuminate\Http\Request;
@@ -32,10 +33,11 @@ class ProductController extends Controller
         protected ReplicateProductService $replicateProductService,
         protected GenerateProductCardListViewService $generateProductCardListViewService,
         protected GenerateProductCardViewService $generateProductCardViewService,
-        protected GetVariantCardViewBySlugAndTermService $getVariantBySlugAndTermService,
-        protected GetProductCardViewByDataService $getProductCardByDataService,
-        protected PageCreateProductService $createPageProductService,
-        protected PageEditProductService $editPageProductService
+        protected GetVariantCardViewBySlugAndTermService $getVariantCardViewBySlugAndTermService,
+        protected GetProductCardViewByDataService $getProductCardViewByDataService,
+        protected PageCreateProductService $pageCreateProductService,
+        protected PageEditProductService $pageEditProductService,
+        protected PageProductDetailService $pageProductDetailService
     ) {}
 
     public function index()
@@ -105,7 +107,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $view = $this->createPageProductService->__invoke();
+        $view = $this->pageCreateProductService->__invoke();
 
         return $view;
     }
@@ -118,12 +120,14 @@ class ProductController extends Controller
     }
 
     public function show(string $slug) {
+        $view = $this->pageProductDetailService->__invoke($slug);
 
+        return $view;
     }
 
     public function edit(string $slug)
     {
-        $view = $this->editPageProductService->__invoke($slug);
+        $view = $this->pageEditProductService->__invoke($slug);
 
         return $view;
     }
@@ -146,14 +150,14 @@ class ProductController extends Controller
 
     public function getVariantBySlugAndTerm(string $slug)
     {
-        $view = $this->getVariantBySlugAndTermService->__invoke($slug);
+        $view = $this->getVariantCardViewBySlugAndTermService->__invoke($slug);
 
         return $view;
     }
 
     public function getProductCardByData(CreateUpdateReplicateProductRequest $request)
     {
-        $view = $this->getProductCardByDataService->__invoke($request);
+        $view = $this->getProductCardViewByDataService->__invoke($request);
 
         return response()->json(['data' => $view]);
     }

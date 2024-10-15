@@ -13,6 +13,7 @@
     "dependencies": {
         "ckeditor5": "^43.1.0",
         "jquery": "^3.7.1",
-        "lodash": "^4.17.21"
+        "lodash": "^4.17.21",
+        "owl.carousel": "^2.3.4"
     }
 }

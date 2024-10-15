@@ -7,7 +7,6 @@
     @vite($viewsDir . '/components/product/card/index.css')
 @endsection
 @use('App\Enums\ModelMetaKey')
-@use('Illuminate\Support\Facades\DB')
 @section('content')
     @parent
     <!-- Simplicity is the ultimate sophistication. - Leonardo da Vinci -->
