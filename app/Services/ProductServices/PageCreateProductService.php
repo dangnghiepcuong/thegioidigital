@@ -4,15 +4,12 @@ namespace App\Services\ProductServices;
 
 use App\Repositories\Eloquents\TermTaxonomyRepository;
 
-class CreatePageProductService
+class PageCreateProductService
 {
-    protected TermTaxonomyRepository $termTaxonomyRepository;
 
     public function __construct(
-        TermTaxonomyRepository $termTaxonomyRepository
-    ) {
-        $this->termTaxonomyRepository = $termTaxonomyRepository;
-    }
+        protected TermTaxonomyRepository $termTaxonomyRepository
+    ) {}
 
     public function __invoke()
     {

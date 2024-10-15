@@ -11,15 +11,10 @@ use Illuminate\Support\Arr;
 
 class GenerateProductCardViewService
 {
-    protected ProductRepository $productRepository;
-    protected ProductMetaRepository $productMetaRepository;
     public function __construct(
-        ProductRepository $productRepository,
-        ProductMetaRepository $productMetaRepository
-    ) {
-        $this->productRepository = $productRepository;
-        $this->productMetaRepository = $productMetaRepository;
-    }
+        protected ProductRepository $productRepository,
+        protected ProductMetaRepository $productMetaRepository
+    ) {}
 
     /**
      * @param Product $product

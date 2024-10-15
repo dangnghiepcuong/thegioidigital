@@ -9,12 +9,12 @@ use App\Repositories\Eloquents\TermRepository;
 use App\Repositories\Eloquents\TermTaxonomyRepository;
 use App\Services\ProductServices\ReplicateProductService;
 use App\Services\ProductServices\CreateNewProductService;
-use App\Services\ProductServices\CreatePageProductService;
-use App\Services\ProductServices\EditPageProductService;
+use App\Services\ProductServices\PageCreateProductService;
+use App\Services\ProductServices\PageEditProductService;
 use App\Services\ProductServices\GenerateProductCardListViewService;
 use App\Services\ProductServices\GenerateProductCardViewService;
-use App\Services\ProductServices\GetProductCardByDataService;
-use App\Services\ProductServices\GetVariantBySlugAndTermService;
+use App\Services\ProductServices\GetProductCardViewByDataService;
+use App\Services\ProductServices\GetVariantCardViewBySlugAndTermService;
 use App\Services\ProductServices\UpdateProductService;
 use Exception;
 use Illuminate\Http\Request;
@@ -32,10 +32,10 @@ class ProductController extends Controller
         protected ReplicateProductService $replicateProductService,
         protected GenerateProductCardListViewService $generateProductCardListViewService,
         protected GenerateProductCardViewService $generateProductCardViewService,
-        protected GetVariantBySlugAndTermService $getVariantBySlugAndTermService,
-        protected GetProductCardByDataService $getProductCardByDataService,
-        protected CreatePageProductService $createPageProductService,
-        protected EditPageProductService $editPageProductService
+        protected GetVariantCardViewBySlugAndTermService $getVariantBySlugAndTermService,
+        protected GetProductCardViewByDataService $getProductCardByDataService,
+        protected PageCreateProductService $createPageProductService,
+        protected PageEditProductService $editPageProductService
     ) {}
 
     public function index()
@@ -117,7 +117,9 @@ class ProductController extends Controller
         return redirect()->route('admin.products.slug', $newSlug);
     }
 
-    public function show(string $slug) {}
+    public function show(string $slug) {
+
+    }
 
     public function edit(string $slug)
     {
