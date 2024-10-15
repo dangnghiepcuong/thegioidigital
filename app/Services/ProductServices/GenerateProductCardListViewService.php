@@ -28,7 +28,8 @@ class GenerateProductCardListViewService
         $htmlProductCardList = null;
         foreach ($products as $product) {
             $productVariants = $variants->where('parent_id', $product->id) ?? null;
-            $htmlProductCardList .= $this->generateProductCardViewService->__invoke($product, $productVariants, null);
+            $html = $this->generateProductCardViewService->__invoke($product, $productVariants, null);
+            $htmlProductCardList .= $html;
         }
 
         return $htmlProductCardList;

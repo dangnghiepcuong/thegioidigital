@@ -10,7 +10,7 @@
         <select id="form-meta-key">
             @foreach (ModelMetaKey::notShownInCardCases() as $metaKey)
                 @if (str_starts_with($metaKey, 'product_attr_'))
-                    <option value="{{ $metaKey }}">{{ __("product_meta.$metaKey") }}</option>
+                    <option value="{{ $metaKey }}">{{ __("product_meta.$metaKey") . " ($metaKey)" }}</option>
                 @endif
             @endforeach
         </select>
@@ -42,7 +42,7 @@
                 @foreach ($productMeta as $meta)
                     @if (!old($metaKey) && in_array($meta->key, ModelMetaKey::notShownInCardCases()))
                         <tr>
-                            <td class="meta-key">{{ __("product_meta.$meta->key") }}</td>
+                            <td class="meta-key">{{ __("product_meta.$meta->key") . " ($meta->key)" }}</td>
                             <td class="meta-value">
                                 {{ $meta->value }}
                                 <span class="icon material-symbols-outlined btn-remove">close</span>

@@ -13,8 +13,6 @@ use Illuminate\Support\Str;
 
 class UpdateProductService
 {
-    protected ProductRepository $productRepository;
-    protected ProductMetaRepository $productMetaRepository;
     protected $productFieldsCanBeAppliedToVariantsOrSiblings = [
         'type',
         'parent_id',
@@ -46,12 +44,9 @@ class UpdateProductService
     ];
 
     public function __construct(
-        ProductRepository $productRepository,
-        ProductMetaRepository $productMetaRepository
-    ) {
-        $this->productRepository = $productRepository;
-        $this->productMetaRepository = $productMetaRepository;
-    }
+        protected ProductRepository $productRepository,
+        protected ProductMetaRepository $productMetaRepository
+    ) {}
 
 
     public function __invoke(CreateUpdateReplicateProductRequest $request, string $slug)
@@ -121,11 +116,13 @@ class UpdateProductService
                         'key' => $key,
                     ]);
 
-                    $productMeta = $productMeta ? $productMeta->delete() : null;
+                    $productMeta?->$productMeta->delete();
                 }
             }
 
-            $result = !all_null_array($termTaxonomyIds) ? $product->termTaxonomies()->sync($termTaxonomyIds) : $product->termTaxonomies()->sync([]);
+            $result = !all_null_array($termTaxonomyIds) ?
+                $product->termTaxonomies()->syncWithPivotValues($termTaxonomyIds, ['termable_type' => 'product'])
+                : $product->termTaxonomies()->sync([]);
 
             self::applyDataToVariantsAndSiblings($product, $request);
             DB::commit();

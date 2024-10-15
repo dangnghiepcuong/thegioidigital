@@ -13,6 +13,7 @@ use App\Services\ProductServices\CreatePageProductService;
 use App\Services\ProductServices\EditPageProductService;
 use App\Services\ProductServices\GenerateProductCardListViewService;
 use App\Services\ProductServices\GenerateProductCardViewService;
+use App\Services\ProductServices\GetProductCardByDataService;
 use App\Services\ProductServices\GetVariantBySlugAndTermService;
 use App\Services\ProductServices\UpdateProductService;
 use Exception;
@@ -21,47 +22,21 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    protected ProductRepository $productRepository;
-    protected ProductMetaRepository $productMetaRepository;
-    protected TermRepository $termRepository;
-    protected TermTaxonomyRepository $termTaxonomyRepository;
-    protected CreateNewProductService $createNewProductService;
-    protected UpdateProductService $updateProductService;
-    protected ReplicateProductService $replicateProductService;
-    protected GenerateProductCardListViewService $generateProductCardListViewService;
-    protected GenerateProductCardViewService $generateProductCardViewService;
-    protected GetVariantBySlugAndTermService $getVariantBySlugAndTermService;
-    protected UploadImageService $uploadImageService;
-    protected CreatePageProductService $createPageProductService;
-    protected EditPageProductService $editPageProductService;
-
     public function __construct(
-        ProductRepository $productRepository,
-        ProductMetaRepository $productMetaRepository,
-        TermRepository $termRepository,
-        TermTaxonomyRepository $termTaxonomyRepository,
-        CreateNewProductService $createNewProductService,
-        UpdateProductService $updateProductService,
-        ReplicateProductService $replicateProductService,
-        GenerateProductCardListViewService $generateProductCardListViewService,
-        GenerateProductCardViewService $generateProductCardViewService,
-        GetVariantBySlugAndTermService $getVariantBySlugAndTermService,
-        CreatePageProductService $createPageProductService,
-        EditPageProductService $editPageProductService
-    ) {
-        $this->productRepository = $productRepository;
-        $this->productMetaRepository = $productMetaRepository;
-        $this->termRepository = $termRepository;
-        $this->termTaxonomyRepository = $termTaxonomyRepository;
-        $this->createNewProductService = $createNewProductService;
-        $this->updateProductService = $updateProductService;
-        $this->replicateProductService = $replicateProductService;
-        $this->generateProductCardListViewService = $generateProductCardListViewService;
-        $this->generateProductCardViewService = $generateProductCardViewService;
-        $this->getVariantBySlugAndTermService = $getVariantBySlugAndTermService;
-        $this->createPageProductService = $createPageProductService;
-        $this->editPageProductService = $editPageProductService;
-    }
+        protected ProductRepository $productRepository,
+        protected ProductMetaRepository $productMetaRepository,
+        protected TermRepository $termRepository,
+        protected TermTaxonomyRepository $termTaxonomyRepository,
+        protected CreateNewProductService $createNewProductService,
+        protected UpdateProductService $updateProductService,
+        protected ReplicateProductService $replicateProductService,
+        protected GenerateProductCardListViewService $generateProductCardListViewService,
+        protected GenerateProductCardViewService $generateProductCardViewService,
+        protected GetVariantBySlugAndTermService $getVariantBySlugAndTermService,
+        protected GetProductCardByDataService $getProductCardByDataService,
+        protected CreatePageProductService $createPageProductService,
+        protected EditPageProductService $editPageProductService
+    ) {}
 
     public function index()
     {
@@ -172,5 +147,12 @@ class ProductController extends Controller
         $view = $this->getVariantBySlugAndTermService->__invoke($slug);
 
         return $view;
+    }
+
+    public function getProductCardByData(CreateUpdateReplicateProductRequest $request)
+    {
+        $view = $this->getProductCardByDataService->__invoke($request);
+
+        return response()->json(['data' => $view]);
     }
 }
