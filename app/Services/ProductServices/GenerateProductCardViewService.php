@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Repositories\Eloquents\ProductMetaRepository;
 use App\Repositories\Eloquents\ProductRepository;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Arr;
 
 class GenerateProductCardViewService
 {
@@ -20,11 +21,15 @@ class GenerateProductCardViewService
         $this->productMetaRepository = $productMetaRepository;
     }
 
-
-    public function __invoke(Product $product, Collection $variants, Product $parent = null)
+    /**
+     * @param Product $product
+     * @param ?Collection<Product> $variants
+     * @param ?Product $parent
+     */
+    public function __invoke(Product $product, ?Collection $variants, ?Product $parent = null)
     {
         $htmlProductCard = null;
-        if ($variants->count() === 0) {
+        if ($variants && !$variants->count() === 0) {
             $htmlProductCard .= view('components.product.card.index', [
                 'product' => $product,
                 'selectedVariantMeta' => $product->productMetaInCardView,
@@ -32,6 +37,8 @@ class GenerateProductCardViewService
             ])->render();
 
             return $htmlProductCard;
+        } else {
+            $variants = $variants && $variants->count() === 0 ? collect() : $variants;
         }
 
         $isParent = (bool) !$parent;
@@ -46,11 +53,11 @@ class GenerateProductCardViewService
         }
 
         $selectedTermName = $isParent
-        ? null
-        : $product->productMetaInCardViewByKey($selectedTermTaxonomy->taxonomy)->value;
+            ? null
+            : Arr::get($product->productMetaInCardViewByKey(Arr::get($selectedTermTaxonomy, 'taxonomy')), 'value');
 
         $selectedTermTaxonomyVariants = collect();
-        foreach ($parent->termTaxonomies->where('taxonomy', $selectedTermTaxonomy->taxonomy) as $termTaxonomy) {
+        foreach ($parent->termTaxonomies->where('taxonomy', Arr::get($selectedTermTaxonomy, 'taxonomy')) as $termTaxonomy) {
             $variant = $variants
                 ->filter(function ($productVariant) use ($termTaxonomy) {
                     return $productVariant->productMetaInCardView->where('value', $termTaxonomy->term->name)->count();
@@ -65,8 +72,8 @@ class GenerateProductCardViewService
         $selectedVariantMeta = $selectedVariant->productMetaInCardView ?? null;
 
         $htmlVariantOptionSelections = view('components.product.card.variant-option-selections', [
-            'termTaxonomy' => $selectedTermTaxonomy->taxonomy,
-            'termName' => $selectedTermName ?? $selectedTermTaxonomy->term->name,
+            'termTaxonomy' => Arr::get($selectedTermTaxonomy, 'taxonomy'),
+            'termName' => $selectedTermName ?? Arr::get(Arr::get($selectedTermTaxonomy, 'term'), 'name'),
             'termTaxonomyVariants' => $selectedTermTaxonomyVariants,
         ])->render();
 
