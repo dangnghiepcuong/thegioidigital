@@ -112,7 +112,7 @@
             bound-attr="text/html" class="input-field">
     </div>
     <div class="layout-btn-line">
-        <div class="item-btn" id="btn-demo-change">
+        <div class="item-btn btn-demo-change">
             {{ __('button.demo') }}
             <span class="icon material-symbols-outlined">done_all</span>
         </div>

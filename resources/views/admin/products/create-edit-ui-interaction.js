@@ -9,16 +9,6 @@ $(document).ready(function () {
     let height = screen.height;
     $('.layout-editing-sections').css('max-height', height * 0.83)
 
-    // bind data from form inputs to product card
-    $('.demo-attribute').each(function () {
-        let inputElement = $(this).find(':nth-child(2)')
-        if (inputElement[1]) {
-            bindAttribute(inputElement[1], $(`.layout-demo-product .card-product a`))
-        } else {
-            bindAttribute(inputElement, $(`.layout-demo-product .card-product a`))
-        }
-    })
-
     // bind data from hidden input to table term taxonomy
     let ids = $('input[name="term_taxonomy_ids"]').val().split('\n')
     ids.forEach(id => {
@@ -62,16 +52,6 @@ $(document).ready(function () {
         } else {
             bindAttribute(inputElement, $(`.layout-demo-product .card-product a`))
         }
-    })
-    $('#btn-demo-change').click(function () {
-        $('.demo-attribute').each(function () {
-            let inputElement = $(this).find(':nth-child(2)')
-            if (inputElement[1]) {
-                bindAttribute(inputElement[1], $(`.layout-demo-product .card-product a`))
-            } else {
-                bindAttribute(inputElement, $(`.layout-demo-product .card-product a`))
-            }
-        })
     })
 
     $('.demo-attribute-to-table-product-meta').on('click', '.btn-add', function () {
@@ -140,123 +120,6 @@ $(document).ready(function () {
         $('#variants_applied_data').val(value)
     })
 })
-
-function bindAttribute(triggerElement, targetParentElements) {
-    let stack = [
-        'layout-top-tags',
-        'holder-img',
-        'layout-badge',
-        'holder-product-name',
-        'layout-compare-tags',
-        'layout-attribute-options',
-        'layout-regular-price',
-        'layout-price',
-        'layout-gift',
-        'layout-rate',
-    ]
-
-    let layoutClass = $(triggerElement).attr('layout')
-    let element = $(triggerElement).attr('element')
-    let className = $(triggerElement).attr('class-name')
-    let boundAttr = $(triggerElement).attr('bound-attr')
-    let value = $(triggerElement).val()
-    let checkSpaceStr = value.replace(/\s/g, '')
-    if (!_get(checkSpaceStr, 'length')) {
-        $(triggerElement).val(``)
-        value = checkSpaceStr
-    }
-    let defaultValue = $(triggerElement).attr('default-value')
-    let set = $(triggerElement).attr('set')
-
-    if (layoutClass) {
-        targetParentElements.each(function (j, parentElement) {
-            let layoutStr = `<div class="${layoutClass}"></div>`
-            let layoutIndex = stack.findIndex(item => {
-                return item === layoutClass
-            })
-
-            let layoutElement = $(parentElement).find(`.${layoutClass}`)
-            if (!_get(layoutElement, 'length')) {
-                let flag = false
-                for (let i = layoutIndex - 1; i >= 0; i--) {
-                    let nearestAboveElement = $(parentElement).find(`.${stack[i]}`)
-                    if (_get(nearestAboveElement, 'length')) {
-                        flag = true
-                        nearestAboveElement.after(layoutStr)
-                        break
-                    }
-                }
-                if (!flag) {
-                    $(parentElement).prepend(layoutStr)
-                }
-            }
-            layoutElement = $(parentElement).find(`.${layoutClass}`)
-
-            if (!value) {
-                switch (set) {
-                    case 'append-once':
-                        let find = layoutElement.find(`${element}[class="${className}"]`)
-                        find.remove()
-                        if (layoutElement.is(':empty')) {
-                            layoutElement.remove()
-                        }
-                        break
-                    default:
-                        layoutElement.remove()
-                }
-                return
-            }
-
-            if (element === undefined) {
-                layoutElement.attr(boundAttr, `${defaultValue} ${value}`)
-                return
-            }
-
-            let elementStr = ``
-            switch (element) {
-                case 'img':
-                    elementStr = `<${element} class="${className}" />`
-                    break
-                case 'span':
-                default:
-                    elementStr = `<${element} class="${className}"></${element}>`
-            }
-
-            switch (set) {
-                case 'append-once':
-                    let find = layoutElement.find(`${element}[class="${className}"]`)
-                    if (_get(find, 'length')) {
-                        find.remove()
-                    }
-                    layoutElement.append(elementStr)
-                    break
-                case 'line-separated':
-                    layoutElement.html(``)
-                    let lines = value.split('\n')
-                    lines.forEach(line => {
-                        if (!line) {
-                            return
-                        }
-                        elementStr = `<${element} class="${className}">${line}</${element}>`
-                        layoutElement.append(elementStr)
-                    });
-                    break
-                default:
-                    layoutElement.html(elementStr)
-            }
-
-            switch (boundAttr) {
-                case 'text/html':
-                    layoutElement.find(`${element}[class="${className}"]`).html(value)
-                    break
-                case 'multiple-text/html':
-                    break
-                default:
-                    layoutElement.find(`${element}[class="${className}"]`).attr(boundAttr, value)
-            }
-        })
-    }
-}
 
 function bindAttributeToTableProductMeta(metaKey, metaValue, targetTbodyElement) {
     let checkSpaceStr = metaValue.val().replace(/\s/g, '')

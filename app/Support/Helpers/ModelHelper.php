@@ -36,5 +36,9 @@ function get_property($object, $property)
         return null;
     }
 
-    return strval($object->$property);
+    if (isset($object->$property)) {
+        return strval($object->$property);
+    }
+
+    return null;
 }

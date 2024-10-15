@@ -70,3 +70,9 @@
         @endforeach
     </div>
 </div>
+<div class="layout-btn-line">
+    <div class="item-btn btn-demo-change">
+        {{ __('button.demo') }}
+        <span class="icon material-symbols-outlined">done_all</span>
+    </div>
+</div>

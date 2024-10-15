@@ -18,7 +18,9 @@
                 @include('admin.products.partials.section-basic-info', ['productMeta' => null])
                 @include('admin.products.partials.section-description', ['product' => null])
                 @include('admin.products.partials.section-meta-data', ['productMeta' => null])
-                @include('admin.products.partials.section-term-taxonomy', ['productTermTaxonomies' => null])
+                @include('admin.products.partials.section-term-taxonomy', [
+                    'productTermTaxonomies' => null,
+                ])
             </form>
         </div>
         <div class="layout-demo-product">
@@ -33,10 +35,12 @@
                     </div>
                 </div>
             </div>
-            @foreach ($errors->all() as $error)
-                <span class="error">{{ $error }}</span>
-                <br>
-            @endforeach
+            <div class="layout-errors">
+                @foreach ($errors->all() as $error)
+                    <span class="error">{{ $error }}</span>
+                    <br>
+                @endforeach
+            </div>
         </div>
     </div>
     @include('admin.products.partials.popup-demo-description', ['product' => null])

@@ -17,7 +17,7 @@ class TermTaxonomy extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'term_relationships', 'termable_id', 'term_taxonomy_id')
+        return $this->belongsToMany(Product::class, 'term_relationships', 'term_taxonomy_id', 'termable_id')
             ->withTimestamps();
     }
 

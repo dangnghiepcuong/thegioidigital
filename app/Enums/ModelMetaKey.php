@@ -2,10 +2,12 @@
 
 namespace App\Enums;
 
-use ReflectionClass;
+use App\Support\Traits\EnumAccessTrait;
 
 class ModelMetaKey
 {
+    use EnumAccessTrait;
+
     public const USER_PERMISSIONS = 'user_permissions';
     public const BACK_CAMERA = 'product_attr_back_camera';
     public const BADGE = 'product_attr_badge';
@@ -30,26 +32,6 @@ class ModelMetaKey
     public const THUMB_URL = 'product_attr_thumb_url';
     public const TOP_RIGHT_STAMP_URL = 'product_attr_top_right_stamp_url';
     public const TOP_TAGS = 'product_attr_top_tags';
-
-    private static function getConstants()
-    {
-        $oClass = new ReflectionClass(self::class);
-
-        return $oClass->getConstants();
-    }
-
-    public static function allCases()
-    {
-        $consts = self::getConstants();
-        $array = [];
-        foreach ($consts as $properties => $value) {
-            array_push($array, $value);
-        }
-
-        natcasesort($array);
-
-        return $array;
-    }
 
     public static function notShownInCardCases()
     {

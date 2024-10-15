@@ -47,10 +47,12 @@
                     </div>
                 </div>
             </div>
-            @foreach ($errors->all() as $error)
-                <span class="error">{{ $error }}</span>
-                <br>
-            @endforeach
+            <div class="layout-errors">
+                @foreach ($errors->all() as $error)
+                    <span class="error">{{ $error }}</span>
+                    <br>
+                @endforeach
+            </div>
         </div>
     </div>
     @include('admin.products.partials.popup-demo-description')

@@ -23,7 +23,6 @@ class DtddXiaomiSeeder extends Seeder
      */
     public function run(): void
     {
-        // VARIANT 8-128-vang
         try {
             DB::beginTransaction();
             // Parent model
@@ -31,16 +30,24 @@ class DtddXiaomiSeeder extends Seeder
                 'title' => 'Xiaomi Redmi Note 13',
                 'type' => ProductTypeEnum::DTDD,
                 'parent_id' => null,
-                'status' => 'in stock',
-                'url' => Str::slug('Xiaomi Redmi Note 13'),
+                'status' => 'in_stock',
+                'slug' => Str::slug('Xiaomi Redmi Note 13'),
             ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        // VARIANT 8-128-vang
+        try {
+            DB::beginTransaction();
 
             $xiaomiRedmiNote13_8_128 = $this->productRepository->model()->firstOrCreate([
                 'title' => 'Xiaomi Redmi Note 13 8GB/128GB',
                 'type' => ProductTypeEnum::DTDD,
                 'parent_id' => $xiaomiRedmiNote13->id,
-                'status' => 'in stock',
-                'url' => Str::slug('Xiaomi Redmi Note 13 8GB 128GB mau vang'),
+                'status' => 'in_stock',
+                'slug' => Str::slug('Xiaomi Redmi Note 13 8GB 128GB mau vang'),
             ]);
 
             // MEMORY
@@ -165,6 +172,7 @@ class DtddXiaomiSeeder extends Seeder
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
+            throw $exception;
         }
 
         // VARIANT 8-128-den
@@ -174,8 +182,8 @@ class DtddXiaomiSeeder extends Seeder
                 'title' => 'Xiaomi Redmi Note 13 8GB/128GB',
                 'type' => ProductTypeEnum::DTDD,
                 'parent_id' => $xiaomiRedmiNote13->id,
-                'status' => 'in stock',
-                'url' => Str::slug('Xiaomi Redmi Note 13 8GB 128GB mau den'),
+                'status' => 'in_stock',
+                'slug' => Str::slug('Xiaomi Redmi Note 13 8GB 128GB mau den'),
             ]);
 
             // MEMORY
@@ -294,6 +302,7 @@ class DtddXiaomiSeeder extends Seeder
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
+            throw $exception;
         }
 
         // VARIANT 8-128-xanh-la
@@ -303,8 +312,8 @@ class DtddXiaomiSeeder extends Seeder
                 'title' => 'Xiaomi Redmi Note 13 8GB/128GB',
                 'type' => ProductTypeEnum::DTDD,
                 'parent_id' => $xiaomiRedmiNote13->id,
-                'status' => 'in stock',
-                'url' => Str::slug('Xiaomi Redmi Note 13 8GB 128GB mau xanh la'),
+                'status' => 'in_stock',
+                'slug' => Str::slug('Xiaomi Redmi Note 13 8GB 128GB mau xanh la'),
             ]);
 
             // MEMORY
@@ -422,6 +431,7 @@ class DtddXiaomiSeeder extends Seeder
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
+            throw $exception;
         }
 
         // VARIANT 6-128-den
@@ -431,8 +441,8 @@ class DtddXiaomiSeeder extends Seeder
                 'title' => 'Xiaomi Redmi Note 13 6GB/128GB',
                 'type' => ProductTypeEnum::DTDD,
                 'parent_id' => $xiaomiRedmiNote13->id,
-                'status' => 'in stock',
-                'url' => Str::slug('Xiaomi Redmi Note 13 6GB 128GB mau den'),
+                'status' => 'in_stock',
+                'slug' => Str::slug('Xiaomi Redmi Note 13 6GB 128GB mau den'),
             ]);
 
             // MEMORY
@@ -454,9 +464,9 @@ class DtddXiaomiSeeder extends Seeder
                 ->firstOrCreate(
                     ['key' => ModelMetaKey::BADGE],
                     ['value' => serialize([
-                        'icon' => 'https://cdn.tgdd.vn/2020/10/content/icon4-50x50.png',
-                        'bg' => 'bg3',
-                        'text' => 'Đổi 4G tặng 480K',
+                        'product_attr_badge_icon' => 'https://cdn.tgdd.vn/2020/10/content/icon4-50x50.png',
+                        'product_attr_badge_background' => 'bg3',
+                        'product_attr_badge_text' => 'Đổi 4G tặng 480K',
                     ])]
                 );
 
@@ -561,6 +571,7 @@ class DtddXiaomiSeeder extends Seeder
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
+            throw $exception;
         }
 
         // VARIANT 6-128-xanh-la
@@ -570,8 +581,8 @@ class DtddXiaomiSeeder extends Seeder
                 'title' => 'Xiaomi Redmi Note 13 6GB/128GB',
                 'type' => ProductTypeEnum::DTDD,
                 'parent_id' => $xiaomiRedmiNote13->id,
-                'status' => 'in stock',
-                'url' => Str::slug('Xiaomi Redmi Note 13 6GB 128GB mau xanh la'),
+                'status' => 'in_stock',
+                'slug' => Str::slug('Xiaomi Redmi Note 13 6GB 128GB mau xanh la'),
             ]);
 
             // MEMORY
@@ -593,9 +604,9 @@ class DtddXiaomiSeeder extends Seeder
                 ->firstOrCreate(
                     ['key' => ModelMetaKey::BADGE],
                     ['value' => serialize([
-                        'icon' => 'https://cdn.tgdd.vn/2020/10/content/icon4-50x50.png',
-                        'bg' => 'bg3',
-                        'text' => 'Đổi 4G tặng 480K',
+                        'product_attr_badge_icon' => 'https://cdn.tgdd.vn/2020/10/content/icon4-50x50.png',
+                        'product_attr_badge_background' => 'bg3',
+                        'product_attr_badge_text' => 'Đổi 4G tặng 480K',
                     ])]
                 );
 
@@ -700,6 +711,7 @@ class DtddXiaomiSeeder extends Seeder
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
+            throw $exception;
         }
 
         // VARIANT 8-256-xanh-la
@@ -709,8 +721,8 @@ class DtddXiaomiSeeder extends Seeder
                 'title' => 'Xiaomi Redmi Note 13 8GB/256GB',
                 'type' => ProductTypeEnum::DTDD,
                 'parent_id' => $xiaomiRedmiNote13->id,
-                'status' => 'in stock',
-                'url' => Str::slug('Xiaomi Redmi Note 13 8GB 256GB mau xanh la'),
+                'status' => 'in_stock',
+                'slug' => Str::slug('Xiaomi Redmi Note 13 8GB 256GB mau xanh la'),
             ]);
 
             // MEMORY
@@ -828,6 +840,7 @@ class DtddXiaomiSeeder extends Seeder
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
+            throw $exception;
         }
 
         // VARIANT 8-256-vang
@@ -837,8 +850,8 @@ class DtddXiaomiSeeder extends Seeder
                 'title' => 'Xiaomi Redmi Note 13 8GB/256GB',
                 'type' => ProductTypeEnum::DTDD,
                 'parent_id' => $xiaomiRedmiNote13->id,
-                'status' => 'in stock',
-                'url' => Str::slug('Xiaomi Redmi Note 13 8GB 256GB mau vang'),
+                'status' => 'in_stock',
+                'slug' => Str::slug('Xiaomi Redmi Note 13 8GB 256GB mau vang'),
             ]);
 
             // MEMORY
@@ -956,6 +969,7 @@ class DtddXiaomiSeeder extends Seeder
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
+            throw $exception;
         }
 
         // VARIANT 8-256-den
@@ -965,8 +979,8 @@ class DtddXiaomiSeeder extends Seeder
                 'title' => 'Xiaomi Redmi Note 13 8GB/256GB',
                 'type' => ProductTypeEnum::DTDD,
                 'parent_id' => $xiaomiRedmiNote13->id,
-                'status' => 'in stock',
-                'url' => Str::slug('Xiaomi Redmi Note 13 8GB 256GB mau den'),
+                'status' => 'in_stock',
+                'slug' => Str::slug('Xiaomi Redmi Note 13 8GB 256GB mau den'),
             ]);
 
             // MEMORY
@@ -1084,6 +1098,7 @@ class DtddXiaomiSeeder extends Seeder
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
+            throw $exception;
         }
     }
 }

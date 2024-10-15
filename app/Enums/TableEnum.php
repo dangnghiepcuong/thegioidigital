@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Enums;
-
-use Attribute;
-use ReflectionClass;
+use App\Support\Traits\EnumAccessTrait;
 
 final class TableEnum
 {
+    use EnumAccessTrait;
+
     const ATTRIBUTE = 'attributes';
     const ATTRIBUTE_VALUES = 'attribute_values';
     const LIKES = 'likes';
@@ -23,22 +23,4 @@ final class TableEnum
     const TERM_TAXONOMIES = 'term_taxonomies';
     const USERS = 'users';
     const USER_META = 'user_meta';
-
-    private static function getConstants()
-    {
-        $oClass = new ReflectionClass(self::class);
-
-        return $oClass->getConstants();
-    }
-
-    public static function allCases()
-    {
-        $consts = self::getConstants();
-        $array = [];
-        foreach ($consts as $properties => $value) {
-            array_push($array, $value);
-        }
-
-        return $array;
-    }
 }
