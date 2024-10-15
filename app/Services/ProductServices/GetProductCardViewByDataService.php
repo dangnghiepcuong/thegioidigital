@@ -9,7 +9,7 @@ use App\Models\ProductMeta;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-class GetProductCardByDataService
+class GetProductCardViewByDataService
 {
     public function __construct(
         protected GenerateProductCardViewService $generateProductCardViewService
