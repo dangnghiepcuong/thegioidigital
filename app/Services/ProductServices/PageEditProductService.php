@@ -7,18 +7,12 @@ use App\Repositories\Eloquents\TermTaxonomyRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-class EditPageProductService
+class PageEditProductService
 {
-    protected ProductRepository $productRepository;
-    protected TermTaxonomyRepository $termTaxonomyRepository;
-
     public function __construct(
-        ProductRepository $productRepository,
-        TermTaxonomyRepository $termTaxonomyRepository
-    ) {
-        $this->productRepository = $productRepository;
-        $this->termTaxonomyRepository = $termTaxonomyRepository;
-    }
+        protected ProductRepository $productRepository,
+        protected TermTaxonomyRepository $termTaxonomyRepository
+    ) {}
 
     public function __invoke(string $slug)
     {

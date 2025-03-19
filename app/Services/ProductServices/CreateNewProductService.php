@@ -12,8 +12,6 @@ use Illuminate\Support\Str;
 
 class CreateNewProductService
 {
-    protected ProductRepository $productRepository;
-    protected ProductMetaRepository $productMetaRepository;
     protected $autoFillData = [
         ModelMetaKey::THUMB_URL,
         ModelMetaKey::BOTTOM_LEFT_STAMP_URL,
@@ -37,12 +35,9 @@ class CreateNewProductService
     ];
 
     public function __construct(
-        ProductRepository $productRepository,
-        ProductMetaRepository $productMetaRepository
-    ) {
-        $this->productRepository = $productRepository;
-        $this->productMetaRepository = $productMetaRepository;
-    }
+        protected ProductRepository $productRepository,
+        protected ProductMetaRepository $productMetaRepository
+    ) {}
 
 
     public function __invoke(CreateUpdateReplicateProductRequest $request)
@@ -110,7 +105,7 @@ class CreateNewProductService
             return $product->slug;
         } catch (Exception $exception) {
             DB::rollBack();
-            throw ($exception);
+            throw $exception;
         }
     }
 }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class RolePermissionSeeder extends Seeder
 {
@@ -13,9 +14,16 @@ class RolePermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        $permissionIds = Permission::pluck('id');
+        try {
+            DB::beginTransaction();
+            $permissionIds = Permission::pluck('id');
 
-        $roleAdmin = Role::where('name', 'admin')->first();
-        $roleAdmin->permissions()->attach($permissionIds);
+            $roleAdmin = Role::where('name', 'admin')->first();
+            $roleAdmin->permissions()->attach($permissionIds);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 }

@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Enums;
+use App\Support\Traits\EnumAccessTrait;
 
-use ReflectionClass;
 
 final class ProductTypeEnum
 {
+    use EnumAccessTrait;
+
     const DTDD = 'dtdd';
     const LAPTOP = 'laptop';
     const TABLET = 'tablet';
@@ -16,22 +18,4 @@ final class ProductTypeEnum
     const PRINTER = 'printer';
     const SIM = 'sim';
     const CARD = 'card';
-
-    private static function getConstants()
-    {
-        $oClass = new ReflectionClass(self::class);
-
-        return $oClass->getConstants();
-    }
-
-    public static function allCases()
-    {
-        $consts = self::getConstants();
-        $array = [];
-        foreach ($consts as $properties => $value) {
-            array_push($array, $value);
-        }
-
-        return $array;
-    }
 }

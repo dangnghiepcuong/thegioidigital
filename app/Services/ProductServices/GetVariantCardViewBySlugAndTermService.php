@@ -7,21 +7,13 @@ use App\Repositories\Eloquents\TermTaxonomyRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-class GetVariantBySlugAndTermService
+class GetVariantCardViewBySlugAndTermService
 {
-    protected ProductRepository $productRepository;
-    protected TermTaxonomyRepository $termTaxonomyRepository;
-    protected GenerateProductCardViewService $generateProductCardViewService;
-
     public function __construct(
-        ProductRepository $productRepository,
-        TermTaxonomyRepository $termTaxonomyRepository,
-        GenerateProductCardViewService $generateProductCardViewService
-    ) {
-        $this->productRepository = $productRepository;
-        $this->termTaxonomyRepository = $termTaxonomyRepository;
-        $this->generateProductCardViewService = $generateProductCardViewService;
-    }
+        protected ProductRepository $productRepository,
+        protected TermTaxonomyRepository $termTaxonomyRepository,
+        protected GenerateProductCardViewService $generateProductCardViewService
+    ) {}
 
     public function __invoke(string $slug)
     {
