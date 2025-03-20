@@ -45,7 +45,7 @@
         <label for="form-badge-icon">{{ __('product_meta.product_attr_badge_icon_url') }}</label>
         <input name="product_attr_badge_icon_url"
             value="{{ old('product_attr_badge_icon_url') ?? isset(get_meta($productMeta, ModelMetaKey::BADGE)->value)
-                ? unserialize(get_meta($productMeta, ModelMetaKey::BADGE)->value)['product_attr_badge_icon_url']
+                ? unserialize(get_meta($productMeta, ModelMetaKey::BADGE)->value)['product_attr_badge_icon_url'] ?? null
                 : null }}"
             type="text" id="form-badge-icon" layout="layout-badge" element="img" class-name="badge" bound-attr="src"
             set="append-once" class="input-field">
