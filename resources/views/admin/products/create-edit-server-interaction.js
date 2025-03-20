@@ -1,8 +1,11 @@
 import { fetchAsyncData } from "/resources/js/fetch";
-import _get from "lodash/get";
+import _get from 'lodash/get';
+import $ from 'jquery';
+window.jQuery = $;
+export default $;
 
 $(document).ready(async function () {
-    getProductCard()
+    await getProductCard()
     $(".btn-demo-change").click(function () {
         getProductCard()
     });
