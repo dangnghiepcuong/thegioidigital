@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             AdminMetaDataPermissionsSeeder::class,
             TermSeeder::class,
             PermissionSeeder::class,
+            DtddXiaomiSeeder::class,
         ]);
     }
 }
