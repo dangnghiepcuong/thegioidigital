@@ -1,3 +1,4 @@
+<!-- Always remember that you are absolutely unique. Just like everyone else. - Margaret Mead -->
 @use('App\Enums\ModelMetaKey')
 
 <div class="section" for="layout-variants">
@@ -40,28 +41,28 @@
         <div class="applied-data-field">
             <input type="checkbox" id="variants_top_tags" name="variants_top_tags" value="{{ ModelMetaKey::TOP_TAGS }}">
             <label for="variants_top_tags"
-                class="applied-data-label">{{ __('product_meta.product_attr_top_tags') }}</label>
+                   class="applied-data-label">{{ __('product_meta.product_attr_top_tags') }}</label>
         </div>
 
         <div class="applied-data-field">
             <input type="checkbox" id="variants_thumb_url" name="variants_thumb_url"
-                value="{{ ModelMetaKey::THUMB_URL }}">
+                   value="{{ ModelMetaKey::THUMB_URL }}">
             <label for="variants_thumb_url"
-                class="applied-data-label">{{ __('product_meta.product_attr_thumb_url') }}</label>
+                   class="applied-data-label">{{ __('product_meta.product_attr_thumb_url') }}</label>
         </div>
 
         <div class="applied-data-field">
             <input type="checkbox" id="variants_bottom_left_stamp_url" name="variants_bottom_left_stamp_url"
-                value="{{ ModelMetaKey::BOTTOM_LEFT_STAMP_URL }}">
+                   value="{{ ModelMetaKey::BOTTOM_LEFT_STAMP_URL }}">
             <label for="variants_bottom_left_stamp_url"
-                class="applied-data-label">{{ __('product_meta.product_attr_bottom_left_stamp_url') }}</label>
+                   class="applied-data-label">{{ __('product_meta.product_attr_bottom_left_stamp_url') }}</label>
         </div>
 
         <div class="applied-data-field">
             <input type="checkbox" id="variants_top_right_stamp_url" name="variants_top_right_stamp_url"
-                value="{{ ModelMetaKey::TOP_RIGHT_STAMP_URL }}">
+                   value="{{ ModelMetaKey::TOP_RIGHT_STAMP_URL }}">
             <label for="variants_top_right_stamp_url"
-                class="applied-data-label">{{ __('product_meta.product_attr_top_right_stamp_url') }}</label>
+                   class="applied-data-label">{{ __('product_meta.product_attr_top_right_stamp_url') }}</label>
         </div>
 
         <div class="applied-data-field">
@@ -71,16 +72,16 @@
 
         <div class="applied-data-field">
             <input type="checkbox" id="variants_compare_tags" name="variants_compare_tags"
-                value="{{ ModelMetaKey::COMPARE_TAGS }}">
+                   value="{{ ModelMetaKey::COMPARE_TAGS }}">
             <label for="variants_compare_tags"
-                class="applied-data-label">{{ __('product_meta.product_attr_compare_tags') }}</label>
+                   class="applied-data-label">{{ __('product_meta.product_attr_compare_tags') }}</label>
         </div>
 
         <div class="applied-data-field">
             <input type="checkbox" id="variants_regular_price" name="variants_regular_price"
-                value="{{ ModelMetaKey::REGULAR_PRICE }}">
+                   value="{{ ModelMetaKey::REGULAR_PRICE }}">
             <label for="variants_regular_price"
-                class="applied-data-label">{{ __('product_meta.product_attr_regular_price') }}</label>
+                   class="applied-data-label">{{ __('product_meta.product_attr_regular_price') }}</label>
         </div>
 
         <div class="applied-data-field">
@@ -112,7 +113,10 @@
                 <div class="layout-checkbox">
                     <input type="checkbox" name="{{ $variant->slug }}" value="true" class="checkbox-variant">
                 </div>
-                <x-product.card.index :product="$variant" :selected-variant-meta="$variant->productMetaInCardView ?? null" :url="route('admin.products.slug', $variant->slug ?? '')" />
+                <x-product.card.index
+                    :product="$variant"
+                    :selected-variant-meta="$variant->productMetaInCardView ?? null"
+                    :url="route('admin.products.slug', $variant->slug ?? '')"/>
             </div>
         @endforeach
     </x-product.list.index>
