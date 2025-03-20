@@ -5,7 +5,6 @@ window.jQuery = $;
 export default $;
 
 $(document).ready(async function () {
-    await getProductCard()
     $(".btn-demo-change").click(function () {
         getProductCard()
     });
@@ -45,7 +44,7 @@ $(document).ready(async function () {
         $('input[name="description"]').val(
             window.productDescriptionEditor.getData()
         );
-        $("#form-update-product").submit();
+        $("#form-create-update-product").submit();
     });
     $("#btn-submit-form-replicate-product").on("click", function () {
         $("#form-replicate-product").submit();
@@ -53,7 +52,7 @@ $(document).ready(async function () {
 });
 
 async function getProductCard() {
-    let form = $("#form-update-product");
+    let form = $("#form-create-update-product");
     try {
         const { data } = await fetchAsyncData({
             url: "/admin/products/card-view",

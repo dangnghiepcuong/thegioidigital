@@ -1,5 +1,8 @@
 import { fetchAsyncData } from '/resources/js/fetch'
 import _get from 'lodash/get'
+import $ from 'jquery';
+window.jQuery = $;
+export default $;
 
 $(document).ready(function () {
     $('#input-file-upload').change(async function () {
