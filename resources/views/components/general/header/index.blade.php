@@ -55,10 +55,10 @@
                 @if (auth()->user())
                     <span>
                         Đơn hàng
-                        <strong class="customer-name">{{ auth()->user()->first_name }}</strong>
+                        <strong class="customer-name">{{ auth()->user()->first_name ?? null }}</strong>
                     </span>
                 @else
-                    <span v-else>Tài khoản & Đơn hàng</span>
+                    <span>Tài khoản & Đơn hàng</span>
                 @endif
             </a>
             <a class="btn-link cart">
@@ -89,7 +89,7 @@
         </div>
     </div>
 </div>
-<x-general.popup.location-select.index />
+<x-general.popup.location-select.index :locations="$locations ?? null"/>
 @push('scripts')
     @vite($viewsDir . '/components/general/header/index.js')
 @endPush
