@@ -28,6 +28,9 @@ import {
 import 'ckeditor5/ckeditor5.css';
 import { popupPanel } from '/resources/js/animation';
 window.popupPanel = popupPanel;
+import $ from 'jquery';
+window.jQuery = $;
+export default $;
 
 $(document).ready(async function () {
     let productId = $('#product-id').val()

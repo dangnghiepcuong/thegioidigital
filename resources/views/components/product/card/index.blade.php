@@ -25,8 +25,8 @@
             <div
                 class="layout-badge {{ unserialize(get_meta($selectedVariantMeta, ModelMetaKey::BADGE)->value)['product_attr_badge_background'] }}">
                 <img class="badge"
-                    alt="{{ unserialize(get_meta($selectedVariantMeta, ModelMetaKey::BADGE)->value)['product_attr_badge_text'] }}"
-                    src="{{ unserialize(get_meta($selectedVariantMeta, ModelMetaKey::BADGE)->value)['product_attr_badge_icon_url'] }}">
+                    alt="{{ unserialize(get_meta($selectedVariantMeta, ModelMetaKey::BADGE)->value)['product_attr_badge_text'] ?? null }}"
+                    src="{{ unserialize(get_meta($selectedVariantMeta, ModelMetaKey::BADGE)->value)['product_attr_badge_icon_url'] ?? null }}">
                 <span
                     class="badge-text">{{ unserialize(get_meta($selectedVariantMeta, ModelMetaKey::BADGE)->value)['product_attr_badge_text'] }}</span>
             </div>
@@ -40,9 +40,11 @@
 
         @isset(get_meta($selectedVariantMeta, ModelMetaKey::COMPARE_TAGS)->value)
             <div class="layout-compare-tags">
-                @foreach (unserialize(get_meta($selectedVariantMeta, ModelMetaKey::COMPARE_TAGS)->value) as $compareTag)
-                    <span class="compare-tag">{{ $compareTag }}</span>
-                @endforeach
+                @isset(get_meta($selectedVariantMeta, ModelMetaKey::TOP_TAGS)->value)
+                    @foreach (unserialize(get_meta($selectedVariantMeta, ModelMetaKey::COMPARE_TAGS)->value) as $compareTag)
+                        <span class="compare-tag">{{ $compareTag }}</span>
+                    @endforeach
+                @endisset
             </div>
         @endisset
 
