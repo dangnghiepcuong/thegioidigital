@@ -2,11 +2,11 @@ import $ from 'jquery';
 window.jQuery = $;
 export default $;
 
-import { fetchAsyncData, getMeta } from '/resources/js/fetch';
-import _get from 'lodash/get'
+import { fetchAsyncData } from '/resources/js/fetch';
 
 $(document).ready(function () {
-    $('.layout-list-product').on('click', '.card-product a', async function (event) {
+    $('.layout-list-product').on('click', '.card-product .layout-attribute-options', async function (event) {
+        let url = $(event.target).attr('data-link')
         let slug = $(event.target).attr('data-slug')
         let termName = $(event.target).attr('data-term-name')
         let taxonomy = $(event.target).attr('data-taxonomy')
@@ -21,13 +21,13 @@ $(document).ready(function () {
 
         try {
             const html = await fetchAsyncData({
-                url: `/dtdd/product-variant/${slug}`,
+                url: url,
                 cache: false,
                 method: 'GET',
                 data: { term_name: termName, taxonomy: taxonomy }
             })
 
-            $(this).parent().replaceWith(html)
+            $(this).closest('.card-product').replaceWith(html)
         } catch (error) {
             console.log(error)
             throw (error)

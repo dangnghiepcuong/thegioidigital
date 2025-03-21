@@ -14,7 +14,7 @@ use App\Services\ProductServices\PageEditProductService;
 use App\Services\ProductServices\GenerateProductCardListViewService;
 use App\Services\ProductServices\GenerateProductCardViewService;
 use App\Services\ProductServices\GetProductCardViewByDataService;
-use App\Services\ProductServices\GetVariantCardViewBySlugAndTermService;
+use App\Services\ProductServices\GetVariantCardViewBySlugService;
 use App\Services\ProductServices\UpdateProductService;
 use Exception;
 use Illuminate\Http\Request;
@@ -23,19 +23,19 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     public function __construct(
-        protected ProductRepository $productRepository,
-        protected ProductMetaRepository $productMetaRepository,
-        protected TermRepository $termRepository,
-        protected TermTaxonomyRepository $termTaxonomyRepository,
-        protected CreateNewProductService $createNewProductService,
-        protected UpdateProductService $updateProductService,
-        protected ReplicateProductService $replicateProductService,
+        protected ProductRepository                  $productRepository,
+        protected ProductMetaRepository              $productMetaRepository,
+        protected TermRepository                     $termRepository,
+        protected TermTaxonomyRepository             $termTaxonomyRepository,
+        protected CreateNewProductService            $createNewProductService,
+        protected UpdateProductService               $updateProductService,
+        protected ReplicateProductService            $replicateProductService,
         protected GenerateProductCardListViewService $generateProductCardListViewService,
-        protected GenerateProductCardViewService $generateProductCardViewService,
-        protected GetVariantCardViewBySlugAndTermService $getVariantBySlugAndTermService,
-        protected GetProductCardViewByDataService $getProductCardByDataService,
-        protected PageCreateProductService $createPageProductService,
-        protected PageEditProductService $editPageProductService
+        protected GenerateProductCardViewService     $generateProductCardViewService,
+        protected GetVariantCardViewBySlugService    $getVariantBySlugService,
+        protected GetProductCardViewByDataService    $getProductCardByDataService,
+        protected PageCreateProductService           $createPageProductService,
+        protected PageEditProductService             $editPageProductService
     ) {}
 
     public function index()
@@ -140,11 +140,18 @@ class ProductController extends Controller
         return redirect()->route('admin.products.slug', $newSlug);
     }
 
-    public function getVariantBySlugAndTerm(string $slug)
+    public function getVariantBySlug(string $slug)
     {
-        $view = $this->getVariantBySlugAndTermService->__invoke($slug);
+        try {
+            DB::beginTransaction();
+            $view = $this->getVariantBySlugService->__invoke($slug);
+            DB::commit();
 
-        return $view;
+            return $view;
+        } catch (Exception $exception) {
+            DB::rollBack();
+            throw $exception;
+        }
     }
 
     public function getProductCardByData(Request $request)

@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\Blade;
 
 class RenderProductCardViewWithDefaultVariantOptionService
 {
-    public function __invoke(Product $product, Collection $termsOfFirstPriorTaxonomy, Collection $representVariants)
+    public function __invoke(
+        Product $product,
+        Collection $termsOfFirstPriorTaxonomy,
+        Collection $representVariants
+    ): string
     {
         // if there is no taxonomy term & represent variant, this is a standalone product
         $isStandaloneProduct = $representVariants->count() === 0 && $termsOfFirstPriorTaxonomy->count() === 0;
@@ -34,7 +38,7 @@ class RenderProductCardViewWithDefaultVariantOptionService
         </x-product.card.index>', [
             'product' => $presentProduct,
             'selectedVariantMeta' => $presentMeta ?? null,
-            'url' => route('products.dtdd.slug', $representVariants->first()->slug ?? ''),
+            'url' => route('products.dtdd.slug', $presentProduct->slug ?? ''),
         ]);
 
         return $htmlProductCardView;
