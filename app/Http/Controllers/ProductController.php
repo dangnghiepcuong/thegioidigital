@@ -72,11 +72,7 @@ class ProductController extends Controller
                 ]);
             }
 
-            $variants = $this->productRepository->model()->whereIn('parent_id', $products->pluck('id'))
-                ->with(['productMetaInCardView'])
-                ->get();
-
-            $htmlProductCardList = $this->generateProductCardListViewService->__invoke($products, $variants);
+            $htmlProductCardList = $this->generateProductCardListViewService->__invoke($products);
 
             DB::commit();
 
