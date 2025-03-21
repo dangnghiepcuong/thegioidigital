@@ -6,6 +6,7 @@ use App\Enums\ModelMetaKey;
 use App\Models\Product;
 use App\Models\ProductMeta;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,7 +22,7 @@ class GetProductCardViewByDataService
             DB::beginTransaction();
             $product = Product::newModelInstance($request->all());
 
-            $productMeta = collect();
+            $productMeta = new Collection();
             foreach ($request->all() as $property => $value) {
                 if (in_array($property, ModelMetaKey::inProductCardView()) && $value != null) {
                     if (in_array($property, ModelMetaKey::serializedData())) {
