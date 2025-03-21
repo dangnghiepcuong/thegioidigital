@@ -9,6 +9,7 @@
                     get_meta_value($termTaxonomyVariant->productMetaInCardView, $termTaxonomy) ===
                     $termName,
             ])
+                data-link="{{ route('product.get.variant-card', ['slug' => $termTaxonomyVariant->slug]) }}"
             data-term-name="{{ get_meta_value($termTaxonomyVariant->productMetaInCardView, $termTaxonomy) }}"
                   data-taxonomy="{{ $termTaxonomy }}">
                 {{ get_meta_value($termTaxonomyVariant->productMetaInCardView, $termTaxonomy) }}
