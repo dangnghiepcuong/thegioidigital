@@ -3,85 +3,71 @@
     <!-- The whole future lies in uncertainty: live immediately. - Seneca -->
     <a href="{{ $url ?? null }}" onclick="return false">
         <div class="layout-top-tags">
-            @isset(get_meta($selectedVariantMeta, ModelMetaKey::TOP_TAGS)->value)
-                @foreach (unserialize(get_meta($selectedVariantMeta, ModelMetaKey::TOP_TAGS)->value) as $topTag)
+            @isset($topTags)
+                @foreach ($topTags as $topTag)
                     <span class="top-tag">{{ $topTag }}</span>
                 @endforeach
             @endisset
         </div>
 
-        @isset(get_meta($selectedVariantMeta, ModelMetaKey::THUMB_URL)->value)
+        @isset($thumbUrl)
             <div class="holder-img">
-                <img class="thumb" alt="{{ $product->title ?? null }}"
-                    src="{{ get_meta($selectedVariantMeta, ModelMetaKey::THUMB_URL)->value }}">
-                @isset(get_meta($selectedVariantMeta, ModelMetaKey::BOTTOM_LEFT_STAMP_URL)->value)
+                <img class="thumb" alt="{{ $title ?? null }}"
+                     src="{{ $thumbUrl }}">
+                @if($bottomLeftStampUrl)
                     <img class="stamp bottom-left"
-                        src="{{ get_meta($selectedVariantMeta, ModelMetaKey::BOTTOM_LEFT_STAMP_URL)->value }}">
-                @endisset
+                         src="{{ $bottomLeftStampUrl }}">
+                @endif
             </div>
         @endisset
 
-        @isset(get_meta($selectedVariantMeta, ModelMetaKey::BADGE)->value)
-            <div
-                class="layout-badge {{ unserialize(get_meta($selectedVariantMeta, ModelMetaKey::BADGE)->value)['product_attr_badge_background'] }}">
-                <img class="badge"
-                    alt="{{ unserialize(get_meta($selectedVariantMeta, ModelMetaKey::BADGE)->value)['product_attr_badge_text'] ?? null }}"
-                    src="{{ unserialize(get_meta($selectedVariantMeta, ModelMetaKey::BADGE)->value)['product_attr_badge_icon_url'] ?? null }}">
-                <span
-                    class="badge-text">{{ unserialize(get_meta($selectedVariantMeta, ModelMetaKey::BADGE)->value)['product_attr_badge_text'] }}</span>
-            </div>
-        @endisset
+        {{--        @isset($badge)--}}
+        {{--            <div--}}
+        {{--                class="layout-badge {{ $badgeBg }}">--}}
+        {{--                <img class="badge"--}}
+        {{--                     alt="{{ $badgeText ?? null }}"--}}
+        {{--                     src="{{ $badgeIcon ?? null }}">--}}
+        {{--                <span--}}
+        {{--                    class="badge-text">{{ $badgeText }}</span>--}}
+        {{--            </div>--}}
+        {{--        @endisset--}}
 
         <div class="holder-product-name">
-            @isset($product->title)
-                <span class="product-name">{{ $product->title }}</span>
-            @endisset
+            <span class="product-name">{{ $title ?? null }}</span>
         </div>
-
-        @isset(get_meta($selectedVariantMeta, ModelMetaKey::COMPARE_TAGS)->value)
+        @isset($compareTags)
             <div class="layout-compare-tags">
-                @isset(get_meta($selectedVariantMeta, ModelMetaKey::TOP_TAGS)->value)
-                    @foreach (unserialize(get_meta($selectedVariantMeta, ModelMetaKey::COMPARE_TAGS)->value) as $compareTag)
-                        <span class="compare-tag">{{ $compareTag }}</span>
-                    @endforeach
-                @endisset
+                @foreach ($compareTags as $compareTag)
+                    <span class="compare-tag">{{ $compareTag }}</span>
+                @endforeach
             </div>
         @endisset
 
+        {{--switch variant options buttons--}}
         {!! $slot ?? null !!}
 
-        @isset(get_meta($selectedVariantMeta, ModelMetaKey::PRICE)->value)
-            <div class="layout-price">
-                <span class="price">{{ get_meta($selectedVariantMeta, ModelMetaKey::PRICE)->getCurrency() }}</span>
-            </div>
-        @endisset
+        <div class="layout-price">
+            <span class="price">{{ $price ?? null }}</span>
+        </div>
 
-        @isset(get_meta($selectedVariantMeta, ModelMetaKey::REGULAR_PRICE)->value)
+        @isset($regularPrice)
             <div class="layout-regular-price">
-                <span
-                    class="regular-price">{{ get_meta($selectedVariantMeta, ModelMetaKey::REGULAR_PRICE)->getCurrency() }}</span>
-                @isset(get_meta($selectedVariantMeta, ModelMetaKey::PRICE)->value)
-                    <span
-                        class="discount">{{ '-' .
-                            floor(
-                                ((get_meta($selectedVariantMeta, ModelMetaKey::REGULAR_PRICE)->value -
-                                    get_meta($selectedVariantMeta, ModelMetaKey::PRICE)->value) /
-                                    get_meta($selectedVariantMeta, ModelMetaKey::REGULAR_PRICE)->value) *
-                                    100,
-                            ) .
-                            '%' }}
-                    </span>
-                @endisset
+                <span class="regular-price">
+                    {{ $regularPrice }}
+                </span>
+                @if($price)
+                    <span class="discount">{{ $discount ?? null }}</span>
+                @endif
             </div>
         @endisset
 
-        @isset(get_meta($selectedVariantMeta, ModelMetaKey::GIFT)->value)
+        @isset($gift)
             <div class="layout-gift">
-                Quà <span class="gift">{{ get_meta($selectedVariantMeta, ModelMetaKey::GIFT)->getCurrency() }}</span>
+                Quà <span class="gift">{{ $gift }}</span>
             </div>
         @endisset
 
-        @isset(get_meta($selectedVariantMeta, 'RATE')->value)
+        @isset($rate)
             <div class="layout-rate">
                 <span class="icon starred material-symbols-outlined">star</span>
                 <span class="icon starred material-symbols-outlined">star</span>
