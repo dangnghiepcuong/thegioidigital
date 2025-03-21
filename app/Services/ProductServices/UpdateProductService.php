@@ -71,8 +71,9 @@ class UpdateProductService
         ];
 
         $termTaxonomyIds = explode("\r\n", $request->term_taxonomy_ids);
-
-        $product = $this->productRepository->withoutGlobalScopes()->firstWhere('slug', $slug);
+        $termTaxonomyIds = array_filter($termTaxonomyIds, function ($item) {
+            return $item !== null && $item !== '';
+        });
 
         try {
             DB::beginTransaction();
@@ -95,13 +96,13 @@ class UpdateProductService
                     $productMeta->value = serialize($value);
                     $productMeta->save();
                 } else {
-                    $productMeta = $productMeta->delete();
+                    $productMeta->delete();
                 }
             }
 
             foreach ($this->autoFillData as $key) {
                 if ($request->str($key)->value()) {
-                    $productMeta = $this->productMetaRepository->updateOrCreate(
+                    $this->productMetaRepository->updateOrCreate(
                         [
                             'product_id' => $product->id,
                             'key' => $key,

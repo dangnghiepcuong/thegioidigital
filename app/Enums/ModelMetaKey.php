@@ -64,7 +64,7 @@ class ModelMetaKey
             ModelMetaKey::THUMB_URL,
             ModelMetaKey::BOTTOM_LEFT_STAMP_URL,
             ModelMetaKey::TOP_RIGHT_STAMP_URL,
-            ModelMetaKey::BADGE,
+//            ModelMetaKey::BADGE,
             ModelMetaKey::COMPARE_TAGS,
             ModelMetaKey::REGULAR_PRICE,
             ModelMetaKey::PRICE,
@@ -76,15 +76,21 @@ class ModelMetaKey
         return $array;
     }
 
-    public static function inPriorTerms()
+    public static function serializedData()
+    {
+        return [
+            ModelMetaKey::TOP_TAGS,
+            ModelMetaKey::COMPARE_TAGS,
+        ];
+    }
+
+    public static function inPriorTaxonomies()
     {
         $array = [
             ModelMetaKey::MEMORY,
             ModelMetaKey::STORAGE,
             ModelMetaKey::COLOR,
         ];
-
-        natcasesort($array);
 
         return $array;
     }

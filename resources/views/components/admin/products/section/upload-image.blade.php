@@ -1,3 +1,4 @@
+<!-- People find pleasure in different ways. I find it in keeping my mind clear. - Marcus Aurelius -->
 <div class="section" for="layout-upload-image">
     {{ __('product.upload_image') }}
     <span class="icon material-symbols-outlined">add</span>
@@ -7,7 +8,7 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
         <div class="Neon Neon-theme-dragdropbox">
             <input class="input-file-upload" id="input-file-upload" type="file" name="upload[]" multiple>
-            <input type="hidden" id="product_id" name="product_id" value="{{ $product->id }}" />
+            <input type="hidden" id="product_id" name="product_id" value="{{ $productId }}" />
             <div class="Neon-input-dragDrop">
                 <div class="Neon-input-inner">
                     <div class="Neon-input-icon">
@@ -36,7 +37,7 @@
     </div>
     <div class="layout-btn-line">
         <div class="item-btn" id="btn-delete-slider-image"
-            onclick="return confirm('Are you sure you want to delete selected images?')">
+             onclick="return confirm('Are you sure you want to delete selected images?')">
             {{ __('button.delete') }}
             <span class="icon material-symbols-outlined">delete</span>
         </div>
@@ -45,10 +46,10 @@
     <div id="layout-img-thumbs" class="layout-img-thumbs">
         @foreach ($sliderImages as $media)
             <a href="{{ get_property($media, 'originalUrl') }}" target="_blank"
-                class="outer-slider-image layout-checkbox">
+               class="outer-slider-image layout-checkbox">
                 <input type="checkbox" value="{{ get_property($media, 'uuid') }}" name="slider_images[]">
                 <img src="{{ get_property($media, 'previewUrl') }}" alt="{{ get_property($media, 'name') }}"
-                    class="slider-images-preview">
+                     class="slider-images-preview">
             </a>
         @endforeach
     </div>

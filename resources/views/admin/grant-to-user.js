@@ -1,9 +1,12 @@
 import { fetchAsyncData } from '/resources/js/fetch';
+import $ from 'jquery';
+window.jQuery = $;
+export default $;
 
 window.getMoreUserPermissions = async function (element, userId, page = null) {
-    let nextPage = $(element).find('input[name="next_page"')
-    let lastPage = $(element).find('input[name="last_page"')
-    let total = $(element).find('input[name="total"')
+    let nextPage = $(element).find('input[name="next_page"]')
+    let lastPage = $(element).find('input[name="last_page"]')
+    let total = $(element).find('input[name="total"]')
 
     page = page ?? nextPage.val()
 

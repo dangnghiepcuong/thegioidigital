@@ -1,3 +1,4 @@
+<!-- You must be the change you wish to see in the world. - Mahatma Gandhi -->
 @use('App\Enums\ModelMetaKey')
 
 <div class="section" for="layout-wysiwyg-product-description">

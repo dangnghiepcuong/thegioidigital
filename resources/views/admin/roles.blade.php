@@ -3,7 +3,7 @@
 
 @section('styles')
     @parent
-    @vite($viewsDir . '/admin/roles.css')
+    @vite($viewsDir . '/admin/role-permission-grant.css')
 @endsection
 
 @section('content')
