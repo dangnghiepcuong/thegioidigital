@@ -59,7 +59,7 @@ class Product extends Model implements HasMedia
     {
         return $this->hasMany(ProductMeta::class)->whereIn(
             'key',
-            array_merge(ModelMetaKey::inProductCardView(), ModelMetaKey::inPriorTerms())
+            array_merge(ModelMetaKey::inProductCardView(), ModelMetaKey::inPriorTaxonomies())
         );
     }
 

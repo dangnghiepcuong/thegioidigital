@@ -151,7 +151,7 @@ class ProductController extends Controller
         return $view;
     }
 
-    public function getProductCardByData(CreateUpdateReplicateProductRequest $request)
+    public function getProductCardByData(Request $request)
     {
         $view = $this->getProductCardByDataService->__invoke($request);
 
