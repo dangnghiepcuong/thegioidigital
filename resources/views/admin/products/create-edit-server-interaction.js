@@ -38,7 +38,7 @@ $(document).ready(async function () {
         $('input[name="description"]').val(
             window.productDescriptionEditor.getData()
         );
-        $("#form-create-product").submit();
+        $("#form-create-update-product").submit();
     });
     $("#btn-submit-form-update-product").on("click", function () {
         $('input[name="description"]').val(
