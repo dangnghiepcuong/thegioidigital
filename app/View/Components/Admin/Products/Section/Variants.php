@@ -1,25 +1,31 @@
 <?php
 
-namespace App\View\Components\General\SuperMenu;
+namespace App\View\Components\Admin\Products\Section;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
-class index extends Component
+class Variants extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public $menuItems,
-    ) {}
+        private ?Collection $variants
+    )
+    {
+        //
+    }
 
     /**
      * Get the view / contents that represent the component.
      */
     public function render(): View|Closure|string
     {
-        return view('components.general.super-menu.index');
+        return view('components.admin.products.section.variants', [
+            'variants' => $this->variants,
+        ]);
     }
 }

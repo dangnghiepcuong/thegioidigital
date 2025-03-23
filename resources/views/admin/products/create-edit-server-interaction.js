@@ -1,8 +1,10 @@
 import { fetchAsyncData } from "/resources/js/fetch";
-import _get from "lodash/get";
+import _get from 'lodash/get';
+import $ from 'jquery';
+window.jQuery = $;
+export default $;
 
 $(document).ready(async function () {
-    getProductCard()
     $(".btn-demo-change").click(function () {
         getProductCard()
     });
@@ -36,13 +38,13 @@ $(document).ready(async function () {
         $('input[name="description"]').val(
             window.productDescriptionEditor.getData()
         );
-        $("#form-create-product").submit();
+        $("#form-create-update-product").submit();
     });
     $("#btn-submit-form-update-product").on("click", function () {
         $('input[name="description"]').val(
             window.productDescriptionEditor.getData()
         );
-        $("#form-update-product").submit();
+        $("#form-create-update-product").submit();
     });
     $("#btn-submit-form-replicate-product").on("click", function () {
         $("#form-replicate-product").submit();
@@ -50,7 +52,7 @@ $(document).ready(async function () {
 });
 
 async function getProductCard() {
-    let form = $("#form-update-product");
+    let form = $("#form-create-update-product");
     try {
         const { data } = await fetchAsyncData({
             url: "/admin/products/card-view",

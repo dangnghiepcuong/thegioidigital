@@ -16,102 +16,67 @@ class PermissionSeeder extends Seeder
         try {
             DB::beginTransaction();
             // CRUD on users
-            Permission::create([
-                'id' => 1,
+            Permission::firstOrCreate([
                 'operation' => 'create',
                 'table' => 'users',
-                'created_at' => now(),
-                'updated_at' => now(),
             ]);
 
-            Permission::create([
-                'id' => 2,
+            Permission::firstOrCreate([
                 'operation' => 'read',
                 'table' => 'users',
-                'created_at' => now(),
-                'updated_at' => now(),
             ]);
 
-            Permission::create([
-                'id' => 3,
+            Permission::firstOrCreate([
                 'operation' => 'update',
                 'table' => 'users',
-                'created_at' => now(),
-                'updated_at' => now(),
             ]);
 
-            Permission::create([
-                'id' => 4,
+            Permission::firstOrCreate([
                 'operation' => 'delete',
                 'table' => 'users',
-                'created_at' => now(),
-                'updated_at' => now(),
             ]);
 
             // CRUD on roles
-            Permission::create([
-                'id' => 5,
+            Permission::firstOrCreate([
                 'operation' => 'create',
                 'table' => 'roles',
-                'created_at' => now(),
-                'updated_at' => now(),
             ]);
 
-            Permission::create([
-                'id' => 6,
+            Permission::firstOrCreate([
                 'operation' => 'read',
                 'table' => 'roles',
-                'created_at' => now(),
-                'updated_at' => now(),
             ]);
 
-            Permission::create([
-                'id' => 7,
+            Permission::firstOrCreate([
                 'operation' => 'update',
                 'table' => 'roles',
-                'created_at' => now(),
-                'updated_at' => now(),
             ]);
 
-            Permission::create([
-                'id' => 8,
+            Permission::firstOrCreate([
                 'operation' => 'delete',
                 'table' => 'roles',
-                'created_at' => now(),
-                'updated_at' => now(),
             ]);
 
             // CRUD on permissions
-            Permission::create([
-                'id' => 9,
+            Permission::firstOrCreate([
                 'operation' => 'create',
                 'table' => 'permissions',
-                'created_at' => now(),
-                'updated_at' => now(),
             ]);
 
-            Permission::create([
-                'id' => 10,
+            Permission::firstOrCreate([
                 'operation' => 'read',
                 'table' => 'permissions',
-                'created_at' => now(),
-                'updated_at' => now(),
             ]);
 
-            Permission::create([
-                'id' => 11,
+            Permission::firstOrCreate([
                 'operation' => 'update',
                 'table' => 'permissions',
-                'created_at' => now(),
-                'updated_at' => now(),
             ]);
 
-            Permission::create([
-                'id' => 12,
+            Permission::firstOrCreate([
                 'operation' => 'delete',
                 'table' => 'permissions',
-                'created_at' => now(),
-                'updated_at' => now(),
+
             ]);
         } catch (\Exception $e) {
             DB::rollBack();

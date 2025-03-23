@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Enums\ModelMetaKey;
 use App\Enums\ProductTypeEnum;
 use App\Repositories\Eloquents\ProductRepository;
+use Exception;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -18,8 +19,10 @@ class DtddXiaomiSeeder extends Seeder
     ) {
         $this->productRepository = $productRepository;
     }
+
     /**
      * Run the database seeds.
+     * @throws Exception
      */
     public function run(): void
     {
@@ -33,9 +36,10 @@ class DtddXiaomiSeeder extends Seeder
                 'status' => 'in_stock',
                 'slug' => Str::slug('Xiaomi Redmi Note 13'),
             ]);
-        } catch (\Exception $e) {
+            DB::commit();
+        } catch (Exception $exception) {
             DB::rollBack();
-            throw $e;
+            throw $exception;
         }
 
         // VARIANT 8-128-vang
@@ -170,7 +174,7 @@ class DtddXiaomiSeeder extends Seeder
                 );
 
             DB::commit();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             DB::rollBack();
             throw $exception;
         }
@@ -300,7 +304,7 @@ class DtddXiaomiSeeder extends Seeder
                 );
 
             DB::commit();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             DB::rollBack();
             throw $exception;
         }
@@ -429,7 +433,7 @@ class DtddXiaomiSeeder extends Seeder
                 );
 
             DB::commit();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             DB::rollBack();
             throw $exception;
         }
@@ -569,7 +573,7 @@ class DtddXiaomiSeeder extends Seeder
                 );
 
             DB::commit();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             DB::rollBack();
             throw $exception;
         }
@@ -709,7 +713,7 @@ class DtddXiaomiSeeder extends Seeder
                 );
 
             DB::commit();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             DB::rollBack();
             throw $exception;
         }
@@ -838,7 +842,7 @@ class DtddXiaomiSeeder extends Seeder
                 );
 
             DB::commit();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             DB::rollBack();
             throw $exception;
         }
@@ -967,7 +971,7 @@ class DtddXiaomiSeeder extends Seeder
                 );
 
             DB::commit();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             DB::rollBack();
             throw $exception;
         }
@@ -1096,7 +1100,7 @@ class DtddXiaomiSeeder extends Seeder
                 );
 
             DB::commit();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             DB::rollBack();
             throw $exception;
         }

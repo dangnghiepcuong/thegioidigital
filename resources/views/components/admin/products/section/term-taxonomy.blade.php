@@ -1,3 +1,4 @@
+<!-- The whole future lies in uncertainty: live immediately. - Seneca -->
 @use('App\Enums\ModelMetaKey')
 
 <div class="section" for="layout-term-taxonomy">
@@ -18,24 +19,24 @@
     </div>
     <table class="table-product-term-taxonomy" id="table-product-term-taxonomy">
         <thead>
-            <tr>
-                <th>{{ __('term.term_taxonomy') }}</th>
-            </tr>
+        <tr>
+            <th>{{ __('term.term_taxonomy') }}</th>
+        </tr>
         </thead>
         <tbody>
-            @isset($productTermTaxonomies)
-                @foreach ($productTermTaxonomies as $productTermTaxonomy)
-                    <tr>
-                        <td class="term-taxonomy">
-                            {{ $productTermTaxonomy->term->name . ' (' . $productTermTaxonomy->taxonomy . ')' }}
-                            <span class="icon material-symbols-outlined btn-remove">close</span>
-                            <input type="hidden" name="term_taxonomy_id" value="{{ $productTermTaxonomy->id }}">
-                        </td>
-                    </tr>
-                @endforeach
-            @endisset
+        @isset($productTermTaxonomies)
+            @foreach ($productTermTaxonomies as $productTermTaxonomy)
+                <tr>
+                    <td class="term-taxonomy">
+                        {{ $productTermTaxonomy->term->name . ' (' . $productTermTaxonomy->taxonomy . ')' }}
+                        <span class="icon material-symbols-outlined btn-remove">close</span>
+                        <input type="hidden" name="term_taxonomy_id" value="{{ $productTermTaxonomy->id }}">
+                    </td>
+                </tr>
+            @endforeach
+        @endisset
         </tbody>
     </table>
     <input type="hidden" name="term_taxonomy_ids"
-        value="{{ $productTermTaxonomies ? implode("\n", $productTermTaxonomies->pluck('id')->toArray()) : null }}" />
+           value="{{ $productTermTaxonomies ? implode("\n", $productTermTaxonomies->pluck('id')->toArray()) : null }}"/>
 </div>

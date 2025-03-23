@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -41,7 +42,12 @@ class ProductMeta extends Model
                 break;
             default:
         }
-        return $prefix . number_format($this->value, $decimal, $decimalSeparator, $thousandSeparator) . $postfix;
+
+        try {
+            return $prefix . number_format($this->value, $decimal, $decimalSeparator, $thousandSeparator) . $postfix;
+        } catch (Exception $exception) {
+            return $this->value;
+        }
     }
 
     public function product()
