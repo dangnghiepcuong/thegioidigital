@@ -17,3 +17,6 @@
         </div>
     </div>
 </div>
+@pushonce('scripts')
+    @vite($viewsDir . '/components/admin/products/section/wysiwyg.js')
+@endpushonce

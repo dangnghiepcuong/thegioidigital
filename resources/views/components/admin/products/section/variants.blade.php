@@ -121,3 +121,6 @@
         @endforeach
     </x-product.list.index>
 </div>
+@pushonce('scripts')
+    @vite($viewsDir . '/components/admin/products/section/variants.js')
+@endpushonce

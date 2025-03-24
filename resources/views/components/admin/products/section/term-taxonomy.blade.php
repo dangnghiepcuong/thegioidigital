@@ -40,3 +40,6 @@
     <input type="hidden" name="term_taxonomy_ids"
            value="{{ $productTermTaxonomies ? implode("\n", $productTermTaxonomies->pluck('id')->toArray()) : null }}"/>
 </div>
+@pushonce('scripts')
+    @vite($viewsDir . '/components/admin/products/section/term-taxonomy.js')
+@endpushonce
