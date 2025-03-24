@@ -2,36 +2,11 @@ import { fetchAsyncData } from "/resources/js/fetch";
 import _get from 'lodash/get';
 import $ from 'jquery';
 window.jQuery = $;
-export default $;
 
 $(document).ready(async function () {
     $(".btn-demo-change").click(function () {
         getProductCard()
     });
-
-    // get parent product data & bind in form dropdown
-    try {
-        const response = await fetchAsyncData({
-            url: "/admin/products/getParentProducts",
-            cache: false,
-            method: "GET",
-        });
-
-        let oldValue = $("#parent_id").attr("value");
-
-        response.data.forEach((item) => {
-            $("#parent_id").append(
-                `<option value="${_get(item, "id")}">${_get(
-                    item,
-                    "title"
-                )}</option>`
-            );
-        });
-
-        $("#parent_id").val(oldValue);
-    } catch (error) {
-        throw error;
-    }
 
     // catch on btn submit form create,update,replicate, perform a request
     $("#btn-submit-form-create-product").on("click", function () {
