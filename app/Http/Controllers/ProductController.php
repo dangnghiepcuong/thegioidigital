@@ -62,7 +62,7 @@ class ProductController extends Controller
         try {
             DB::beginTransaction();
             $products = $this->productRepository
-                ->findByConditions(['parent_id' => null])
+                ->findByCondition(['parent_id' => null])
                 ->with(['termTaxonomies.term'])
                 ->get();
 
@@ -92,7 +92,7 @@ class ProductController extends Controller
 
     public function getParentProducts(Request $request)
     {
-        $products = $this->productRepository->findByConditions(['parent_id' => null])
+        $products = $this->productRepository->findByCondition(['parent_id' => null])
             ->withoutGlobalScopes()
             ->paginate(config('parameter.default_paginate_number'));
 
