@@ -53,9 +53,9 @@ class ReplicateProductService
                 ->withoutGlobalScopes()
                 ->where('slug', $slug)
                 ->firstOrFail();
-            $productMeta = $this->productMetaRepository->findByConditions(['product_id' => $product->id])->get();
+            $productMeta = $this->productMetaRepository->findByCondition(['product_id' => $product->id])->get();
             $termTaxonomyIds = $product->termTaxonomies()->pluck('term_taxonomies.id');
-            
+
             $product->title = $product->title . ' ' . now();
             $product->slug = Str::slug($product->slug . '_' . now());
             $product->status = ProductStatusEnum::IN_PROCESS;

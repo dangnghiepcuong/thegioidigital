@@ -27,12 +27,12 @@ class PageEditProductService
                 ->where('slug', $slug)
                 ->firstOrFail();
 
-            $variants = $this->productRepository->findByConditions(['parent_id' => $product->id])
+            $variants = $this->productRepository->findByCondition(['parent_id' => $product->id])
                 ->withoutGlobalScopes()
                 ->with(['productMetaInCardView'])
                 ->get();
 
-            $siblings = $this->productRepository->findByConditions([
+            $siblings = $this->productRepository->findByCondition([
                 ['parent_id', '=', $product->parent_id],
                 ['parent_id', '!=', null],
                 ['id', '!=', $product->id]
