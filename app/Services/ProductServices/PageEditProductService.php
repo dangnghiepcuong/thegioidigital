@@ -12,7 +12,10 @@ class PageEditProductService
     public function __construct(
         protected ProductRepository $productRepository,
         protected TermTaxonomyRepository $termTaxonomyRepository
-    ) {}
+    )
+    {
+        //
+    }
 
     public function __invoke(string $slug)
     {
@@ -26,6 +29,11 @@ class PageEditProductService
                 ->withoutGlobalScopes()
                 ->where('slug', $slug)
                 ->firstOrFail();
+
+            $parentProducts = $this->productRepository->model()
+                ->where('parent_id', null)
+                ->where('id', '!=', $product->id)
+                ->get();
 
             $variants = $this->productRepository->findByCondition(['parent_id' => $product->id])
                 ->withoutGlobalScopes()
@@ -47,6 +55,7 @@ class PageEditProductService
         }
 
         return view('admin.products.edit', [
+            'parentProducts' => $parentProducts,
             'product' => $product,
             'productMeta' => $product->productMeta,
             'productTermTaxonomies' => $product->termTaxonomies,
