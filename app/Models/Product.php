@@ -53,6 +53,7 @@ class Product extends Model implements HasMedia
             return $this->productMeta->firstWhere('key', $key);
         }
 
+        return null;
     }
 
     public function productMetaInCardView()

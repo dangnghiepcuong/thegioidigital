@@ -8,19 +8,31 @@ use App\Models\Product;
 use App\Repositories\Eloquents\ProductMetaRepository;
 use App\Repositories\Eloquents\ProductRepository;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class UpdateProductService
 {
-    protected $productFieldsCanBeAppliedToVariantsOrSiblings = [
+    protected array $productFieldsCanBeAppliedToVariantsOrSiblings = [
         'type',
         'parent_id',
         'title',
         'status',
         'description',
     ];
-    protected $autoFillData = [
+
+    protected array $badgeData = [
+        ModelMetaKey::BADGE_BACKGROUND_STYLE,
+        ModelMetaKey::BADGE_BACKGROUND_COLOR_1,
+        ModelMetaKey::BADGE_BACKGROUND_COLOR_2,
+        ModelMetaKey::BADGE_BACKGROUND_URL,
+        ModelMetaKey::BADGE_ICON_URL,
+        ModelMetaKey::BADGE_TEXT,
+        ModelMetaKey::BADGE_TEXT_COLOR,
+    ];
+
+    protected array $autoFillData = [
         ModelMetaKey::THUMB_URL,
         ModelMetaKey::BOTTOM_LEFT_STAMP_URL,
         ModelMetaKey::TOP_RIGHT_STAMP_URL,
@@ -44,12 +56,15 @@ class UpdateProductService
     ];
 
     public function __construct(
-        protected ProductRepository $productRepository,
-        protected ProductMetaRepository $productMetaRepository
-    ) {}
+        protected ProductRepository          $productRepository,
+        protected ProductMetaRepository      $productMetaRepository,
+        protected RenderBadgeTemplateService $renderBadgeTemplateService
+    )
+    {
+        //
+    }
 
-
-    public function __invoke(CreateUpdateReplicateProductRequest $request, string $slug)
+    public function __invoke(CreateUpdateReplicateProductRequest $request, string $slug): RedirectResponse
     {
         $type = $request->type;
         $parentId = $request->parent_id;
@@ -58,15 +73,9 @@ class UpdateProductService
         $compareTags = explode("\r\n", $request->str(ModelMetaKey::COMPARE_TAGS)->value());
         $title = $request->title;
         $newSlug = Str::slug($request->slug);
-        $badge = [
-            'product_attr_badge_icon_url' => $request->product_attr_badge_icon_url,
-            'product_attr_badge_background' => $request->product_attr_badge_background,
-            'product_attr_badge_text' => $request->product_attr_badge_text,
-        ];
         $description = $request->description;
         $processedData = [
             ModelMetaKey::TOP_TAGS => $topTags,
-            ModelMetaKey::BADGE => $badge,
             ModelMetaKey::COMPARE_TAGS => $compareTags,
         ];
 
@@ -100,6 +109,45 @@ class UpdateProductService
                 }
             }
 
+            if ($request->str(ModelMetaKey::BADGE_BACKGROUND_STYLE)->value()) {
+                if ($request->str(ModelMetaKey::BADGE_BACKGROUND_COLOR_REVERSE)->value() === 'true') {
+                    $request->merge([
+                        ModelMetaKey::BADGE_BACKGROUND_COLOR_1 => $request->input(ModelMetaKey::BADGE_BACKGROUND_COLOR_2),
+                        ModelMetaKey::BADGE_BACKGROUND_COLOR_2 => $request->input(ModelMetaKey::BADGE_BACKGROUND_COLOR_1),
+                    ]);
+                }
+
+                foreach ($this->badgeData as $key) {
+                    if ($request->str($key)->value()) {
+                        $this->productMetaRepository->updateOrCreate(
+                            [
+                                'product_id' => $product->id,
+                                'key' => $key,
+                            ],
+                            [
+                                'value' => $request->str($key)->value(),
+                            ]
+                        );
+                    } else {
+                        $productMeta = $this->productMetaRepository->firstByConditions([
+                            'product_id' => $product->id,
+                            'key' => $key,
+                        ]);
+
+                        $productMeta?->delete();
+                    }
+                }
+            } else {
+                foreach ($this->badgeData as $key) {
+                    $productMeta = $this->productMetaRepository->firstByConditions([
+                        'product_id' => $product->id,
+                        'key' => $key,
+                    ]);
+
+                    $productMeta?->delete();
+                }
+            }
+
             foreach ($this->autoFillData as $key) {
                 if ($request->str($key)->value()) {
                     $this->productMetaRepository->updateOrCreate(
@@ -117,11 +165,11 @@ class UpdateProductService
                         'key' => $key,
                     ]);
 
-                    $productMeta?->$productMeta->delete();
+                    $productMeta?->delete();
                 }
             }
 
-            $result = !all_null_array($termTaxonomyIds) ?
+            !all_null_array($termTaxonomyIds) ?
                 $product->termTaxonomies()->syncWithPivotValues($termTaxonomyIds, ['termable_type' => 'product'])
                 : $product->termTaxonomies()->sync([]);
 
@@ -134,11 +182,11 @@ class UpdateProductService
             if ($exception->getCode() === '23000') {
                 return redirect()->back()->withErrors(['msg' => 'The slug has already been taken']);
             }
-            throw ($exception);
+            return redirect()->back()->withErrors(['msg' => 'Undefined error']);
         }
     }
 
-    public function applyDataToVariantsAndSiblings(Product $product, CreateUpdateReplicateProductRequest $request)
+    public function applyDataToVariantsAndSiblings(Product $product, CreateUpdateReplicateProductRequest $request): void
     {
         $appliedDataToVariants = explode(",", $request->variants_applied_data);
         $appliedDataToSiblings = explode(",", $request->siblings_applied_data);
@@ -148,17 +196,11 @@ class UpdateProductService
         $topTags = explode("\r\n", $request->str(ModelMetaKey::TOP_TAGS)->value());
         $compareTags = explode("\r\n", $request->str(ModelMetaKey::COMPARE_TAGS)->value());
         $title = $request->title;
-        $badge = [
-            'product_attr_badge_icon_url' => $request->product_attr_badge_icon_url,
-            'product_attr_badge_background' => $request->product_attr_badge_background,
-            'product_attr_badge_text' => $request->product_attr_badge_text,
-        ];
 
         $description = $request->description;
 
         $processedData = [
             ModelMetaKey::TOP_TAGS => $topTags,
-            ModelMetaKey::BADGE => $badge,
             ModelMetaKey::COMPARE_TAGS => $compareTags,
         ];
 
@@ -192,7 +234,7 @@ class UpdateProductService
                         $productMeta->value = serialize($value);
                         $productMeta->save();
                     } else {
-                        $productMeta = $productMeta->delete();
+                        $productMeta->delete();
                     }
                 }
 
@@ -238,7 +280,7 @@ class UpdateProductService
                         $productMeta->value = serialize($value);
                         $productMeta->save();
                     } else {
-                        $productMeta = $productMeta->delete();
+                        $productMeta->delete();
                     }
                 }
 

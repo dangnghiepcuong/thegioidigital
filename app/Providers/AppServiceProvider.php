@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Enums\ActionStatusEnum;
+use App\Enums\BadgeBackgroundStyleEnum;
 use App\Enums\ModelMetaKey;
 use App\Enums\OperationEnum;
 use App\Enums\ProductStatusEnum;
@@ -32,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
         $tablesEnum = TableEnum::allCases();
         $productTypesEnum = ProductTypeEnum::allCases();
         $productStatusesEnum = ProductStatusEnum::allCases();
+        $badgeBackgroundStylesEnum = BadgeBackgroundStyleEnum::allCases();
 
         View::share('viewsDir', 'resources/views');
         View::share('cssDir', 'resources/css');
@@ -42,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
         View::share('modelMetaKey', ModelMetaKey::allCases());
         View::share('productTypesEnum', $productTypesEnum);
         View::share('productStatusesEnum', $productStatusesEnum);
+        View::share('badgeBackgroundStylesEnum', $badgeBackgroundStylesEnum);
 
         Relation::enforceMorphMap([
             'product' => 'App\Models\Product',

@@ -13,7 +13,7 @@ class GetVariantCardViewBySlugService
     public function __construct(
         protected ProductRepository                                     $productRepository,
         protected TermTaxonomyRepository                                $termTaxonomyRepository,
-        protected GenerateProductCardViewService                        $generateProductCardViewService,
+        protected RenderProductCardPreviewService                       $generateProductCardViewService,
         protected RenderProductCardViewWithSelectedVariantOptionService $renderProductCardViewWithSelectedVariantOptionService
     )
     {

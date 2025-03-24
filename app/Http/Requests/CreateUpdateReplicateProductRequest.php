@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\BadgeBackgroundStyleEnum;
 use App\Enums\ModelMetaKey;
 use App\Enums\ProductStatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
@@ -44,15 +45,25 @@ class CreateUpdateReplicateProductRequest extends FormRequest
             ModelMetaKey::TOP_RIGHT_STAMP_URL => [
                 Rule::when(strlen($this->str(ModelMetaKey::TOP_RIGHT_STAMP_URL)) !== 0, ['url'])
             ],
-            'product_attr_badge_icon_url' => [
-                Rule::when(strlen($this->product_attr_badge_icon_url), ['url'])
-            ],
-            'product_attr_badge_background' => [
-                Rule::when(strlen($this->product_attr_badge_background), Rule::in(['bg1', 'bg2', 'bg3', 'bg4', 'bg5']))
-            ],
-            'product_attr_badge_text' => [
-                Rule::when(strlen($this->product_attr_badge_text), ['max:20'])
-            ],
+            'product_attr_badge_background_style' => ['nullable', 'string', Rule::in(BadgeBackgroundStyleEnum::allCases())],
+            'product_attr_badge_background_color_1' => ['nullable', Rule::requiredIf(function () {
+                return $this->product_attr_badge_background_style != BadgeBackgroundStyleEnum::URL;
+            }), 'string'],
+            'product_attr_badge_background_color_2' => ['nullable', Rule::requiredIf(function () {
+                return in_array($this->product_attr_badge_background_style, BadgeBackgroundStyleEnum::gradientStyles());
+            })],
+            'product_attr_badge_background_url' => ['nullable', Rule::requiredIf(function () {
+                return $this->product_attr_badge_background_style === BadgeBackgroundStyleEnum::URL;
+            }), 'url'],
+            'product_attr_badge_icon_url' => ['nullable', Rule::requiredIf(function () {
+                return $this->product_attr_badge_background_style != null;
+            }), 'url'],
+            'product_attr_badge_text' => ['nullable', Rule::requiredIf(function () {
+                return $this->product_attr_badge_background_style != null;
+            }), 'string'],
+            'product_attr_badge_text_color' => ['nullable', Rule::requiredIf(function () {
+                return $this->product_attr_badge_background_style != null;
+            }), 'string'],
             ModelMetaKey::COMPARE_TAGS => [
                 Rule::when(strlen($this->str(ModelMetaKey::COMPARE_TAGS)) !== 0, ['max:50'])
             ],

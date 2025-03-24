@@ -7,7 +7,6 @@
     @vite($viewsDir . '/components/admin/products/section/sections.css')
     @vite($viewsDir . '/components/product/card/index.css')
 @endsection
-@use('App\Enums\ModelMetaKey')
 @section('content')
     <!-- Simplicity is the ultimate sophistication. - Leonardo da Vinci -->
     <div class="page-edit-product">
