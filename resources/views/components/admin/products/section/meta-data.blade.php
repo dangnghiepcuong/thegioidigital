@@ -56,3 +56,6 @@
         </tbody>
     </table>
 </div>
+@pushonce('scripts')
+    @vite($viewsDir . '/components/admin/products/section/meta-data.js')
+@endpushonce

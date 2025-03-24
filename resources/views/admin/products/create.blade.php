@@ -14,7 +14,9 @@
         <div class="layout-editing-sections">
             <form id="form-create-update-product" method="POST" action="{{ route('admin.products.store') }}">
                 @csrf
-                <x-admin.products.section.main-info :product="$product ?? null"/>
+
+                <x-admin.products.section.main-info :product="$product ?? null"
+                                                    :parent-products="$parentProducts ?? null"/>
                 <x-admin.products.section.basic-info :product-meta="$productMeta ?? null"/>
                 <x-admin.products.section.description :description="$product->description ?? null"/>
                 <x-admin.products.section.meta-data :product-meta="$productMeta ?? null"/>
@@ -44,12 +46,14 @@
             </div>
         </div>
     </div>
-    @include('admin.products.partials.popup-demo-description', ['product' => null])
+    @include('components.admin.products.section.popup-demo-description', ['product' => null])
 @endsection
 
 @section('scripts')
     @parent
     @vite($viewsDir . '/admin/products/create-edit-ui-interaction.js')
     @vite($viewsDir . '/admin/products/create-edit-server-interaction.js')
-    @vite($viewsDir . '/admin/products/partials/wysiwyg.js')
+    @vite($viewsDir . '/components/admin/products/section/meta-data.js')
+    @vite($viewsDir . '/components/admin/products/section/term-taxonomy.js')
+    @vite($viewsDir . '/components/admin/products/section/wysiwyg.js')
 @endsection

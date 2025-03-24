@@ -113,8 +113,14 @@
                 <div class="layout-checkbox">
                     <input type="checkbox" name="{{ $sibling->slug }}" value="true" class="checkbox-sibling">
                 </div>
-                <x-product.card.index :product="$sibling" :selected-variant-meta="$sibling->productMetaInCardView ?? null" :url="route('admin.products.slug', $sibling->slug ?? '')" />
+                <x-product.card.index
+                    :product="$sibling"
+                    :selected-variant-meta="$sibling->productMetaInCardView ?? null"
+                    :url="route('admin.products.slug', $sibling->slug ?? '')" />
             </div>
         @endforeach
     </x-product.list.index>
 </div>
+@pushonce('scripts')
+    @vite($viewsDir . '/components/admin/products/section/siblings.js')
+@endpushonce
