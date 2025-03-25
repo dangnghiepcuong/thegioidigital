@@ -12,8 +12,8 @@ use App\Services\ProductServices\CreateNewProductService;
 use App\Services\ProductServices\PageCreateProductService;
 use App\Services\ProductServices\PageEditProductService;
 use App\Services\ProductServices\GenerateProductCardListViewService;
-use App\Services\ProductServices\GenerateProductCardViewService;
-use App\Services\ProductServices\GetProductCardViewByDataService;
+use App\Services\ProductServices\RenderProductCardPreviewService;
+use App\Services\ProductServices\GetProductCardPreviewService;
 use App\Services\ProductServices\GetVariantCardViewBySlugService;
 use App\Services\ProductServices\UpdateProductService;
 use Exception;
@@ -31,12 +31,15 @@ class ProductController extends Controller
         protected UpdateProductService               $updateProductService,
         protected ReplicateProductService            $replicateProductService,
         protected GenerateProductCardListViewService $generateProductCardListViewService,
-        protected GenerateProductCardViewService     $generateProductCardViewService,
+        protected RenderProductCardPreviewService    $generateProductCardViewService,
         protected GetVariantCardViewBySlugService    $getVariantBySlugService,
-        protected GetProductCardViewByDataService    $getProductCardByDataService,
+        protected GetProductCardPreviewService       $getProductCardPreviewService,
         protected PageCreateProductService           $createPageProductService,
         protected PageEditProductService             $editPageProductService
-    ) {}
+    )
+    {
+        //
+    }
 
     public function index()
     {
@@ -154,9 +157,9 @@ class ProductController extends Controller
         }
     }
 
-    public function getProductCardByData(Request $request)
+    public function getProductCardPreview(Request $request)
     {
-        $view = $this->getProductCardByDataService->__invoke($request);
+        $view = $this->getProductCardPreviewService->__invoke($request);
 
         return response()->json(['data' => $view]);
     }

@@ -35,10 +35,16 @@ class BasicInfo extends Component
         $thumbUrl = get_meta_value($this->productMeta, ModelMetaKey::THUMB_URL) ?? null;
         $bottomLeftStampUrl = get_meta_value($this->productMeta, ModelMetaKey::BOTTOM_LEFT_STAMP_URL) ?? null;
         $topRightStampUrl = get_meta_value($this->productMeta, ModelMetaKey::TOP_RIGHT_STAMP_URL) ?? null;
-        $badge = get_meta_value($this->productMeta, ModelMetaKey::BADGE) ?? null;
-        $badgeBg = $badge ? unserialize($badge)['product_attr_badge_background'] : null;
-        $badgeIcon = $badge ? unserialize($badge)['product_attr_badge_icon_url'] : null;
-        $badgeText = $badge ? unserialize($badge)['product_attr_badge_text'] : null;
+
+        $badgeBgStyle = get_meta_value($this->productMeta, ModelMetaKey::BADGE_BACKGROUND_STYLE) ?? null;
+        if ($badgeBgStyle) {
+            $badgeBgColor1 = get_meta_value($this->productMeta, ModelMetaKey::BADGE_BACKGROUND_COLOR_1) ?? null;
+            $badgeBgColor2 = get_meta_value($this->productMeta, ModelMetaKey::BADGE_BACKGROUND_COLOR_2) ?? null;
+            $badgeBgUrl = get_meta_value($this->productMeta, ModelMetaKey::BADGE_BACKGROUND_URL) ?? null;
+            $badgeIconUrl = get_meta_value($this->productMeta, ModelMetaKey::BADGE_ICON_URL) ?? null;
+            $badgeText = get_meta_value($this->productMeta, ModelMetaKey::BADGE_TEXT) ?? null;
+            $badgeTextColor = get_meta_value($this->productMeta, ModelMetaKey::BADGE_TEXT_COLOR) ?? null;
+        }
 
         $serializedCompareTags = get_meta_value($this->productMeta, ModelMetaKey::COMPARE_TAGS);
         $compareTags = $serializedCompareTags ? unserialize($serializedCompareTags) : [];
@@ -55,10 +61,13 @@ class BasicInfo extends Component
             'thumbUrl' => $thumbUrl,
             'bottomLeftStampUrl' => $bottomLeftStampUrl,
             'topRightStampUrl' => $topRightStampUrl,
-            'badge' => $badge,
-            'badgeBg' => $badgeBg,
-            'badgeIcon' => $badgeIcon,
-            'badgeText' => $badgeText,
+            'badgeBgStyle' => $badgeBgStyle,
+            'badgeBgColor1' => $badgeBgColor1 ?? null,
+            'badgeBgColor2' => $badgeBgColor2 ?? null,
+            'badgeBgUrl' => $badgeBgUrl ?? null,
+            'badgeIconUrl' => $badgeIconUrl ?? null,
+            'badgeText' => $badgeText ?? null,
+            'badgeTextColor' => $badgeTextColor ?? null,
             'compareTags' => $areaTextCompareTags,
             'regularPrice' => $regularPrice,
             'price' => $price,

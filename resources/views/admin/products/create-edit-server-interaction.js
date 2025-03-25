@@ -30,7 +30,7 @@ async function getProductCard() {
     let form = $("#form-create-update-product");
     try {
         const { data } = await fetchAsyncData({
-            url: "/admin/products/card-view",
+            url: "/admin/products/card-view-by-data",
             cache: false,
             method: "GET",
             data: form.serialize()
