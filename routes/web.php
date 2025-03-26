@@ -47,14 +47,13 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::prefix('products')->controller(ProductController::class)->group(function () {
-            Route::get('getParentProducts', 'getParentProducts');
             Route::get('', 'index')->name('admin.products.index');
             Route::get('create', 'create')->name('admin.products.create');
             Route::post('', 'store')->name('admin.products.store');
             Route::get('{slug}/edit', 'edit')->name('admin.products.slug');
             Route::patch('{slug}/update', 'update')->name('admin.products.update');
             Route::post('{slug}/replicate', 'replicate')->name('admin.products.replicate');
-            Route::get('card-view', 'getProductCardByData');
+            Route::get('card-view-by-data', 'getProductCardPreview');
 
             Route::prefix('files')->controller(FileController::class)->group(function () {
                 Route::get('slider-images', 'getImagesForProductSlider');

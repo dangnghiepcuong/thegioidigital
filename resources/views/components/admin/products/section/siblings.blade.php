@@ -11,86 +11,85 @@
     </p>
     <div class="layout-applied-data-checkbox">
         <p>Product fields</p>
-        <input type="hidden" name="siblings_applied_data" id="siblings_applied_data">
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_title" name="siblings_title" value="title">
+            <input type="checkbox" id="siblings_title" name="reflect_product_fields_on_siblings[]" value="title">
             <label for="siblings_title" class="applied-data-label">{{ __('product.title') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_type" name="siblings_type" value="type">
+            <input type="checkbox" id="siblings_type" name="reflect_product_fields_on_siblings[]" value="type">
             <label for="siblings_type" class="applied-data-label">{{ __('product.type') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_parent_id" name="siblings_parent_id" value="parent_id">
+            <input type="checkbox" id="siblings_parent_id" name="reflect_product_fields_on_siblings[]" value="parent_id">
             <label for="siblings_parent_id" class="applied-data-label">{{ __('product.parent_product') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_status" name="siblings_status" value="status">
+            <input type="checkbox" id="siblings_status" name="reflect_product_fields_on_siblings[]" value="status">
             <label for="siblings_status" class="applied-data-label">{{ __('product.status.status') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_description" name="siblings_description" value="description">
+            <input type="checkbox" id="siblings_description" name="reflect_product_fields_on_siblings[]" value="description">
             <label for="siblings_description" class="applied-data-label">{{ __('product.description') }}</label>
         </div>
 
         <p>Product Meta fields</p>
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_top_tags" name="siblings_top_tags" value="{{ ModelMetaKey::TOP_TAGS }}">
+            <input type="checkbox" id="siblings_top_tags" name="reflect_product_meta_fields_on_siblings[]" value="{{ ModelMetaKey::TOP_TAGS }}">
             <label for="siblings_top_tags"
                    class="applied-data-label">{{ __('product_meta.product_attr_top_tags') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_thumb_url" name="siblings_thumb_url"
+            <input type="checkbox" id="siblings_thumb_url" name="reflect_product_meta_fields_on_siblings[]"
                    value="{{ ModelMetaKey::THUMB_URL }}">
             <label for="siblings_thumb_url"
                    class="applied-data-label">{{ __('product_meta.product_attr_thumb_url') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_bottom_left_stamp_url" name="siblings_bottom_left_stamp_url"
+            <input type="checkbox" id="siblings_bottom_left_stamp_url" name="reflect_product_meta_fields_on_siblings[]"
                    value="{{ ModelMetaKey::BOTTOM_LEFT_STAMP_URL }}">
             <label for="siblings_bottom_left_stamp_url"
                    class="applied-data-label">{{ __('product_meta.product_attr_bottom_left_stamp_url') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_top_right_stamp_url" name="siblings_top_right_stamp_url"
+            <input type="checkbox" id="siblings_top_right_stamp_url" name="reflect_product_meta_fields_on_siblings[]"
                    value="{{ ModelMetaKey::TOP_RIGHT_STAMP_URL }}">
             <label for="siblings_top_right_stamp_url"
                    class="applied-data-label">{{ __('product_meta.product_attr_top_right_stamp_url') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_badge" name="siblings_badge" value="{{ ModelMetaKey::BADGE }}">
+            <input type="checkbox" id="siblings_badge" name="reflect_product_meta_fields_on_siblings[]" value="{{ ModelMetaKey::BADGE }}">
             <label for="siblings_badge" class="applied-data-label">{{ __('product_meta.product_attr_badge') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_compare_tags" name="siblings_compare_tags"
+            <input type="checkbox" id="siblings_compare_tags" name="reflect_product_meta_fields_on_siblings[]"
                    value="{{ ModelMetaKey::COMPARE_TAGS }}">
             <label for="siblings_compare_tags"
                    class="applied-data-label">{{ __('product_meta.product_attr_compare_tags') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_regular_price" name="siblings_regular_price"
+            <input type="checkbox" id="siblings_regular_price" name="reflect_product_meta_fields_on_siblings[]"
                    value="{{ ModelMetaKey::REGULAR_PRICE }}">
             <label for="siblings_regular_price"
                    class="applied-data-label">{{ __('product_meta.product_attr_regular_price') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_price" name="siblings_price" value="{{ ModelMetaKey::PRICE }}">
+            <input type="checkbox" id="siblings_price" name="reflect_product_meta_fields_on_siblings[]" value="{{ ModelMetaKey::PRICE }}">
             <label for="siblings_price" class="applied-data-label">{{ __('product_meta.product_attr_price') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_gift" name="siblings_gift" value="{{ ModelMetaKey::GIFT }}">
+            <input type="checkbox" id="siblings_gift" name="reflect_product_meta_fields_on_siblings[]" value="{{ ModelMetaKey::GIFT }}">
             <label for="siblings_gift" class="applied-data-label">{{ __('product_meta.product_attr_gift') }}</label>
         </div>
     </div>
@@ -111,10 +110,16 @@
         @foreach ($siblings as $sibling)
             <div class="outer-checkbox">
                 <div class="layout-checkbox">
-                    <input type="checkbox" name="{{ $sibling->slug }}" value="true" class="checkbox-sibling">
+                    <input type="checkbox" name="siblings_slug[]" value="{{ $sibling->slug }}" class="checkbox-sibling">
                 </div>
-                <x-product.card.index :product="$sibling" :selected-variant-meta="$sibling->productMetaInCardView ?? null" :url="route('admin.products.slug', $sibling->slug ?? '')" />
+                <x-product.card.index
+                    :product="$sibling"
+                    :selected-variant-meta="$sibling->productMetaInCardView ?? null"
+                    :url="route('admin.products.slug', $sibling->slug ?? '')" />
             </div>
         @endforeach
     </x-product.list.index>
 </div>
+@pushonce('scripts')
+    @vite($viewsDir . '/components/admin/products/section/siblings.js')
+@endpushonce

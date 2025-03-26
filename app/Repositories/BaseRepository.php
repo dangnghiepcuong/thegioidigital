@@ -34,9 +34,19 @@ abstract class BaseRepository
         return $this->model()->withTrashed()->find($id);
     }
 
-    public function findByConditions($conditions = [])
+    public function findByCondition($conditions = [])
     {
         return $this->model()->where($conditions);
+    }
+
+    public function findByConditions($conditions = [])
+    {
+        $chain = $this->model();
+        foreach ($conditions as $condition) {
+            $chain = $chain->where($condition);
+        }
+
+        return $chain;
     }
 
     public function firstOrFail($value)

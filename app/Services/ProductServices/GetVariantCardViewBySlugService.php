@@ -13,7 +13,7 @@ class GetVariantCardViewBySlugService
     public function __construct(
         protected ProductRepository                                     $productRepository,
         protected TermTaxonomyRepository                                $termTaxonomyRepository,
-        protected GenerateProductCardViewService                        $generateProductCardViewService,
+        protected RenderProductCardPreviewService                       $generateProductCardViewService,
         protected RenderProductCardViewWithSelectedVariantOptionService $renderProductCardViewWithSelectedVariantOptionService
     )
     {
@@ -23,7 +23,7 @@ class GetVariantCardViewBySlugService
     public function __invoke(string $slug)
     {
         $variant = $this->productRepository
-            ->findByConditions(['slug' => $slug])
+            ->findByCondition(['slug' => $slug])
             ->with(['productMetaInCardView'])
             ->first();
         $parent = $variant->parent()->with(['termTaxonomies.term'])->first();

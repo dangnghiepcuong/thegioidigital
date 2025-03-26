@@ -6,14 +6,18 @@ use App\Enums\ModelMetaKey;
 use App\Models\Product;
 use App\Models\ProductMeta;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class GetProductCardViewByDataService
+class GetProductCardPreviewService
 {
     public function __construct(
-        protected GenerateProductCardViewService $generateProductCardViewService
-    ) {}
+        protected RenderProductCardPreviewService $renderProductCardPreviewService,
+        protected RenderBadgeTemplateService      $renderBadgeTemplateService
+    ) {
+        //
+    }
 
     public function __invoke(Request $request)
     {
@@ -21,7 +25,7 @@ class GetProductCardViewByDataService
             DB::beginTransaction();
             $product = Product::newModelInstance($request->all());
 
-            $productMeta = collect();
+            $productMeta = new Collection();
             foreach ($request->all() as $property => $value) {
                 if (in_array($property, ModelMetaKey::inProductCardView()) && $value != null) {
                     if (in_array($property, ModelMetaKey::serializedData())) {
@@ -31,9 +35,13 @@ class GetProductCardViewByDataService
                     $productMeta->push($meta);
                 }
             }
+            $badgeTemplate = $this->renderBadgeTemplateService->__invoke($request);
+            $meta = ProductMeta::newModelInstance(['key' => ModelMetaKey::BADGE, 'value' => $badgeTemplate]);
+            $productMeta->push($meta);
+
             $product->setRelation('productMetaInCardView', $productMeta);
 
-            $html = $this->generateProductCardViewService->__invoke($product, null, $product);
+            $html = $this->renderProductCardPreviewService->__invoke($product, null, $product);
             DB::commit();
 
             return $html;

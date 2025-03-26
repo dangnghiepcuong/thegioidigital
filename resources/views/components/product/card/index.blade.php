@@ -21,16 +21,8 @@
             </div>
         @endisset
 
-        {{--        @isset($badge)--}}
-        {{--            <div--}}
-        {{--                class="layout-badge {{ $badgeBg }}">--}}
-        {{--                <img class="badge"--}}
-        {{--                     alt="{{ $badgeText ?? null }}"--}}
-        {{--                     src="{{ $badgeIcon ?? null }}">--}}
-        {{--                <span--}}
-        {{--                    class="badge-text">{{ $badgeText }}</span>--}}
-        {{--            </div>--}}
-        {{--        @endisset--}}
+        {{--    Render badge template html    --}}
+        {!! $badge ?? null !!}
 
         <div class="holder-product-name">
             <span class="product-name">{{ $title ?? null }}</span>

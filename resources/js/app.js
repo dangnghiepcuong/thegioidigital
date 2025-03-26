@@ -7,7 +7,6 @@ import.meta.glob([
 
 import $ from 'jquery';
 window.jQuery = $;
-export default $;
 
 $('body').click(function (event) {
   if ($(event.target).closest('.filter').length === 0) {

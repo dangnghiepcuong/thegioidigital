@@ -8,23 +8,27 @@ use App\Models\Product;
 use App\Repositories\Eloquents\ProductMetaRepository;
 use App\Repositories\Eloquents\ProductRepository;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class UpdateProductService
 {
-    protected $productFieldsCanBeAppliedToVariantsOrSiblings = [
-        'type',
-        'parent_id',
-        'title',
-        'status',
-        'description',
-    ];
-    protected $autoFillData = [
+    public const AUTO_FILLABLE_DATA = [
+        ModelMetaKey::TOP_TAGS,
+        ModelMetaKey::BADGE_BACKGROUND_STYLE,
+        ModelMetaKey::BADGE_BACKGROUND_COLOR_1,
+        ModelMetaKey::BADGE_BACKGROUND_COLOR_2,
+        ModelMetaKey::BADGE_BACKGROUND_URL,
+        ModelMetaKey::BADGE_ICON_URL,
+        ModelMetaKey::BADGE_TEXT,
+        ModelMetaKey::BADGE_TEXT_COLOR,
         ModelMetaKey::THUMB_URL,
         ModelMetaKey::BOTTOM_LEFT_STAMP_URL,
         ModelMetaKey::TOP_RIGHT_STAMP_URL,
         ModelMetaKey::REGULAR_PRICE,
+        ModelMetaKey::COMPARE_TAGS,
         ModelMetaKey::PRICE,
         ModelMetaKey::GIFT,
         ModelMetaKey::RAM,
@@ -44,33 +48,16 @@ class UpdateProductService
     ];
 
     public function __construct(
-        protected ProductRepository $productRepository,
-        protected ProductMetaRepository $productMetaRepository
-    ) {}
-
-
-    public function __invoke(CreateUpdateReplicateProductRequest $request, string $slug)
+        private ProductRepository     $productRepository,
+        private ProductMetaRepository $productMetaRepository,
+    )
     {
-        $type = $request->type;
-        $parentId = $request->parent_id;
-        $status = $request->status;
-        $topTags = explode("\r\n", $request->str(ModelMetaKey::TOP_TAGS)->value());
-        $compareTags = explode("\r\n", $request->str(ModelMetaKey::COMPARE_TAGS)->value());
-        $title = $request->title;
-        $newSlug = Str::slug($request->slug);
-        $badge = [
-            'product_attr_badge_icon_url' => $request->product_attr_badge_icon_url,
-            'product_attr_badge_background' => $request->product_attr_badge_background,
-            'product_attr_badge_text' => $request->product_attr_badge_text,
-        ];
-        $description = $request->description;
-        $processedData = [
-            ModelMetaKey::TOP_TAGS => $topTags,
-            ModelMetaKey::BADGE => $badge,
-            ModelMetaKey::COMPARE_TAGS => $compareTags,
-        ];
+        //
+    }
 
-        $termTaxonomyIds = explode("\r\n", $request->term_taxonomy_ids);
+    public function __invoke(CreateUpdateReplicateProductRequest $request, string $slug): RedirectResponse
+    {
+        $termTaxonomyIds = explode("\r\n", $request->input('term_taxonomy_ids'));
         $termTaxonomyIds = array_filter($termTaxonomyIds, function ($item) {
             return $item !== null && $item !== '';
         });
@@ -78,190 +65,120 @@ class UpdateProductService
         try {
             DB::beginTransaction();
             $product = $this->productRepository->withoutGlobalScopes()->firstWhere('slug', $slug);
-            $product->update([
-                'type' => $type,
-                'parent_id' => $parentId,
-                'title' => $title,
-                'slug' => $newSlug,
-                'status' => $status,
-                'description' => $description,
-            ]);
+            self::updateSingleProduct($request, $product);
 
-            foreach ($processedData as $key => $value) {
-                $productMeta = $this->productMetaRepository->firstOrNewByConditions([
-                    'product_id' => $product->id,
-                    'key' => $key,
-                ]);
-                if (!all_null_array($value)) {
-                    $productMeta->value = serialize($value);
-                    $productMeta->save();
-                } else {
-                    $productMeta->delete();
-                }
-            }
-
-            foreach ($this->autoFillData as $key) {
-                if ($request->str($key)->value()) {
-                    $this->productMetaRepository->updateOrCreate(
-                        [
-                            'product_id' => $product->id,
-                            'key' => $key,
-                        ],
-                        [
-                            'value' => $request->str($key)->value(),
-                        ]
-                    );
-                } else {
-                    $productMeta = $this->productMetaRepository->firstByConditions([
-                        'product_id' => $product->id,
-                        'key' => $key,
-                    ]);
-
-                    $productMeta?->$productMeta->delete();
-                }
-            }
-
-            $result = !all_null_array($termTaxonomyIds) ?
+            !all_null_array($termTaxonomyIds) ?
                 $product->termTaxonomies()->syncWithPivotValues($termTaxonomyIds, ['termable_type' => 'product'])
                 : $product->termTaxonomies()->sync([]);
 
-            self::applyDataToVariantsAndSiblings($product, $request);
+            $variants = $this->productRepository->whereIn('slug', $request->input('variants_slug', []))
+                ->where('parent_id', $product->id) // this condition ensure valid data is queried
+                ->withoutGlobalScopes()
+                ->get();
+            $reflectProductFieldsOnVariants = $request->input('reflect_product_fields_on_variants', []);
+            $reflectProductMetaFieldsOnVariants = $request->input('reflect_product_meta_fields_on_variants', []);
+            $this->reflectUpdateSelectedFieldsOnProduct(
+                $request,
+                $variants,
+                $reflectProductFieldsOnVariants,
+                $reflectProductMetaFieldsOnVariants
+            );
+
+            $siblings = $this->productRepository->whereIn('slug', $request->input('siblings_slug', []))
+                ->where('parent_id', $product->parent_id) // this condition ensure valid data is queried
+                ->withoutGlobalScopes()
+                ->get();
+            $reflectProductFieldsOnSiblings = $request->input('reflect_product_fields_on_siblings', []);
+            $reflectProductMetaFieldsOnSiblings = $request->input('reflect_product_meta_fields_on_siblings', []);
+            $this->reflectUpdateSelectedFieldsOnProduct(
+                $request,
+                $siblings,
+                $reflectProductFieldsOnSiblings,
+                $reflectProductMetaFieldsOnSiblings
+            );
+
             DB::commit();
 
-            return redirect()->route('admin.products.slug', $newSlug);
+            return redirect()->route('admin.products.slug', Str::slug($request->input('slug')));
         } catch (Exception $exception) {
             DB::rollBack();
             if ($exception->getCode() === '23000') {
                 return redirect()->back()->withErrors(['msg' => 'The slug has already been taken']);
             }
-            throw ($exception);
+            return redirect()->back()->withErrors(['msg' => 'Undefined error']);
         }
     }
 
-    public function applyDataToVariantsAndSiblings(Product $product, CreateUpdateReplicateProductRequest $request)
+    public function updateSingleProduct(CreateUpdateReplicateProductRequest $request, Product $product): void
     {
-        $appliedDataToVariants = explode(",", $request->variants_applied_data);
-        $appliedDataToSiblings = explode(",", $request->siblings_applied_data);
-        $type = $request->type;
-        $parentId = $request->parent_id;
-        $status = $request->status;
-        $topTags = explode("\r\n", $request->str(ModelMetaKey::TOP_TAGS)->value());
-        $compareTags = explode("\r\n", $request->str(ModelMetaKey::COMPARE_TAGS)->value());
-        $title = $request->title;
-        $badge = [
-            'product_attr_badge_icon_url' => $request->product_attr_badge_icon_url,
-            'product_attr_badge_background' => $request->product_attr_badge_background,
-            'product_attr_badge_text' => $request->product_attr_badge_text,
-        ];
+        $type = $request->input('type');
+        $parentId = $request->input('parent_id');
+        $status = $request->input('status');
+        $title = $request->input('title');
+        $newSlug = Str::slug($request->input('slug'));
+        $description = $request->input('description');
 
-        $description = $request->description;
+        $product->update([
+            'type' => $type,
+            'parent_id' => $parentId,
+            'title' => $title,
+            'slug' => $newSlug,
+            'status' => $status,
+            'description' => $description,
+        ]);
 
-        $processedData = [
-            ModelMetaKey::TOP_TAGS => $topTags,
-            ModelMetaKey::BADGE => $badge,
-            ModelMetaKey::COMPARE_TAGS => $compareTags,
-        ];
-
-        $variants = $this->productRepository->findByConditions(['parent_id' => $product->id])
-            ->withoutGlobalScopes()
-            ->get();
-
-        $siblings = $this->productRepository->findByConditions([
-            ['parent_id', '=', $product->parent_id],
-            ['parent_id', '!=', null],
-            ['id', '!=', $product->id]
-        ])
-            ->withoutGlobalScopes()
-            ->get();
-
-        foreach ($variants as $variant) {
-            if ($request->str($variant->slug)->value() === 'true') {
-                foreach ($this->productFieldsCanBeAppliedToVariantsOrSiblings as $field) {
-                    if (in_array($field, $appliedDataToVariants)) {
-                        $variant->$field = $$field;
-                    }
-                }
-                $variant->save();
-
-                foreach ($processedData as $key => $value) {
-                    $productMeta = $this->productMetaRepository->firstOrNewByConditions([
-                        'product_id' => $variant->id,
+        foreach (self::AUTO_FILLABLE_DATA as $key) {
+            if ($request->input($key)) {
+                $this->productMetaRepository->updateOrCreate(
+                    [
+                        'product_id' => $product->id,
                         'key' => $key,
-                    ]);
-                    if (!all_null_array($value)) {
-                        $productMeta->value = serialize($value);
-                        $productMeta->save();
-                    } else {
-                        $productMeta = $productMeta->delete();
-                    }
-                }
+                    ],
+                    [
+                        'value' => $request->input($key),
+                    ]
+                );
+            } else {
+                $productMeta = $this->productMetaRepository->firstByConditions([
+                    'product_id' => $product->id,
+                    'key' => $key,
+                ]);
 
-                foreach ($this->autoFillData as $key) {
-                    if (in_array($key, $appliedDataToVariants)) {
-                        if ($request->str($key)->value()) {
-                            $this->productMetaRepository->updateOrCreate(
-                                [
-                                    'product_id' => $variant->id,
-                                    'key' => $key,
-                                ],
-                                [
-                                    'value' => $request->str($key)->value(),
-                                ]
-                            );
-                        } else {
-                            $productMeta = $this->productMetaRepository->firstByConditions([
-                                'product_id' => $variant->id,
-                                'key' => $key,
-                            ]);
-                            $productMeta = $productMeta ? $productMeta->delete() : null;
-                        }
-                    }
-                }
+                $productMeta?->delete();
             }
         }
+    }
 
-        foreach ($siblings as $sibling) {
-            if ($request->str($sibling->slug)->value() === 'true') {
-                foreach ($this->productFieldsCanBeAppliedToVariantsOrSiblings as $field) {
-                    if (in_array($field, $appliedDataToSiblings)) {
-                        $sibling->$field = $$field;
-                    }
-                }
-                $sibling->save();
+    public function reflectUpdateSelectedFieldsOnProduct(
+        CreateUpdateReplicateProductRequest $request,
+        Collection                          $reflectingProducts,
+        array                               $reflectingProductFields,
+        array                               $reflectingProductMetaFields,
+    ): void
+    {
+        foreach ($reflectingProducts as $reflectingProduct) {
+            foreach ($reflectingProductFields as $field) {
+                $reflectingProduct->$field = $request->input($field);
+            }
 
-                foreach ($processedData as $key => $value) {
-                    $productMeta = $this->productMetaRepository->firstOrNewByConditions([
-                        'product_id' => $sibling->id,
-                        'key' => $key,
+            foreach ($reflectingProductMetaFields as $field) {
+                if ($request->input($field)) {
+                    $this->productMetaRepository->updateOrCreate(
+                        [
+                            'product_id' => $reflectingProduct->id,
+                            'key' => $field,
+                        ],
+                        [
+                            'value' => $request->input($field),
+                        ]
+                    );
+                } else {
+                    $productMeta = $this->productMetaRepository->firstByConditions([
+                        'product_id' => $reflectingProduct->id,
+                        'key' => $field,
                     ]);
-                    if (!all_null_array($value)) {
-                        $productMeta->value = serialize($value);
-                        $productMeta->save();
-                    } else {
-                        $productMeta = $productMeta->delete();
-                    }
-                }
 
-                foreach ($this->autoFillData as $key) {
-                    if (in_array($key, $appliedDataToSiblings)) {
-                        if ($request->str($key)->value()) {
-                            $this->productMetaRepository->updateOrCreate(
-                                [
-                                    'product_id' => $sibling->id,
-                                    'key' => $key,
-                                ],
-                                [
-                                    'value' => $request->str($key)->value(),
-                                ]
-                            );
-                        } else {
-                            $productMeta = $this->productMetaRepository->firstByConditions([
-                                'product_id' => $sibling->id,
-                                'key' => $key,
-                            ]);
-                            $productMeta = $productMeta ? $productMeta->delete() : null;
-                        }
-                    }
+                    $productMeta?->delete();
                 }
             }
         }

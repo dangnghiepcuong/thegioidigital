@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Blade;
 
-class GenerateProductCardViewService
+class RenderProductCardPreviewService
 {
     public function __construct(
         protected ProductRepository $productRepository,

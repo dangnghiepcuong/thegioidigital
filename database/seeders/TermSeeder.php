@@ -166,12 +166,12 @@ class TermSeeder extends Seeder
         // Attach term color to product
         try {
             $productsMeta = $this->productMetaRepository
-                ->findByConditions(['key' => ModelMetaKey::COLOR])
+                ->findByCondition(['key' => ModelMetaKey::COLOR])
                 ->with('product')
                 ->get();
 
             foreach ($productsMeta as $productMeta) {
-                $term = $this->termRepository->findByConditions(['name' => $productMeta->value])
+                $term = $this->termRepository->findByCondition(['name' => $productMeta->value])
                     ->first();
 
                 $parentProduct = $this->productRepository->findOrFail($productMeta->product->parent_id)->first();
@@ -194,11 +194,11 @@ class TermSeeder extends Seeder
                     continue;
                 }
 
-                $productRam = $this->productMetaRepository->findByConditions([
+                $productRam = $this->productMetaRepository->findByCondition([
                     'product_id' => $product->id,
                     'key' => ModelMetaKey::RAM,
                 ])->first();
-                $productStorage = $this->productMetaRepository->findByConditions([
+                $productStorage = $this->productMetaRepository->findByCondition([
                     'product_id' => $product->id,
                     'key' => ModelMetaKey::STORAGE,
                 ])->first();
@@ -207,7 +207,7 @@ class TermSeeder extends Seeder
                 $storage = $productStorage->value ?? '';
 
                 $productMemory = "$ram - $storage";
-                $term = $this->termRepository->findByConditions(['name' => $productMemory])->first();
+                $term = $this->termRepository->findByCondition(['name' => $productMemory])->first();
                 if (!$term) {
                     DB::rollBack();
                     continue;

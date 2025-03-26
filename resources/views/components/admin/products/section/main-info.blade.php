@@ -41,7 +41,26 @@
     <label for="form-parent-id">{{ __('product.parent_product') }}</label>
     <select name="parent_id" class-name="parent-id" id="parent_id"
             value="{{ old('parent_id') ?? $parentId }}" class="input-field">
-        <option value=""></option>
+        @isset($parentProducts)
+            @if(old('parent_id'))
+                <option value="{{ old('parent_id') }}">{{ Arr::get($parentProducts->find(old('parent_id')), 'title') }}</option>
+                <option value=""></option>
+                @foreach ($parentProducts->where('id', '!=', old('parent_id')) as $parentProduct)
+                    <option value="{{ $parentProduct->id }}">{{ Arr::get($parentProduct, 'title') }}</option>
+                @endforeach
+            @elseif($parentId)
+                <option value="{{ $parentId }}">{{ Arr::get($parentProducts->where('id', $parentId)->first(), 'title') }}</option>
+                <option value=""></option>
+                @foreach ($parentProducts->where('id', '!=', $parentId) as $parentProduct)
+                    <option value="{{ Arr::get($parentProduct, 'id') }}">{{ Arr::get($parentProduct, 'title') }}</option>
+                @endforeach
+            @else
+                <option value=""></option>
+                @foreach ($parentProducts as $parentProduct)
+                    <option value="{{ Arr::get($parentProduct, 'id') }}">{{ Arr::get($parentProduct, 'title') }}</option>
+                @endforeach
+            @endif
+        @endisset
     </select>
 </div>
 <div class="form-item">

@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use App\Support\Traits\EnumAccessTrait;
 
-class ActionStatusEnum
+final class ActionStatusEnum
 {
     use EnumAccessTrait;
 
