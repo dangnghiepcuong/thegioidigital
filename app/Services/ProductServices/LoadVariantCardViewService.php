@@ -6,14 +6,14 @@ use App\Repositories\Eloquents\ProductRepository;
 use App\Repositories\Eloquents\TermTaxonomyRepository;
 use App\Support\Traits\ProductTrait;
 
-class GetVariantCardViewService
+class LoadVariantCardViewService
 {
     use ProductTrait;
 
     public function __construct(
         protected ProductRepository                             $productRepository,
         protected TermTaxonomyRepository                        $termTaxonomyRepository,
-        protected RenderProductCardViewOfSelectedVariantService $renderProductCardViewOfSelectedVariantService
+        protected RenderProductCardOfSelectedVariantService $renderProductCardViewOfSelectedVariantService
     )
     {
         //

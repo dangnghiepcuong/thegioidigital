@@ -14,7 +14,7 @@ class GetProductCardListViewService
     public function __construct(
         protected ProductRepository $productRepository,
         protected ProductMetaRepository $productMetaRepository,
-        protected RenderProductCardViewOfDefaultVariantService $renderProductCardViewOfDefaultVariantService
+        protected RenderProductCardOfDefaultVariantService $renderProductCardViewOfDefaultVariantService
     ) {
         //
     }

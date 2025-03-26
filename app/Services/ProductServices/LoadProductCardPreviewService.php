@@ -11,13 +11,13 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class GetProductCardPreviewService
+class LoadProductCardPreviewService
 {
     use ProductTrait;
 
     public function __construct(
-        protected RenderProductCardViewOfDefaultVariantService $renderProductCardViewOfDefaultVariantService,
-        protected RenderBadgeTemplateService                   $renderBadgeTemplateService
+        protected RenderProductCardOfDefaultVariantService $renderProductCardViewOfDefaultVariantService,
+        protected RenderBadgeTemplateService               $renderBadgeTemplateService
     )
     {
         //
