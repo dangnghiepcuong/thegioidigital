@@ -13,6 +13,13 @@ use Illuminate\Support\Str;
 class CreateNewProductService
 {
     protected $autoFillData = [
+        ModelMetaKey::BADGE_BACKGROUND_STYLE,
+        ModelMetaKey::BADGE_BACKGROUND_COLOR_1,
+        ModelMetaKey::BADGE_BACKGROUND_COLOR_2,
+        ModelMetaKey::BADGE_BACKGROUND_COLOR_REVERSE,
+        ModelMetaKey::BADGE_BACKGROUND_URL,
+        ModelMetaKey::BADGE_TEXT,
+        ModelMetaKey::BADGE_TEXT_COLOR,
         ModelMetaKey::THUMB_URL,
         ModelMetaKey::BOTTOM_LEFT_STAMP_URL,
         ModelMetaKey::REGULAR_PRICE,
@@ -37,7 +44,10 @@ class CreateNewProductService
     public function __construct(
         protected ProductRepository $productRepository,
         protected ProductMetaRepository $productMetaRepository
-    ) {}
+    )
+    {
+        //
+    }
 
 
     public function __invoke(CreateUpdateReplicateProductRequest $request)
@@ -49,11 +59,6 @@ class CreateNewProductService
         $compareTags = explode("\r\n", $request->str(ModelMetaKey::COMPARE_TAGS)->value());
         $title = $request->title;
         $slug = Str::slug($request->slug);
-        $badge = [
-            'product_attr_badge_icon_url' => $request->product_attr_badge_icon_url,
-            'product_attr_badge_background' => $request->product_attr_badge_background,
-            'product_attr_badge_text' => $request->product_attr_badge_text,
-        ];
         $description = $request->description;
         $termTaxonomyIds = explode("\r\n", $request->term_taxonomy_ids);
 
@@ -67,12 +72,6 @@ class CreateNewProductService
                 'status' => $status,
                 'description' => $description,
             ]);
-
-            $productMeta = !all_null_array($badge) ? $this->productMetaRepository->model()->firstOrCreate([
-                'key' => ModelMetaKey::BADGE,
-                'value' => serialize($badge),
-                'product_id' => $product->id,
-            ]) : null;
 
             $productMeta = !all_null_array($compareTags) ? $this->productMetaRepository->model()->firstOrCreate([
                 'key' => ModelMetaKey::COMPARE_TAGS,

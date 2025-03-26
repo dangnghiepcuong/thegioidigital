@@ -58,31 +58,11 @@
     text-transform: uppercase;
 }
 
-.card-product .layout-badge.bg1 {
-}
-
-.card-product .layout-badge.bg2 {
-}
-
-.card-product .layout-badge.bg3 {
-    background: linear-gradient(to right, #e91f63, #db2663);
-}
-
-.card-product .layout-badge.bg4 {
-    background: linear-gradient(to right, #3bacf0, #1b6dc1);
-}
-
-.card-product .layout-badge.bg5 {
-    background: linear-gradient(to right, #faab08, #d42611);
-}
-
-.card-product .layout-badge .badge {
-    max-width: 20px;
-}
-
-.card-product .layout-badge>* {
+.card-product .layout-badge .badge-icon,
+.card-product .layout-badge .badge-text {
     display: inline-block;
     vertical-align: middle;
+    max-height: 100%;
 }
 
 .card-product .holder-product-name {

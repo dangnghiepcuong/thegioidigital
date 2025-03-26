@@ -51,7 +51,7 @@
     text-align: right;
 }
 
-.form-item input,
+.form-item input:not([type="radio"]):not([type="checkbox"]):not([type="color"]),
 .form-item textarea,
 .form-item select,
 .form-item option {

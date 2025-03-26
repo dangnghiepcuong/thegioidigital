@@ -9,6 +9,7 @@ use Closure;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection as SupportCollection;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Component;
 
 class Index extends Component
@@ -41,18 +42,35 @@ class Index extends Component
         $thumbUrl = get_meta_value($this->selectedVariantMeta, ModelMetaKey::THUMB_URL);
         $title = $this->product->title ?? null;
         $bottomLeftStampUrl = get_meta_value($this->selectedVariantMeta, ModelMetaKey::BOTTOM_LEFT_STAMP_URL);
-        $serializedBadge = get_meta_value($this->selectedVariantMeta, ModelMetaKey::BADGE);
-        try {
-            $badge = $serializedBadge ? unserialize($serializedBadge) : null;
-            $badgeBg = $badge['product_attr_badge_background'] ?? null;
-            $badgeText = $badge['product_attr_badge_text'] ?? null;
-            $badgeIcon = $badge['product_attr_badge_icon_url'] ?? null;
-        } catch (Exception $exception) {
+
+        $badgeBgStyle = get_meta_value($this->selectedVariantMeta, ModelMetaKey::BADGE_BACKGROUND_STYLE);
+        if ($badgeBgStyle) {
+            $badgeBgColor1 = get_meta_value($this->selectedVariantMeta, ModelMetaKey::BADGE_BACKGROUND_COLOR_1);
+            $badgeBgColor2 = get_meta_value($this->selectedVariantMeta, ModelMetaKey::BADGE_BACKGROUND_COLOR_2);
+            $badgeBgColorReverse = get_meta_value($this->selectedVariantMeta, ModelMetaKey::BADGE_BACKGROUND_COLOR_REVERSE);
+            if ($badgeBgColorReverse) {
+                [$badgeBgColor1, $badgeBgColor2] = [$badgeBgColor2, $badgeBgColor1];
+            }
+            $badge = Blade::render('<x-product.card.badge-template
+            :background-style="$badgeBgStyle ?? null"
+            :background-color-1="$badgeBgColor1 ?? null"
+            :background-color-2="$badgeBgColor2 ?? null"
+            :background-url="$badgeBgUrl ?? null"
+            :icon-url="$badgeIconUrl ?? null"
+            :text-color="$badgeTextColor ?? null"
+            :text="$badgeText ?? null"/>', [
+                'badgeBgStyle' => get_meta_value($this->selectedVariantMeta, ModelMetaKey::BADGE_BACKGROUND_STYLE),
+                'badgeBgColor1' => $badgeBgColor1,
+                'badgeBgColor2' => $badgeBgColor2,
+                'badgeBgUrl' => get_meta_value($this->selectedVariantMeta, ModelMetaKey::BADGE_BACKGROUND_URL),
+                'badgeIconUrl' => get_meta_value($this->selectedVariantMeta, ModelMetaKey::BADGE_ICON_URL),
+                'badgeText' => get_meta_value($this->selectedVariantMeta, ModelMetaKey::BADGE_TEXT),
+                'badgeTextColor' => get_meta_value($this->selectedVariantMeta, ModelMetaKey::BADGE_TEXT_COLOR),
+            ]);
+        } else {
             $badge = null;
-            $badgeBg = null;
-            $badgeText = null;
-            $badgeIcon = null;
         }
+
         $serializedCompareTags = get_meta_value($this->selectedVariantMeta, ModelMetaKey::COMPARE_TAGS);
         try {
             $compareTags = $serializedCompareTags ? unserialize($serializedCompareTags) : null;
@@ -75,9 +93,6 @@ class Index extends Component
             'title' => $title,
             'bottomLeftStampUrl' => $bottomLeftStampUrl,
             'badge' => $badge,
-            'badgeBg' => $badgeBg,
-            'badgeText' => $badgeText,
-            'badgeIcon' => $badgeIcon,
             'compareTags' => $compareTags,
             'price' => $price ? $price->getCurrency() : null,
             'regularPrice' => $regularPrice ? $regularPrice->getCurrency() : null,

@@ -4,13 +4,21 @@ namespace App\Enums;
 
 use App\Support\Traits\EnumAccessTrait;
 
-class ModelMetaKey
+final class ModelMetaKey
 {
     use EnumAccessTrait;
 
     public const USER_PERMISSIONS = 'user_permissions';
     public const BACK_CAMERA = 'product_attr_back_camera';
     public const BADGE = 'product_attr_badge';
+    public const BADGE_BACKGROUND_STYLE = 'product_attr_badge_background_style';
+    public const BADGE_BACKGROUND_COLOR_1 = 'product_attr_badge_background_color_1';
+    public const BADGE_BACKGROUND_COLOR_2 = 'product_attr_badge_background_color_2';
+    public const BADGE_BACKGROUND_COLOR_REVERSE = 'product_attr_badge_background_color_reverse';
+    public const BADGE_BACKGROUND_URL = 'product_attr_badge_background_url';
+    public const BADGE_ICON_URL = 'product_attr_badge_icon_url';
+    public const BADGE_TEXT = 'product_attr_badge_text';
+    public const BADGE_TEXT_COLOR = 'product_attr_badge_text_color';
     public const BATTERY = 'product_attr_battery';
     public const BOTTOM_LEFT_STAMP_URL = 'product_attr_bottom_left_stamp_url';
     public const BRAND = 'product_attr_brand';
@@ -61,10 +69,18 @@ class ModelMetaKey
     {
         $array= [
             ModelMetaKey::TOP_TAGS,
+            ModelMetaKey::BADGE_BACKGROUND_STYLE,
+            ModelMetaKey::BADGE_BACKGROUND_COLOR_1,
+            ModelMetaKey::BADGE_BACKGROUND_COLOR_2,
+            ModelMetaKey::BADGE_BACKGROUND_COLOR_REVERSE,
+            ModelMetaKey::BADGE_BACKGROUND_URL,
+            ModelMetaKey::BADGE_ICON_URL,
+            ModelMetaKey::BADGE_TEXT,
+            ModelMetaKey::BADGE_TEXT_COLOR,
             ModelMetaKey::THUMB_URL,
             ModelMetaKey::BOTTOM_LEFT_STAMP_URL,
             ModelMetaKey::TOP_RIGHT_STAMP_URL,
-//            ModelMetaKey::BADGE,
+            ModelMetaKey::BADGE,
             ModelMetaKey::COMPARE_TAGS,
             ModelMetaKey::REGULAR_PRICE,
             ModelMetaKey::PRICE,

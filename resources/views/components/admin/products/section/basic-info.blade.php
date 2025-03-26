@@ -34,27 +34,15 @@
                type="text" id="form-top-right-stamp-url" layout="holder-img" element="img" class-name="stamp top-right"
                bound-attr="src" set="append-once" class="input-field">
     </div>
-    <div class="form-item demo-attribute">
-        <label for="form-badge-icon">{{ __('product_meta.product_attr_badge_icon_url') }}</label>
-        <input name="product_attr_badge_icon_url"
-               value="{{ old('product_attr_badge_icon_url') ?? $badgeIcon }}"
-               type="text" id="form-badge-icon" layout="layout-badge" element="img" class-name="badge" bound-attr="src"
-               set="append-once" class="input-field">
-    </div>
-    <div class="form-item demo-attribute">
-        <label for="form-badge-background">{{ __('product_meta.product_attr_badge_background') }}</label>
-        <input name="product_attr_badge_background"
-               value="{{ old('product_attr_badge_background') ?? $badgeBg }}"
-               id="form-badge-layout" type="text" layout="layout-badge" bound-attr="class" default-value="layout-badge"
-               placeholder="bg1, bg2, bg3, bg4..." set="append-once" class="input-field">
-    </div>
-    <div class="form-item demo-attribute">
-        <label for="form-title">{{ __('product_meta.product_attr_badge_text') }}</label>
-        <input name="product_attr_badge_text"
-               value="{{ old('product_attr_badge_text') ?? $badgeText }}"
-               type="text" id="form-badge-text" layout="layout-badge" element="span" class-name="badge-text"
-               bound-attr="text/html" set="append-once" class="input-field">
-    </div>
+    <x-admin.products.section.badge-template
+        :background-style="$badgeBgStyle ?? null"
+        :background-color-1="$badgeBgColor1 ?? null"
+        :background-color-2="$badgeBgColor2 ?? null"
+        :background-url="$badgeBgUrl ?? null"
+        :icon-url="$badgeIconUrl ?? null"
+        :text-color="$badgeTextColor ?? null"
+        :text="$badgeText ?? null"
+    />
     <div class="form-item demo-attribute">
         <label for="form-compare-tags">{{ __('product_meta.product_attr_compare_tags') }}</label>
         <textarea name="{{ ModelMetaKey::COMPARE_TAGS }}" id="form-compare-tags" cols="20" rows="2"

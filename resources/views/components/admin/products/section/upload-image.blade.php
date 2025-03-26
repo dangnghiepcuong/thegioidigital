@@ -54,3 +54,6 @@
         @endforeach
     </div>
 </div>
+@pushonce('scripts')
+    @vite($viewsDir . '/components/admin/products/section/file-upload.js')
+@endpushonce

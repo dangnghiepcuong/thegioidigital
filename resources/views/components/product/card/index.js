@@ -1,6 +1,5 @@
 import $ from 'jquery';
 window.jQuery = $;
-export default $;
 
 import { fetchAsyncData } from '/resources/js/fetch';
 

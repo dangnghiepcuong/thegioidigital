@@ -4,10 +4,9 @@
 @section('styles')
     @parent
     @vite($viewsDir . '/admin/products/create-edit.css')
-    @vite($viewsDir . '/admin/products/partials/sections.css')
+    @vite($viewsDir . '/components/admin/products/section/sections.css')
     @vite($viewsDir . '/components/product/card/index.css')
 @endsection
-@use('App\Enums\ModelMetaKey')
 @section('content')
     <!-- Simplicity is the ultimate sophistication. - Leonardo da Vinci -->
     <div class="page-edit-product">
@@ -17,7 +16,8 @@
                 @csrf
                 @method('patch')
 
-                <x-admin.products.section.main-info :product="$product ?? null"/>
+                <x-admin.products.section.main-info :product="$product ?? null"
+                                                    :parent-products="$parentProducts ?? null"/>
                 <x-admin.products.section.basic-info :product-meta="$productMeta ?? null"/>
                 <x-admin.products.section.description :description="$product->description ?? null"/>
                 <x-admin.products.section.meta-data :product-meta="$productMeta ?? null"/>
@@ -59,7 +59,7 @@
             </div>
         </div>
     </div>
-    @include('admin.products.partials.popup-demo-description')
+    @include('components.admin.products.section.popup-demo-description')
     <input type="hidden" id="csrf-token" value="{{ csrf_token() }}"/>
 @endsection
 
@@ -67,6 +67,4 @@
     @parent
     @vite($viewsDir . '/admin/products/create-edit-ui-interaction.js')
     @vite($viewsDir . '/admin/products/create-edit-server-interaction.js')
-    @vite($viewsDir . '/admin/products/partials/wysiwyg.js')
-    @vite($viewsDir . '/admin/products/partials/file-upload.js')
 @endsection
