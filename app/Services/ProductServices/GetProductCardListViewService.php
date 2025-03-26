@@ -7,14 +7,14 @@ use App\Repositories\Eloquents\ProductRepository;
 use App\Support\Traits\ProductTrait;
 use Illuminate\Database\Eloquent\Collection;
 
-class GenerateProductCardListViewService
+class GetProductCardListViewService
 {
     use ProductTrait;
 
     public function __construct(
         protected ProductRepository $productRepository,
         protected ProductMetaRepository $productMetaRepository,
-        protected RenderProductCardViewWithDefaultVariantOptionService $renderProductCardViewWithDefaultVariantOptionService
+        protected RenderProductCardViewOfDefaultVariantService $renderProductCardViewOfDefaultVariantService
     ) {
         //
     }
@@ -29,7 +29,7 @@ class GenerateProductCardListViewService
         foreach ($products as $product) {
             $termsOfFirstPriorTaxonomy = $this->getTermsByFirstPriorTaxonomyOfProduct($product);
             $representVariants = $this->getRepresentativeVariants($product, $termsOfFirstPriorTaxonomy);
-            $html = $this->renderProductCardViewWithDefaultVariantOptionService->__invoke(
+            $html = $this->renderProductCardViewOfDefaultVariantService->__invoke(
                 $product, $termsOfFirstPriorTaxonomy, $representVariants
             );
             $htmlProductCardList .= $html;

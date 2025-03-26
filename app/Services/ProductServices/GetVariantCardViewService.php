@@ -6,15 +6,14 @@ use App\Repositories\Eloquents\ProductRepository;
 use App\Repositories\Eloquents\TermTaxonomyRepository;
 use App\Support\Traits\ProductTrait;
 
-class GetVariantCardViewBySlugService
+class GetVariantCardViewService
 {
     use ProductTrait;
 
     public function __construct(
-        protected ProductRepository                                     $productRepository,
-        protected TermTaxonomyRepository                                $termTaxonomyRepository,
-        protected RenderProductCardPreviewService                       $generateProductCardViewService,
-        protected RenderProductCardViewWithSelectedVariantOptionService $renderProductCardViewWithSelectedVariantOptionService
+        protected ProductRepository                             $productRepository,
+        protected TermTaxonomyRepository                        $termTaxonomyRepository,
+        protected RenderProductCardViewOfSelectedVariantService $renderProductCardViewOfSelectedVariantService
     )
     {
         //
@@ -31,8 +30,9 @@ class GetVariantCardViewBySlugService
         $representVariants = $this->getRepresentativeVariants($parent, $termsOfFirstPriorTaxonomy);
         $matchedMeta = $variant->productMetaInCardView->where('key', $termsOfFirstPriorTaxonomy->first()->taxonomy)->first();
         $selectedTermTaxonomy = $matchedMeta ? $matchedMeta->value : null;
-        $html = $this->renderProductCardViewWithSelectedVariantOptionService
-            ->__invoke($variant, $termsOfFirstPriorTaxonomy, $representVariants, $selectedTermTaxonomy);
+        $html = $this->renderProductCardViewOfSelectedVariantService->__invoke(
+            $variant, $termsOfFirstPriorTaxonomy, $representVariants, $selectedTermTaxonomy
+        );
 
         return $html;
     }

@@ -39,7 +39,7 @@ trait ProductTrait
                 ->where('product_meta.value', $termTaxonomy->term->name)
                 ->select('products.*')
                 ->first();
-            $variants->push($variant);
+            $variant ? $variants->push($variant) : null;
         }
 
         return $variants;

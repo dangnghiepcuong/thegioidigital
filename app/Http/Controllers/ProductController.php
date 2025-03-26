@@ -11,10 +11,9 @@ use App\Services\ProductServices\ReplicateProductService;
 use App\Services\ProductServices\CreateNewProductService;
 use App\Services\ProductServices\PageCreateProductService;
 use App\Services\ProductServices\PageEditProductService;
-use App\Services\ProductServices\GenerateProductCardListViewService;
-use App\Services\ProductServices\RenderProductCardPreviewService;
+use App\Services\ProductServices\GetProductCardListViewService;
 use App\Services\ProductServices\GetProductCardPreviewService;
-use App\Services\ProductServices\GetVariantCardViewBySlugService;
+use App\Services\ProductServices\GetVariantCardViewService;
 use App\Services\ProductServices\UpdateProductService;
 use Exception;
 use Illuminate\Http\Request;
@@ -23,19 +22,18 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     public function __construct(
-        protected ProductRepository                  $productRepository,
-        protected ProductMetaRepository              $productMetaRepository,
-        protected TermRepository                     $termRepository,
-        protected TermTaxonomyRepository             $termTaxonomyRepository,
-        protected CreateNewProductService            $createNewProductService,
-        protected UpdateProductService               $updateProductService,
-        protected ReplicateProductService            $replicateProductService,
-        protected GenerateProductCardListViewService $generateProductCardListViewService,
-        protected RenderProductCardPreviewService    $generateProductCardViewService,
-        protected GetVariantCardViewBySlugService    $getVariantBySlugService,
-        protected GetProductCardPreviewService       $getProductCardPreviewService,
-        protected PageCreateProductService           $createPageProductService,
-        protected PageEditProductService             $editPageProductService
+        protected ProductRepository             $productRepository,
+        protected ProductMetaRepository         $productMetaRepository,
+        protected TermRepository                $termRepository,
+        protected TermTaxonomyRepository        $termTaxonomyRepository,
+        protected CreateNewProductService       $createNewProductService,
+        protected UpdateProductService          $updateProductService,
+        protected ReplicateProductService       $replicateProductService,
+        protected GetProductCardListViewService $getProductCardListViewService,
+        protected GetVariantCardViewService     $getVariantCarViewService,
+        protected GetProductCardPreviewService  $getProductCardPreviewService,
+        protected PageCreateProductService      $createPageProductService,
+        protected PageEditProductService        $editPageProductService
     )
     {
         //
@@ -75,7 +73,7 @@ class ProductController extends Controller
                 ]);
             }
 
-            $htmlProductCardList = $this->generateProductCardListViewService->__invoke($products);
+            $htmlProductCardList = $this->getProductCardListViewService->__invoke($products);
 
             DB::commit();
 
@@ -147,7 +145,7 @@ class ProductController extends Controller
     {
         try {
             DB::beginTransaction();
-            $view = $this->getVariantBySlugService->__invoke($slug);
+            $view = $this->getVariantCarViewService->__invoke($slug);
             DB::commit();
 
             return $view;
