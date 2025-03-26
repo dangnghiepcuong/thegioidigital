@@ -43,9 +43,9 @@ class ProductMeta extends Model
             default:
         }
 
-        try {
+        if (is_numeric($this->value)) {
             return $prefix . number_format($this->value, $decimal, $decimalSeparator, $thousandSeparator) . $postfix;
-        } catch (Exception $exception) {
+        } else {
             return $this->value;
         }
     }

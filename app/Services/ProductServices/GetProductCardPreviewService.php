@@ -5,6 +5,7 @@ namespace App\Services\ProductServices;
 use App\Enums\ModelMetaKey;
 use App\Models\Product;
 use App\Models\ProductMeta;
+use App\Support\Traits\ProductTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -12,10 +13,13 @@ use Illuminate\Support\Facades\DB;
 
 class GetProductCardPreviewService
 {
+    use ProductTrait;
+
     public function __construct(
-        protected RenderProductCardPreviewService $renderProductCardPreviewService,
-        protected RenderBadgeTemplateService      $renderBadgeTemplateService
-    ) {
+        protected RenderProductCardViewOfDefaultVariantService $renderProductCardViewOfDefaultVariantService,
+        protected RenderBadgeTemplateService                   $renderBadgeTemplateService
+    )
+    {
         //
     }
 
@@ -41,7 +45,11 @@ class GetProductCardPreviewService
 
             $product->setRelation('productMetaInCardView', $productMeta);
 
-            $html = $this->renderProductCardPreviewService->__invoke($product, null, $product);
+            $termsOfFirstPriorTaxonomy = $this->getTermsByFirstPriorTaxonomyOfProduct($product);
+            $representVariants = $this->getRepresentativeVariants($product, $termsOfFirstPriorTaxonomy);
+            $html = $this->renderProductCardViewOfDefaultVariantService->__invoke(
+                $product, $termsOfFirstPriorTaxonomy, $representVariants
+            );
             DB::commit();
 
             return $html;

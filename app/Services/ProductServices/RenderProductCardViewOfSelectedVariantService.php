@@ -6,7 +6,7 @@ use App\Models\Product;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Blade;
 
-class RenderProductCardViewWithSelectedVariantOptionService
+class RenderProductCardViewOfSelectedVariantService
 {
     public function __invoke(
         Product $selectedVariant,
