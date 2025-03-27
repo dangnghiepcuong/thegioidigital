@@ -9,7 +9,7 @@
     <div class="form-item demo-attribute-to-table-product-meta">
         <label for="form-meta-key">{{ __('product_meta.meta_key') }}</label>
         <select id="form-meta-key">
-            @foreach (ModelMetaKey::notShownInCardCases() as $metaKey)
+            @foreach (ModelMetaKey::technicalAttributes() as $metaKey)
                 @if (str_starts_with($metaKey, 'product_attr_'))
                     <option value="{{ $metaKey }}">{{ __("product_meta.$metaKey") }}</option>
                 @endif
@@ -27,8 +27,8 @@
         </tr>
         </thead>
         <tbody>
-        @foreach (ModelMetaKey::notShownInCardCases() as $metaKey)
-            @if (old($metaKey) && in_array($metaKey, ModelMetaKey::notShownInCardCases()))
+        @foreach (ModelMetaKey::technicalAttributes() as $metaKey)
+            @if (old($metaKey) && in_array($metaKey, ModelMetaKey::technicalAttributes()))
                 <tr>
                     <td class="meta-key">{{ __("product_meta.$metaKey") }}</td>
                     <td class="meta-value">
@@ -41,7 +41,7 @@
         @endforeach
         @isset($productMeta)
             @foreach ($productMeta as $meta)
-                @if (!old($metaKey) && in_array($meta->key, ModelMetaKey::notShownInCardCases()))
+                @if (!old($metaKey) && in_array($meta->key, ModelMetaKey::technicalAttributes()))
                     <tr>
                         <td class="meta-key">{{ __("product_meta.$meta->key") }}</td>
                         <td class="meta-value">

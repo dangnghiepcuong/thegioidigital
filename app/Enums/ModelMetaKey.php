@@ -28,11 +28,11 @@ final class ModelMetaKey
     public const CPU = 'product_attr_cpu';
     public const FRONT_CAMERA = 'product_attr_front_camera';
     public const GIFT = 'product_attr_gift';
+    public const LIST_PRICE = 'product_attr_list_price';
     public const MEMORY = 'product_attr_memory';
     public const PRICE = 'product_attr_price';
     public const RAM = 'product_attr_ram';
     public const ROM = 'product_attr_rom';
-    public const LIST_PRICE = 'product_attr_list_price';
     public const SCREEN_MATERIAL = 'product_attr_screen_material';
     public const SCREEN_RESOLUTION = 'product_attr_screen_resolution';
     public const SCREEN_SIZE = 'product_attr_screen_size';
@@ -41,7 +41,7 @@ final class ModelMetaKey
     public const TOP_RIGHT_STAMP_URL = 'product_attr_top_right_stamp_url';
     public const TOP_TAGS = 'product_attr_top_tags';
 
-    public static function notShownInCardCases()
+    public static function technicalAttributes()
     {
         $array = [
             ModelMetaKey::RAM,
