@@ -5,6 +5,8 @@ namespace App\Services\ProductServices;
 use App\Enums\ModelMetaKey;
 use App\Models\Product;
 use App\Models\ProductMeta;
+use App\Services\RenderProductViewServices\RenderBadgeTemplateService;
+use App\Services\RenderProductViewServices\RenderProductCardOfDefaultVariantService;
 use App\Support\Traits\ProductTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;

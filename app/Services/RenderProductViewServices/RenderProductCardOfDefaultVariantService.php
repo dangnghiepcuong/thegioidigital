@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\ProductServices;
+namespace App\Services\RenderProductViewServices;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Collection;
@@ -14,8 +14,10 @@ class RenderProductCardOfDefaultVariantService
         Collection $representVariants
     ): string
     {
-        // if there is no taxonomy term & represent variant, this is a standalone product
-        $isStandaloneProduct = $representVariants->count() === 0 && $termsOfFirstPriorTaxonomy->count() === 0;
+
+        // if there is no represent variant (actually no variant or can't find variants match the first taxonomy,
+        // then this is a standalone product
+        $isStandaloneProduct = $representVariants->count() === 0;
 
         $defaultOption = $termsOfFirstPriorTaxonomy->first();
         $htmlVariantOptionBtn = $isStandaloneProduct ? null :

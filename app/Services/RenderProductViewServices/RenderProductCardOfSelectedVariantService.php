@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\ProductServices;
+namespace App\Services\RenderProductViewServices;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Collection;

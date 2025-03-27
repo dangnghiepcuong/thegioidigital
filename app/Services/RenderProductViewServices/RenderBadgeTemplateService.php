@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\ProductServices;
+namespace App\Services\RenderProductViewServices;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;

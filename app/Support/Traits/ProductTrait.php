@@ -30,7 +30,6 @@ trait ProductTrait
      * */
     private function getRepresentativeVariants(Product $product, Collection $termTaxonomies): Collection
     {
-
         $variants = new Collection();
         foreach ($termTaxonomies as $termTaxonomy) {
             $variant = $product->children()

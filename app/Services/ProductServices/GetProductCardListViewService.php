@@ -4,6 +4,7 @@ namespace App\Services\ProductServices;
 
 use App\Repositories\Eloquents\ProductMetaRepository;
 use App\Repositories\Eloquents\ProductRepository;
+use App\Services\RenderProductViewServices\RenderProductCardOfDefaultVariantService;
 use App\Support\Traits\ProductTrait;
 use Illuminate\Database\Eloquent\Collection;
 
