@@ -68,7 +68,6 @@
                 </ul>
             </li>
             <li>
-            <li>
                 <button type="button"
                         class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                         aria-controls="dropdown-product-management" data-collapse-toggle="dropdown-product-management">
@@ -89,13 +88,42 @@
                     <li>
                         <a href="{{ route('admin.products.index') }}"
                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                            List Product
+                            List Products
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.products.create') }}"
                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                             Create Product
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <button type="button"
+                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                        aria-controls="dropdown-attribute-management" data-collapse-toggle="dropdown-attribute-management">
+                    <svg class="w-5 h-5 text-gray-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 22 23">
+                        <path fill-rule="evenodd" d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4Zm0 8v6h7v-6H4Zm16 6h-7v-6h7v6Z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Attribute Management</span>
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                         viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="m1 1 4 4 4-4"/>
+                    </svg>
+                </button>
+                <ul id="dropdown-attribute-management" class="hidden py-2 space-y-2">
+                    <li>
+                        <a href=""
+                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                            List Attributes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.attributes.create') }}"
+                           class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                            Create Attribute
                         </a>
                     </li>
                 </ul>

@@ -37,8 +37,13 @@ async function getProductCard() {
         });
         $(".layout-demo-product .card-product").replaceWith(data);
     } catch (exception) {
-        if (_get(exception, 'status') === 422) {
-            $(".layout-errors").html(`<span class="error">${_get(exception.responseJSON, 'message')}</span><br>`);
+        let elLayoutErrors = $(".layout-errors");
+        switch (_get(exception, 'status')) {
+            case 403:
+            case 404:
+            case 422:
+                elLayoutErrors.html(`<span class="error">${_get(exception.responseJSON, 'message')}</span><br>`);
+                break
         }
     }
 }

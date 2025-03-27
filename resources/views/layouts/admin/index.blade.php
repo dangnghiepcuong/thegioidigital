@@ -25,7 +25,7 @@
 <body>
     <!-- Simplicity is the essence of happiness. - Cedric Bledsoe -->
     <div class="f-container">
-        <x-admin.sidebar2></x-admin.sidebar2>
+        <x-admin.sidebar2.index></x-admin.sidebar2.index>
         @yield('content')
     </div>
 

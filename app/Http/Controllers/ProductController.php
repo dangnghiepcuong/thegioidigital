@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateAttributeRequest;
 use App\Http\Requests\CreateUpdateReplicateProductRequest;
 use App\Repositories\Eloquents\ProductMetaRepository;
 use App\Repositories\Eloquents\ProductRepository;

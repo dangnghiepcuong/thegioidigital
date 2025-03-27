@@ -1,7 +1,3 @@
-@import "flowbite/src/themes/default";
-@plugin "flowbite/plugin";
-@source "../../node_modules/flowbite";
-
 .f-container {
     width: 100%;
     min-width: 1024px;

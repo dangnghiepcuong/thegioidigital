@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -62,6 +63,11 @@ Route::middleware(['auth'])->group(function () {
                     ->name('admin.products.slider.image');
                 Route::delete('slider-images', 'deleteImagesFromProductSlider');
             });
+        });
+
+        Route::prefix('attributes')->controller(AttributeController::class)->group(function () {
+            Route::get('create', 'createAttribute')->name('admin.attributes.create');
+            Route::post('', 'storeAttribute')->name('admin.attributes.store');
         });
     });
 

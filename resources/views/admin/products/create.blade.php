@@ -13,7 +13,6 @@
         <div class="layout-editing-sections">
             <form id="form-create-update-product" method="POST" action="{{ route('admin.products.store') }}">
                 @csrf
-
                 <x-admin.products.section.main-info :product="$product ?? null"
                                                     :parent-products="$parentProducts ?? null"/>
                 <x-admin.products.section.basic-info :product-meta="$productMeta ?? null"/>
