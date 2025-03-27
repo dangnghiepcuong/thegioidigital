@@ -79,9 +79,9 @@ class Index extends Component
         }
         $price = get_meta($this->selectedVariantMeta, ModelMetaKey::PRICE);
         $regularPrice = get_meta($this->selectedVariantMeta, ModelMetaKey::REGULAR_PRICE);
-        if (is_null($regularPrice) && is_null($price)) {
+        if (is_numeric($regularPrice->value) && is_numeric($price->value)) {
             $discount = floor(
-                    (($regularPrice ? $regularPrice->value : 0) - ($price ? $price->value : 0))
+                    (($price ? $price->value : 0) - ($regularPrice ? $regularPrice->value : 0))
                     / ($regularPrice ? $regularPrice->value : 1)
                     * 100
                 ) . '%';
