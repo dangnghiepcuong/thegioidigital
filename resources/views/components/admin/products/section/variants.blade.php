@@ -22,7 +22,8 @@
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="variants_parent_id" name="reflect_product_fields_on_variants[]" value="parent_id">
+            <input type="checkbox" id="variants_parent_id" name="reflect_product_fields_on_variants[]"
+                   value="parent_id">
             <label for="variants_parent_id" class="applied-data-label">{{ __('product.parent_product') }}</label>
         </div>
 
@@ -32,13 +33,15 @@
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="variants_description" name="reflect_product_fields_on_variants[]" value="description">
+            <input type="checkbox" id="variants_description" name="reflect_product_fields_on_variants[]"
+                   value="description">
             <label for="variants_description" class="applied-data-label">{{ __('product.description') }}</label>
         </div>
 
         <p>Product Meta fields</p>
         <div class="applied-data-field">
-            <input type="checkbox" id="variants_top_tags" name="reflect_product_meta_fields_on_variants[]" value="{{ ModelMetaKey::TOP_TAGS }}">
+            <input type="checkbox" id="variants_top_tags" name="reflect_product_meta_fields_on_variants[]"
+                   value="{{ ModelMetaKey::TOP_TAGS }}">
             <label for="variants_top_tags"
                    class="applied-data-label">{{ __('product_meta.product_attr_top_tags') }}</label>
         </div>
@@ -65,7 +68,8 @@
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="variants_badge" name="reflect_product_meta_fields_on_variants[]" value="{{ ModelMetaKey::BADGE }}">
+            <input type="checkbox" id="variants_badge" name="reflect_product_meta_fields_on_variants[]"
+                   value="{{ ModelMetaKey::BADGE }}">
             <label for="variants_badge" class="applied-data-label">{{ __('product_meta.product_attr_badge') }}</label>
         </div>
 
@@ -78,18 +82,20 @@
 
         <div class="applied-data-field">
             <input type="checkbox" id="variants_regular_price" name="reflect_product_meta_fields_on_variants[]"
-                   value="{{ ModelMetaKey::REGULAR_PRICE }}">
+                   value="{{ ModelMetaKey::LIST_PRICE }}">
             <label for="variants_regular_price"
                    class="applied-data-label">{{ __('product_meta.product_attr_regular_price') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="variants_price" name="reflect_product_meta_fields_on_variants[]" value="{{ ModelMetaKey::PRICE }}">
+            <input type="checkbox" id="variants_price" name="reflect_product_meta_fields_on_variants[]"
+                   value="{{ ModelMetaKey::PRICE }}">
             <label for="variants_price" class="applied-data-label">{{ __('product_meta.product_attr_price') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="variants_gift" name="reflect_product_meta_fields_on_variants[]" value="{{ ModelMetaKey::GIFT }}">
+            <input type="checkbox" id="variants_gift" name="reflect_product_meta_fields_on_variants[]"
+                   value="{{ ModelMetaKey::GIFT }}">
             <label for="variants_gift" class="applied-data-label">{{ __('product_meta.product_attr_gift') }}</label>
         </div>
     </div>

@@ -78,7 +78,7 @@ class Index extends Component
             $compareTags = [];
         }
         $price = get_meta($this->selectedVariantMeta, ModelMetaKey::PRICE);
-        $regularPrice = get_meta($this->selectedVariantMeta, ModelMetaKey::REGULAR_PRICE);
+        $regularPrice = get_meta($this->selectedVariantMeta, ModelMetaKey::LIST_PRICE);
         if ($price && $regularPrice && is_numeric($regularPrice->value) && is_numeric($price->value)) {
             $discount = floor(
                     (($price ? $price->value : 0) - ($regularPrice ? $regularPrice->value : 0))

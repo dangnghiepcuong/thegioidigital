@@ -30,7 +30,7 @@ return [
     'product_attr_charge_power' => 'Công suất sạc',
     'product_attr_color' => 'Màu sắc',
     'product_attr_compare_tags' => 'Nhãn so sánh',
-    'product_attr_CPU' => 'Chip',
+    'product_attr_CPU' => 'Chip (CPU)',
     'product_attr_front_camera' => 'Camera trước',
     'product_attr_gift' => 'Quà tặng',
     'product_attr_memory' => 'Bộ nhớ',

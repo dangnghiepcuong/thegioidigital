@@ -22,7 +22,8 @@
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_parent_id" name="reflect_product_fields_on_siblings[]" value="parent_id">
+            <input type="checkbox" id="siblings_parent_id" name="reflect_product_fields_on_siblings[]"
+                   value="parent_id">
             <label for="siblings_parent_id" class="applied-data-label">{{ __('product.parent_product') }}</label>
         </div>
 
@@ -32,13 +33,15 @@
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_description" name="reflect_product_fields_on_siblings[]" value="description">
+            <input type="checkbox" id="siblings_description" name="reflect_product_fields_on_siblings[]"
+                   value="description">
             <label for="siblings_description" class="applied-data-label">{{ __('product.description') }}</label>
         </div>
 
         <p>Product Meta fields</p>
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_top_tags" name="reflect_product_meta_fields_on_siblings[]" value="{{ ModelMetaKey::TOP_TAGS }}">
+            <input type="checkbox" id="siblings_top_tags" name="reflect_product_meta_fields_on_siblings[]"
+                   value="{{ ModelMetaKey::TOP_TAGS }}">
             <label for="siblings_top_tags"
                    class="applied-data-label">{{ __('product_meta.product_attr_top_tags') }}</label>
         </div>
@@ -65,7 +68,8 @@
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_badge" name="reflect_product_meta_fields_on_siblings[]" value="{{ ModelMetaKey::BADGE }}">
+            <input type="checkbox" id="siblings_badge" name="reflect_product_meta_fields_on_siblings[]"
+                   value="{{ ModelMetaKey::BADGE }}">
             <label for="siblings_badge" class="applied-data-label">{{ __('product_meta.product_attr_badge') }}</label>
         </div>
 
@@ -78,18 +82,20 @@
 
         <div class="applied-data-field">
             <input type="checkbox" id="siblings_regular_price" name="reflect_product_meta_fields_on_siblings[]"
-                   value="{{ ModelMetaKey::REGULAR_PRICE }}">
+                   value="{{ ModelMetaKey::LIST_PRICE }}">
             <label for="siblings_regular_price"
                    class="applied-data-label">{{ __('product_meta.product_attr_regular_price') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_price" name="reflect_product_meta_fields_on_siblings[]" value="{{ ModelMetaKey::PRICE }}">
+            <input type="checkbox" id="siblings_price" name="reflect_product_meta_fields_on_siblings[]"
+                   value="{{ ModelMetaKey::PRICE }}">
             <label for="siblings_price" class="applied-data-label">{{ __('product_meta.product_attr_price') }}</label>
         </div>
 
         <div class="applied-data-field">
-            <input type="checkbox" id="siblings_gift" name="reflect_product_meta_fields_on_siblings[]" value="{{ ModelMetaKey::GIFT }}">
+            <input type="checkbox" id="siblings_gift" name="reflect_product_meta_fields_on_siblings[]"
+                   value="{{ ModelMetaKey::GIFT }}">
             <label for="siblings_gift" class="applied-data-label">{{ __('product_meta.product_attr_gift') }}</label>
         </div>
     </div>
@@ -115,7 +121,7 @@
                 <x-product.card.index
                     :product="$sibling"
                     :selected-variant-meta="$sibling->productMetaInCardView ?? null"
-                    :url="route('admin.products.slug', $sibling->slug ?? '')" />
+                    :url="route('admin.products.slug', $sibling->slug ?? '')"/>
             </div>
         @endforeach
     </x-product.list.index>
