@@ -4,7 +4,6 @@ namespace App\Services\ProductServices;
 
 use App\Enums\ModelMetaKey;
 use App\Enums\ProductStatusEnum;
-use App\Http\Requests\CreateUpdateReplicateProductRequest;
 use App\Repositories\Eloquents\ProductMetaRepository;
 use App\Repositories\Eloquents\ProductRepository;
 use Exception;
@@ -14,28 +13,6 @@ use Illuminate\Support\Str;
 
 class ReplicateProductService
 {
-    protected $autoFillData = [
-        ModelMetaKey::THUMB_URL,
-        ModelMetaKey::BOTTOM_LEFT_STAMP_URL,
-        ModelMetaKey::REGULAR_PRICE,
-        ModelMetaKey::PRICE,
-        ModelMetaKey::GIFT,
-        ModelMetaKey::RAM,
-        ModelMetaKey::ROM,
-        ModelMetaKey::STORAGE,
-        ModelMetaKey::COLOR,
-        ModelMetaKey::SCREEN_SIZE,
-        ModelMetaKey::SCREEN_RESOLUTION,
-        ModelMetaKey::SCREEN_MATERIAL,
-        ModelMetaKey::BACK_CAMERA,
-        ModelMetaKey::FRONT_CAMERA,
-        ModelMetaKey::BATTERY,
-        ModelMetaKey::CHARGE_POWER,
-        ModelMetaKey::CPU,
-        ModelMetaKey::MEMORY,
-        ModelMetaKey::BRAND,
-    ];
-
     public function __construct(
         protected ProductRepository $productRepository,
         protected ProductMetaRepository $productMetaRepository

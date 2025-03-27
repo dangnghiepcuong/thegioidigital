@@ -4,6 +4,7 @@ namespace App\Services\ProductServices;
 
 use App\Repositories\Eloquents\ProductRepository;
 use App\Repositories\Eloquents\TermTaxonomyRepository;
+use App\Services\RenderProductViewServices\RenderProductCardOfSelectedVariantService;
 use App\Support\Traits\ProductTrait;
 
 class LoadVariantCardViewService
