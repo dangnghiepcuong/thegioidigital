@@ -22,7 +22,7 @@ class CreateNewProductService
         ModelMetaKey::BADGE_TEXT_COLOR,
         ModelMetaKey::THUMB_URL,
         ModelMetaKey::BOTTOM_LEFT_STAMP_URL,
-        ModelMetaKey::REGULAR_PRICE,
+        ModelMetaKey::LIST_PRICE,
         ModelMetaKey::PRICE,
         ModelMetaKey::GIFT,
         ModelMetaKey::RAM,

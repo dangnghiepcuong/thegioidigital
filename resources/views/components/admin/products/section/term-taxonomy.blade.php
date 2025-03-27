@@ -12,7 +12,7 @@
             <option value=""></option>
             @foreach ($termTaxonomies as $termTaxonomy)
                 <option value="{{ $termTaxonomy->id }}">
-                    {{ $termTaxonomy->term->name . ' (' . $termTaxonomy->taxonomy . ')' }}</option>
+                    {{ $termTaxonomy->term->name . ' (' . __("product_meta.$termTaxonomy->taxonomy") . ')' }}</option>
             @endforeach
         </select>
         <span class="icon material-symbols-outlined btn-add">add</span>
@@ -28,7 +28,7 @@
             @foreach ($productTermTaxonomies as $productTermTaxonomy)
                 <tr>
                     <td class="term-taxonomy">
-                        {{ $productTermTaxonomy->term->name . ' (' . $productTermTaxonomy->taxonomy . ')' }}
+                        {{ $productTermTaxonomy->term->name . ' (' . __("product_meta.$productTermTaxonomy->taxonomy") . ')' }}
                         <span class="icon material-symbols-outlined btn-remove">close</span>
                         <input type="hidden" name="term_taxonomy_id" value="{{ $productTermTaxonomy->id }}">
                     </td>

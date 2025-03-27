@@ -1,8 +1,7 @@
 <!-- The best way to take care of the future is to take care of the present moment. - Thich Nhat Hanh -->
 <div class="form-item demo-attribute">
     <label for="form-title">{{ __('product.title') }}</label>
-    <input name="title" value="{{ old('title') ?? ($title ?? null) }}" class="input-field" type="text"
-           id="form-title" layout="holder-product-name" element="span" class-name="product-name" bound-attr="text/html">
+    <input name="title" value="{{ old('title') ?? ($title ?? null) }}" class="input-field" type="text" id="form-title">
 </div>
 <div class="form-item">
     <label for="form-slug">{{ __('product.slug') }}</label>

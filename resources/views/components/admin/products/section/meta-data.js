@@ -7,7 +7,8 @@ $(document).ready(function () {
     $('.demo-attribute-to-table-product-meta').on('click', '.btn-add', function () {
         let metaKey = $(this).parent().find('#form-meta-key option:selected')
         let metaValue = $(this).parent().find('#form-meta-value')
-        bindAttributeToTableProductMeta(metaKey, metaValue, $(`#table-product-meta tbody`))
+        let metaKeyName = metaKey.text()
+        bindAttributeToTableProductMeta(metaKey, metaValue, metaKeyName, $(`#table-product-meta tbody`))
         metaValue.val(``)
     })
 
@@ -19,7 +20,7 @@ $(document).ready(function () {
 
 })
 
-function bindAttributeToTableProductMeta(metaKey, metaValue, targetTbodyElement) {
+function bindAttributeToTableProductMeta(metaKey, metaValue, metaKeyName, targetTbodyElement) {
     let checkSpaceStr = metaValue.val().replace(/\s/g, '')
     if (!_get(checkSpaceStr, 'length')) {
         return
@@ -37,7 +38,7 @@ function bindAttributeToTableProductMeta(metaKey, metaValue, targetTbodyElement)
 
     targetTbodyElement.append(`
             <tr>
-                <td class="meta-key">${metaKey.val()}</td>
+                <td class="meta-key">${metaKeyName}</td>
                 <td class="meta-value">
                     ${metaValue.val()}
                     <span class="icon material-symbols-outlined btn-remove">close</span>

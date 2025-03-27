@@ -27,7 +27,7 @@ class UpdateProductService
         ModelMetaKey::THUMB_URL,
         ModelMetaKey::BOTTOM_LEFT_STAMP_URL,
         ModelMetaKey::TOP_RIGHT_STAMP_URL,
-        ModelMetaKey::REGULAR_PRICE,
+        ModelMetaKey::LIST_PRICE,
         ModelMetaKey::COMPARE_TAGS,
         ModelMetaKey::PRICE,
         ModelMetaKey::GIFT,

@@ -26,7 +26,7 @@ class BasicInfo extends Component
     public function render(): View|Closure|string
     {
         $serializedTopTags = get_meta_value($this->productMeta, ModelMetaKey::TOP_TAGS);
-        $topTags = $serializedTopTags ? unserialize($serializedTopTags) : [];
+        $topTags = array_filter($serializedTopTags ? unserialize($serializedTopTags) : []);
         $areaTextTopTags = '';
         foreach ($topTags as $topTag) {
             $areaTextTopTags .= "$topTag\n";
@@ -47,12 +47,12 @@ class BasicInfo extends Component
         }
 
         $serializedCompareTags = get_meta_value($this->productMeta, ModelMetaKey::COMPARE_TAGS);
-        $compareTags = $serializedCompareTags ? unserialize($serializedCompareTags) : [];
+        $compareTags = array_filter($serializedCompareTags ? unserialize($serializedCompareTags) : []);
         $areaTextCompareTags = '';
         foreach ($compareTags as $compareTag) {
             $areaTextCompareTags .= "$compareTag\n";
         }
-        $regularPrice = get_meta_value($this->productMeta, ModelMetaKey::REGULAR_PRICE);
+        $regularPrice = get_meta_value($this->productMeta, ModelMetaKey::LIST_PRICE);
         $price = get_meta_value($this->productMeta, ModelMetaKey::PRICE);
         $gift = get_meta_value($this->productMeta, ModelMetaKey::GIFT);
 

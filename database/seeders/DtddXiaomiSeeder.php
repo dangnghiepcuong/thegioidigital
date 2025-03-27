@@ -127,7 +127,7 @@ class DtddXiaomiSeeder extends Seeder
             // REGULAR_PRICE
             $xiaomiRedmiNote13_8_128->productMeta()
                 ->firstOrCreate(
-                    ['key' => ModelMetaKey::REGULAR_PRICE],
+                    ['key' => ModelMetaKey::LIST_PRICE],
                     ['value' => 5290000]
                 );
 
@@ -477,7 +477,7 @@ class DtddXiaomiSeeder extends Seeder
             // REGULAR_PRICE
             $xiaomiRedmiNote13_6_128->productMeta()
                 ->firstOrCreate(
-                    ['key' => ModelMetaKey::REGULAR_PRICE],
+                    ['key' => ModelMetaKey::LIST_PRICE],
                     ['value' => '4890000']
                 );
 
@@ -617,7 +617,7 @@ class DtddXiaomiSeeder extends Seeder
             // REGULAR_PRICE
             $xiaomiRedmiNote13_6_128->productMeta()
                 ->firstOrCreate(
-                    ['key' => ModelMetaKey::REGULAR_PRICE],
+                    ['key' => ModelMetaKey::LIST_PRICE],
                     ['value' => '4890000']
                 );
 

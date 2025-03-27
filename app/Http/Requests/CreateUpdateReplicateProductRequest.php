@@ -56,7 +56,7 @@ class CreateUpdateReplicateProductRequest extends FormRequest
                 return $this->input('product_attr_badge_background_style') != null;
             }), 'string'],
             ModelMetaKey::COMPARE_TAGS => ['nullable', 'max:50'],
-            ModelMetaKey::REGULAR_PRICE => ['nullable', 'numeric'],
+            ModelMetaKey::LIST_PRICE => ['nullable', 'numeric'],
             ModelMetaKey::PRICE => ['nullable', 'numeric'],
             ModelMetaKey::GIFT => ['nullable', 'numeric'],
             'reflect_product_fields_on_variants' => ['nullable', 'array'],
