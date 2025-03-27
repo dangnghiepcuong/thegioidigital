@@ -12,8 +12,8 @@ use App\Services\ProductServices\CreateNewProductService;
 use App\Services\ProductServices\PageCreateProductService;
 use App\Services\ProductServices\PageEditProductService;
 use App\Services\ProductServices\GetProductCardListViewService;
-use App\Services\ProductServices\GetProductCardPreviewService;
-use App\Services\ProductServices\GetVariantCardViewService;
+use App\Services\ProductServices\LoadProductCardPreviewService;
+use App\Services\ProductServices\LoadVariantCardViewService;
 use App\Services\ProductServices\UpdateProductService;
 use Exception;
 use Illuminate\Http\Request;
@@ -30,8 +30,8 @@ class ProductController extends Controller
         protected UpdateProductService          $updateProductService,
         protected ReplicateProductService       $replicateProductService,
         protected GetProductCardListViewService $getProductCardListViewService,
-        protected GetVariantCardViewService     $getVariantCarViewService,
-        protected GetProductCardPreviewService  $getProductCardPreviewService,
+        protected LoadVariantCardViewService    $loadVariantCarViewService,
+        protected LoadProductCardPreviewService $loadProductCardPreviewService,
         protected PageCreateProductService      $createPageProductService,
         protected PageEditProductService        $editPageProductService
     )
@@ -141,11 +141,11 @@ class ProductController extends Controller
         return redirect()->route('admin.products.slug', $newSlug);
     }
 
-    public function getVariantBySlug(string $slug)
+    public function loadVariantCardView(string $slug)
     {
         try {
             DB::beginTransaction();
-            $view = $this->getVariantCarViewService->__invoke($slug);
+            $view = $this->loadVariantCarViewService->__invoke($slug);
             DB::commit();
 
             return $view;
@@ -155,9 +155,9 @@ class ProductController extends Controller
         }
     }
 
-    public function getProductCardPreview(Request $request)
+    public function loadProductCardPreview(Request $request)
     {
-        $view = $this->getProductCardPreviewService->__invoke($request);
+        $view = $this->loadProductCardPreviewService->__invoke($request);
 
         return response()->json(['data' => $view]);
     }

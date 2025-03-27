@@ -53,7 +53,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('{slug}/edit', 'edit')->name('admin.products.slug');
             Route::patch('{slug}/update', 'update')->name('admin.products.update');
             Route::post('{slug}/replicate', 'replicate')->name('admin.products.replicate');
-            Route::get('card-view-by-data', 'getProductCardPreview');
+            Route::get('card-view-by-data', 'loadProductCardPreview');
 
             Route::prefix('files')->controller(FileController::class)->group(function () {
                 Route::get('slider-images', 'getImagesForProductSlider');
@@ -78,5 +78,5 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('dtdd/', 'dtdd')->name('products.dtdd');
     Route::get('dtdd/{slug}', 'show')->name('products.dtdd.slug');
     Route::get('dtdd-xiaomi/{slug?}', 'dtddXiaomi')->name('product.dtdd-xiaomi');
-    Route::get('dtdd/product-variant/{slug}', 'getVariantBySlug')->name('product.get.variant-card');
+    Route::get('dtdd/product-variant/{slug}', 'loadVariantCardView')->name('product.get.variant-card');
 });
