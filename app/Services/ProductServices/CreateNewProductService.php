@@ -12,35 +12,6 @@ use Illuminate\Support\Str;
 
 class CreateNewProductService
 {
-    protected $autoFillData = [
-        ModelMetaKey::BADGE_BACKGROUND_STYLE,
-        ModelMetaKey::BADGE_BACKGROUND_COLOR_1,
-        ModelMetaKey::BADGE_BACKGROUND_COLOR_2,
-        ModelMetaKey::BADGE_BACKGROUND_COLOR_REVERSE,
-        ModelMetaKey::BADGE_BACKGROUND_URL,
-        ModelMetaKey::BADGE_TEXT,
-        ModelMetaKey::BADGE_TEXT_COLOR,
-        ModelMetaKey::THUMB_URL,
-        ModelMetaKey::BOTTOM_LEFT_STAMP_URL,
-        ModelMetaKey::LIST_PRICE,
-        ModelMetaKey::PRICE,
-        ModelMetaKey::GIFT,
-        ModelMetaKey::RAM,
-        ModelMetaKey::ROM,
-        ModelMetaKey::STORAGE,
-        ModelMetaKey::COLOR,
-        ModelMetaKey::SCREEN_SIZE,
-        ModelMetaKey::SCREEN_RESOLUTION,
-        ModelMetaKey::SCREEN_MATERIAL,
-        ModelMetaKey::BACK_CAMERA,
-        ModelMetaKey::FRONT_CAMERA,
-        ModelMetaKey::BATTERY,
-        ModelMetaKey::CHARGE_POWER,
-        ModelMetaKey::CPU,
-        ModelMetaKey::MEMORY,
-        ModelMetaKey::BRAND,
-    ];
-
     public function __construct(
         protected ProductRepository $productRepository,
         protected ProductMetaRepository $productMetaRepository
@@ -55,8 +26,6 @@ class CreateNewProductService
         $type = $request->type;
         $parentId = $request->parent_id;
         $status = $request->status;
-        $topTags = explode("\r\n", $request->str(ModelMetaKey::TOP_TAGS)->value());
-        $compareTags = explode("\r\n", $request->str(ModelMetaKey::COMPARE_TAGS)->value());
         $title = $request->title;
         $slug = Str::slug($request->slug);
         $description = $request->description;
@@ -73,20 +42,8 @@ class CreateNewProductService
                 'description' => $description,
             ]);
 
-            $productMeta = !all_null_array($compareTags) ? $this->productMetaRepository->model()->firstOrCreate([
-                'key' => ModelMetaKey::COMPARE_TAGS,
-                'value' => serialize($compareTags),
-                'product_id' => $product->id,
-            ]) : null;
-
-            $productMeta = !all_null_array($topTags) ? $this->productMetaRepository->model()->firstOrCreate([
-                'key' => ModelMetaKey::TOP_TAGS,
-                'value' => serialize($topTags),
-                'product_id' => $product->id,
-            ]) : null;
-
             foreach ($request->all() as $key => $value) {
-                if (!in_array($key, $this->autoFillData)) {
+                if (!in_array($key, UpdateProductService::AUTO_FILLABLE_DATA)) {
                     continue;
                 }
 

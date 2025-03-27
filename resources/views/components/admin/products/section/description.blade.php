@@ -7,9 +7,9 @@
 </div>
 <div class="section-content layout-wysiwyg-product-description" id="layout-wysiwyg-product-description">
     <div id="wysiwyg-product-description">
-        {!! old('description') ?? $product->description ?? null !!}
+        {!! old('description') ?? $description ?? null !!}
     </div>
-    <input type="hidden" name="description" value="{{ old('description') ?? $product->description ?? null }}">
+    <input type="hidden" name="description" value="{{ old('description') ?? $description ?? null }}">
     <div class="layout-btn-line">
         <div class="item-btn" id="btn-demo-product-description">
             {{ __('button.demo') }}
