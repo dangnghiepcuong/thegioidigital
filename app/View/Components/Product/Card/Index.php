@@ -51,7 +51,7 @@ class Index extends Component
             if ($badgeBgColorReverse) {
                 [$badgeBgColor1, $badgeBgColor2] = [$badgeBgColor2, $badgeBgColor1];
             }
-            $badge = Blade::render('<x-product.card.badge-template
+            $badge = Blade::render('<x-product.card.badge
             :background-style="$badgeBgStyle ?? null"
             :background-color-1="$badgeBgColor1 ?? null"
             :background-color-2="$badgeBgColor2 ?? null"
