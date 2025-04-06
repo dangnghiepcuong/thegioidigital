@@ -17,7 +17,7 @@ class RenderBadgeTemplateService
             return null;
         }
 
-        return Blade::render('<x-product.card.badge-template
+        return Blade::render('<x-product.card.badge
         :background-style="$backgroundStyle"
         :background-color-1="$backgroundColor1"
         :background-color-2="$backgroundColor2"
