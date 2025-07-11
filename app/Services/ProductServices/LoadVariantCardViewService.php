@@ -5,12 +5,9 @@ namespace App\Services\ProductServices;
 use App\Repositories\Eloquents\ProductRepository;
 use App\Repositories\Eloquents\TermTaxonomyRepository;
 use App\Services\RenderProductViewServices\RenderProductCardOfSelectedVariantService;
-use App\Support\Traits\ProductTrait;
 
 class LoadVariantCardViewService
 {
-    use ProductTrait;
-
     public function __construct(
         protected ProductRepository                             $productRepository,
         protected TermTaxonomyRepository                        $termTaxonomyRepository,
@@ -27,8 +24,8 @@ class LoadVariantCardViewService
             ->with(['productMetaInCardView'])
             ->first();
         $parent = $variant->parent()->with(['termTaxonomies.term'])->first();
-        $termsOfFirstPriorTaxonomy = $this->getTermsByFirstPriorTaxonomyOfProduct($parent);
-        $representVariants = $this->getRepresentativeVariants($parent, $termsOfFirstPriorTaxonomy);
+        $termsOfFirstPriorTaxonomy = $this->productRepository->getTermsByFirstPriorTaxonomyOfProduct($parent);
+        $representVariants = $this->productRepository->getRepresentativeVariants($parent, $termsOfFirstPriorTaxonomy);
         $matchedMeta = $variant->productMetaInCardView->where('key', $termsOfFirstPriorTaxonomy->first()->taxonomy)->first();
         $selectedTermTaxonomy = $matchedMeta ? $matchedMeta->value : null;
         $html = $this->renderProductCardViewOfSelectedVariantService->__invoke(

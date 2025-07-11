@@ -5,13 +5,11 @@ namespace App\Services\ProductServices;
 use App\Repositories\Eloquents\ProductMetaRepository;
 use App\Repositories\Eloquents\ProductRepository;
 use App\Services\RenderProductViewServices\RenderProductCardOfDefaultVariantService;
-use App\Support\Traits\ProductTrait;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 
 class GetProductCardListViewService
 {
-    use ProductTrait;
-
     public function __construct(
         protected ProductRepository $productRepository,
         protected ProductMetaRepository $productMetaRepository,
@@ -28,8 +26,8 @@ class GetProductCardListViewService
     {
         $htmlProductCardList = null;
         foreach ($products as $product) {
-            $termsOfFirstPriorTaxonomy = $this->getTermsByFirstPriorTaxonomyOfProduct($product);
-            $representVariants = $this->getRepresentativeVariants($product, $termsOfFirstPriorTaxonomy);
+            $termsOfFirstPriorTaxonomy = $this->productRepository->getTermsByFirstPriorTaxonomyOfProduct($product);
+            $representVariants = $this->productRepository->getRepresentativeVariants($product, $termsOfFirstPriorTaxonomy);
             $html = $this->renderProductCardViewOfDefaultVariantService->__invoke(
                 $product, $termsOfFirstPriorTaxonomy, $representVariants
             );

@@ -5,9 +5,9 @@ namespace App\Services\ProductServices;
 use App\Enums\ModelMetaKey;
 use App\Models\Product;
 use App\Models\ProductMeta;
+use App\Repositories\Eloquents\ProductRepository;
 use App\Services\RenderProductViewServices\RenderBadgeTemplateService;
 use App\Services\RenderProductViewServices\RenderProductCardOfDefaultVariantService;
-use App\Support\Traits\ProductTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -15,9 +15,8 @@ use Illuminate\Support\Facades\DB;
 
 class LoadProductCardPreviewService
 {
-    use ProductTrait;
-
     public function __construct(
+        protected ProductRepository $productRepository,
         protected RenderProductCardOfDefaultVariantService $renderProductCardViewOfDefaultVariantService,
         protected RenderBadgeTemplateService               $renderBadgeTemplateService
     )
@@ -47,8 +46,8 @@ class LoadProductCardPreviewService
 
             $product->setRelation('productMetaInCardView', $productMeta);
 
-            $termsOfFirstPriorTaxonomy = $this->getTermsByFirstPriorTaxonomyOfProduct($product);
-            $representVariants = $this->getRepresentativeVariants($product, $termsOfFirstPriorTaxonomy);
+            $termsOfFirstPriorTaxonomy = $this->productRepository->getTermsByFirstPriorTaxonomyOfProduct($product);
+            $representVariants = $this->productRepository->getRepresentativeVariants($product, $termsOfFirstPriorTaxonomy);
             $html = $this->renderProductCardViewOfDefaultVariantService->__invoke(
                 $product, $termsOfFirstPriorTaxonomy, $representVariants
             );
